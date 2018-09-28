@@ -220,6 +220,11 @@
     <ClInclude Include="Audio\Audio.h" />
     <ClInclude Include="Audio\MediaReader.h" />
     <ClInclude Include="Audio\SoundEffect.h" />
+    <ClInclude Include="Core\GameMain.h" />
+    <ClInclude Include="Core\GameUIConstants.h" />
+    <ClInclude Include="Core\GameUIControl.h" />
+    <ClInclude Include="Core\ProductItem.h" />
+    <ClInclude Include="Core\Simple3DGame.h" />
     <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameLevels\Level.h" />
     <ClInclude Include="GameLevels\Level1.h" />
@@ -228,7 +233,6 @@
     <ClInclude Include="GameLevels\Level4.h" />
     <ClInclude Include="GameLevels\Level5.h" />
     <ClInclude Include="GameLevels\Level6.h" />
-    <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameObjects\Animate.h" />
     <ClInclude Include="GameObjects\Camera.h" />
     <ClInclude Include="GameObjects\Cylinder.h" />
@@ -236,22 +240,18 @@
     <ClInclude Include="GameObjects\GameConstants.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Sphere.h" />
-    <ClInclude Include="GameUIConstants.h" />
     <ClInclude Include="GameRenderer.h" />
-    <ClInclude Include="GameUIControl.h" />
     <ClInclude Include="Input\MoveLookController.h" />
     <ClInclude Include="Meshes\CylinderMesh.h" />
     <ClInclude Include="Meshes\FaceMesh.h" />
     <ClInclude Include="Meshes\SphereMesh.h" />
     <ClInclude Include="Meshes\WorldMesh.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ProductItem.h" />
     <ClInclude Include="Rendering\ConstantBuffers.h" />
     <ClInclude Include="Rendering\Material.h" />
     <ClInclude Include="Rendering\StereoProjection.h" />
     <ClInclude Include="Rendering\TargetTexture.h" />
     <ClInclude Include="Resources\MeshObject.h" />
-    <ClInclude Include="Simple3DGame.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
@@ -272,6 +272,9 @@
     <ClCompile Include="Audio\Audio.cpp" />
     <ClCompile Include="Audio\MediaReader.cpp" />
     <ClCompile Include="Audio\SoundEffect.cpp" />
+    <ClCompile Include="Core\GameMain.cpp" />
+    <ClCompile Include="Core\ProductItem.cpp" />
+    <ClCompile Include="Core\Simple3DGame.cpp" />
     <ClCompile Include="GameHud.cpp" />
     <ClCompile Include="GameLevels\Level.cpp" />
     <ClCompile Include="GameLevels\Level1.cpp" />
@@ -280,7 +283,6 @@
     <ClCompile Include="GameLevels\Level4.cpp" />
     <ClCompile Include="GameLevels\Level5.cpp" />
     <ClCompile Include="GameLevels\Level6.cpp" />
-    <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GameObjects\Animate.cpp" />
     <ClCompile Include="GameObjects\Camera.cpp" />
     <ClCompile Include="GameObjects\Cylinder.cpp" />
@@ -296,12 +298,10 @@
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ProductItem.cpp" />
     <ClCompile Include="Rendering\Material.cpp" />
     <ClCompile Include="Rendering\StereoProjection.cpp" />
     <ClCompile Include="Rendering\TargetTexture.cpp" />
     <ClCompile Include="Resources\MeshObject.cpp" />
-    <ClCompile Include="Simple3DGame.cpp" />
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>

@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include "DirectXPage.g.h"
-#include "GameMain.h"
-#include "ProductItem.h"
+#include "Core/GameMain.h"
+#include "Core/ProductItem.h"
 
 // When submitting the app to the Microsoft Store, disable the Store Simulator by commenting out this definition.
 #define USE_STORE_SIMULATOR 1

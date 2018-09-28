@@ -19,7 +19,7 @@
 //         object and the objects representing the bounding world.
 
 #include "GameObjects/GameConstants.h"
-#include "GameUIConstants.h"
+#include "Core/GameUIConstants.h"
 #include "Audio/Audio.h"
 #include "GameObjects/Camera.h"
 #include "GameLevels/Level.h"

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Input/MoveLookController.h"
-#include "GameMain.h"
-#include "GameUIConstants.h"
+#include "Core/GameMain.h"
+#include "Core/GameUIConstants.h"
 
 using namespace Simple3DGameXaml;
 using namespace GameControl;

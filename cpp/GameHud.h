@@ -6,7 +6,7 @@
 // The GameHud Render method expects to be called within the context of a D2D BeginDraw
 // and makes D2D drawing calls to draw the text elements on the window.
 
-#include "Simple3DGame.h"
+#include "Core/Simple3DGame.h"
 #include "Utilities/DirectXSample.h"
 
 ref class Simple3DGame;

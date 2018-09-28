@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "App.xaml.h"
 #include "DirectXPage.xaml.h"
-#include "ProductItem.h"
+#include "Core/ProductItem.h"
 
 using namespace Simple3DGameXaml;
 

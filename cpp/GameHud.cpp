@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "GameHud.h"
 #include "GameObjects/GameConstants.h"
-#include "GameUIConstants.h"
+#include "Core/GameUIConstants.h"
 
 using namespace Microsoft::WRL;
 using namespace Windows::UI::Core;

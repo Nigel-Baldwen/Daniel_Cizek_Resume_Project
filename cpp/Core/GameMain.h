@@ -34,8 +34,8 @@
 #include "Utilities/DeviceResources.h"
 #include "Input/MoveLookController.h"
 #include "GameRenderer.h"
-#include "Simple3DGame.h"
-#include "GameUIControl.h"
+#include "Core/Simple3DGame.h"
+#include "Core/GameUIControl.h"
 
 
 namespace GameControl

@@ -41,7 +41,7 @@
 
 #include "Utilities/DeviceResources.h"
 #include "GameHud.h"
-#include "Simple3DGame.h"
+#include "Core/Simple3DGame.h"
 
 ref class Simple3DGame;
 ref class GameHud;

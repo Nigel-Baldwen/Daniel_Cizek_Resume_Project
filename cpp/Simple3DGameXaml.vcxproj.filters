@@ -37,12 +37,9 @@
     <ClCompile Include="GameHud.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="GameRenderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="ProductItem.cpp" />
-    <ClCompile Include="Simple3DGame.cpp" />
     <ClCompile Include="Audio\Audio.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
@@ -137,6 +134,15 @@
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Core\GameMain.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ProductItem.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Simple3DGame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -144,13 +150,9 @@
     <ClInclude Include="GameHud.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameRenderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="GameUIControl.h" />
-    <ClInclude Include="ProductItem.h" />
-    <ClInclude Include="Simple3DGame.h" />
     <ClInclude Include="Audio\Audio.h">
       <Filter>Audio</Filter>
     </ClInclude>
@@ -260,6 +262,21 @@
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Core\GameMain.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameUIConstants.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameUIControl.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ProductItem.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Simple3DGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Simple3DGameDX\Cpp\Assets\seafloor.dds">
@@ -333,9 +350,6 @@
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameUIConstants.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="TrialLicense.xml" />
