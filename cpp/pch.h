@@ -25,3 +25,6 @@
 #include <agile.h>
 #include <concrt.h>
 
+// __OLD_CODE__ While defined, enables original code
+// written into the sample project by Microsoft.
+// #define __OLD_CODE__

@@ -26,7 +26,8 @@ GameHud::GameHud(
     m_titleLicenseInfo(titleLicenseInfo),
     m_licenseInfoChanged(true)
 {
-    m_showTitle = true;
+	#ifdef __OLD_CODE__
+	m_showTitle = true;
     m_titleBodyVerticalOffset = GameConstants::Margin;
     m_logoSize = D2D1::SizeF(0.0f, 0.0f);
 
@@ -103,13 +104,15 @@ GameHud::GameHud(
     DX::ThrowIfFailed(m_textFormatTitleBody->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR));
     DX::ThrowIfFailed(m_textFormatTitleLicense->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING));
     DX::ThrowIfFailed(m_textFormatTitleLicense->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR));
+	#endif // __OLD_CODE__
 }
 
 //----------------------------------------------------------------------
 
 void GameHud::CreateDeviceDependentResources()
 {
-    auto location = Package::Current->InstalledLocation;
+	#ifdef __OLD_CODE__
+	auto location = Package::Current->InstalledLocation;
     Platform::String^ path = Platform::String::Concat(location->Path, "\\");
     path = Platform::String::Concat(path, "Assets\\windows-sdk.png");
 
@@ -182,13 +185,15 @@ void GameHud::CreateDeviceDependentResources()
             &m_textBrushGrey
             )
         );
+	#endif // __OLD_CODE__
 }
 
 //----------------------------------------------------------------------
 
 void GameHud::CreateWindowSizeDependentResources()
 {
-    auto windowBounds = m_deviceResources->GetLogicalSize();
+	#ifdef __OLD_CODE__
+	auto windowBounds = m_deviceResources->GetLogicalSize();
 
     m_maxTitleSize.width = windowBounds.Width - GameConstants::HudSafeWidth;
     m_maxTitleSize.height = windowBounds.Height;
@@ -257,21 +262,25 @@ void GameHud::CreateWindowSizeDependentResources()
         // Not enough horizontal space for the titles so just turn it off.
         m_showTitle = false;
     }
+	#endif // __OLD_CODE__
 }
 
 //----------------------------------------------------------------------
 
 void GameHud::SetLicenseInfo(_In_ Platform::String^ licenseInfo)
 {
-    m_titleLicenseInfo = licenseInfo;
+	#ifdef __OLD_CODE__
+	m_titleLicenseInfo = licenseInfo;
     m_licenseInfoChanged = true;
+	#endif // __OLD_CODE__
 }
 
 //----------------------------------------------------------------------
 
 void GameHud::Render(_In_ Simple3DGame^ game)
 {
-    auto d2dContext = m_deviceResources->GetD2DDeviceContext();
+	#ifdef __OLD_CODE__
+	auto d2dContext = m_deviceResources->GetD2DDeviceContext();
     auto windowBounds = m_deviceResources->GetLogicalSize();
 
     if (m_showTitle)
@@ -462,14 +471,17 @@ void GameHud::Render(_In_ Simple3DGame^ game)
                 );
         }
     }
+	#endif // __OLD_CODE__
 }
 
 //----------------------------------------------------------------------
 
 void GameHud::ReleaseDeviceDependentResources()
 {
+	#ifdef __OLD_CODE__
     m_textBrush.Reset();
     m_textBrushGrey.Reset();
     m_logoBitmap.Reset();
+	#endif // __OLD_CODE__
 }
 //----------------------------------------------------------------------
