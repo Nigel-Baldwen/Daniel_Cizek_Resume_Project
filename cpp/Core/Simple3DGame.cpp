@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "GameRenderer.h"
+#include "Rendering/GameRenderer.h"
 
 #include "GameLevels/Level1.h"
 #include "GameLevels/Level2.h"

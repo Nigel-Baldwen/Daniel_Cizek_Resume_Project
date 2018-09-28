@@ -33,7 +33,7 @@
 
 #include "Utilities/DeviceResources.h"
 #include "Input/MoveLookController.h"
-#include "GameRenderer.h"
+#include "Rendering/GameRenderer.h"
 #include "Core/Simple3DGame.h"
 #include "Core/GameUIControl.h"
 

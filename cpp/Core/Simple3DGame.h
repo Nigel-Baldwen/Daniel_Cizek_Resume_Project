@@ -28,7 +28,7 @@
 #include "Input/MoveLookController.h"
 #include "Utilities/PersistentState.h"
 #include "GameObjects/Sphere.h"
-#include "GameRenderer.h"
+#include "Rendering/GameRenderer.h"
 
 //--------------------------------------------------------------------------------------
 

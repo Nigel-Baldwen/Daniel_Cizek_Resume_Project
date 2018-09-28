@@ -40,7 +40,7 @@
 //     }, task_continuation_context::use_current());
 
 #include "Utilities/DeviceResources.h"
-#include "GameHud.h"
+#include "Rendering/GameHud.h"
 #include "Core/Simple3DGame.h"
 
 ref class Simple3DGame;

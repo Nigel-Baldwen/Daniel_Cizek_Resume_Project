@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "GameHud.h"
+#include "Rendering/GameHud.h"
 #include "GameObjects/GameConstants.h"
 #include "Core/GameUIConstants.h"
 

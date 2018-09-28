@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "GameRenderer.h"
+#include "Rendering/GameRenderer.h"
 #include "Rendering/ConstantBuffers.h"
 #include "Rendering/TargetTexture.h"
 #include "Utilities/BasicLoader.h"
