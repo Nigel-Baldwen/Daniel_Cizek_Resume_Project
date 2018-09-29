@@ -23,6 +23,9 @@
       <UniqueIdentifier>049a7339-f1f2-42e4-8e45-7009e5d83c17</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
+    <Image Include="Assets\Images\Main_Menu_Template.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -346,6 +349,9 @@
     </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{21f80435-a227-4979-8fc8-5c5ae964f1ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Images">
+      <UniqueIdentifier>{a3a29e1b-cf1c-46b4-9f0f-5298227d9f59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
