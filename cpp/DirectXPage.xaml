@@ -117,13 +117,17 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="1" Grid.Row="1" Source="Talk_UP.png" HorizontalAlignment="Center"
-                   VerticalAlignment="Center"  Visibility="Visible" ImageFailed="Image_ImageOpened"/>
-            <Image Grid.Column="1" Grid.Row="3" Source="See_UP.png" Visibility="Visible"/>
-            <Image Grid.Column="1" Grid.Row="5" Source="Let_UP.png" Visibility="Visible"/>
-            <Image Grid.Column="1" Grid.Row="7" Source="Design_UP.png" Visibility="Visible"/>
-            <Image Grid.Column="1" Grid.Row="9" Source="Where_UP.png" Visibility="Visible"/>
-            <Image Grid.Column="1" Grid.Row="11" Source="Quit_UP.png" Visibility="Visible"/>
+            <!--Likely to add in buttons rather than images since that's what I want.-->
+            <Button Grid.Column="1" Grid.Row="6">
+                <Image Source="Assets/Images/Talk_UP.png"> </Image>
+            </Button>
+            
+            <Image Grid.Column="1" Grid.Row="1" Source="Assets/Images/Talk_UP.png"/>
+            <Image Grid.Column="1" Grid.Row="3" Source="Assets/Images/See_UP.png"/>
+            <Image Grid.Column="1" Grid.Row="5" Source="Assets/Images/Let_UP.png"/>
+            <Image Grid.Column="1" Grid.Row="7" Source="Assets/Images/Design_UP.png"/>
+            <Image Grid.Column="1" Grid.Row="9" Source="Assets/Images/Where_UP.png"/>
+            <Image Grid.Column="1" Grid.Row="11" Source="Assets/Images/Quit_UP.png"/>
 
         </Grid>
         <!-- REMOVED FOR TESTING
