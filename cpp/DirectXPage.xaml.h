@@ -96,5 +96,6 @@ namespace Simple3DGameXaml
         PersistentState^                                    m_licenseState;
         bool                                                m_isTrial;
 #endif
-    };
+		void Image_ImageOpened(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+	};
 }

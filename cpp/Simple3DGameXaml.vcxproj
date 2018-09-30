@@ -215,7 +215,13 @@
     <Image Include="..\..\..\SharedContent\media\windows-sdk.png">
       <Link>Assets\windows-sdk.png</Link>
     </Image>
+    <Image Include="Assets\Images\Design_UP.png" />
+    <Image Include="Assets\Images\Let_UP.png" />
     <Image Include="Assets\Images\Main_Menu_Template.png" />
+    <Image Include="Assets\Images\Quit_UP.png" />
+    <Image Include="Assets\Images\See_UP.png" />
+    <Image Include="Assets\Images\Talk_UP.png" />
+    <Image Include="Assets\Images\Where_UP.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\Audio.h" />

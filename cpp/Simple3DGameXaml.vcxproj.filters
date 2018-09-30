@@ -26,6 +26,24 @@
     <Image Include="Assets\Images\Main_Menu_Template.png">
       <Filter>Assets\Images</Filter>
     </Image>
+    <Image Include="Assets\Images\Talk_UP.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Design_UP.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Quit_UP.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\See_UP.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Where_UP.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Let_UP.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />

@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Simple3DGameXaml">
     
-    <SolidColorBrush x:Key="PageBackgroundBrush" Color="#FF0C0C0C"/> 
-    <SolidColorBrush x:Key="ActionBrush" Color="#FFdb7100"/>
+    <SolidColorBrush x:Key="PageBackgroundBrush" Color="#000000"/>
+    <SolidColorBrush x:Key="ActionBrush" Color="#1b6e1b"/>
 
     <Style x:Key="TitleStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#707070" />

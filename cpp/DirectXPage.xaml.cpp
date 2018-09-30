@@ -139,20 +139,20 @@ void DirectXPage::SetAction(GameInfoOverlayCommand action)
             // Enable only one of the four possible commands at the bottom of the
             // Game Info Overlay.
 
-            PlayAgain->Visibility = ::Visibility::Collapsed;
-            PleaseWait->Visibility = ::Visibility::Collapsed;
-            TapToContinue->Visibility = ::Visibility::Collapsed;
+            //PlayAgain->Visibility = ::Visibility::Collapsed;
+            //PleaseWait->Visibility = ::Visibility::Collapsed;
+            //TapToContinue->Visibility = ::Visibility::Collapsed;
 
             switch (action)
             {
             case GameInfoOverlayCommand::PlayAgain:
-                PlayAgain->Visibility = ::Visibility::Visible;
+                //PlayAgain->Visibility = ::Visibility::Visible;
                 break;
             case GameInfoOverlayCommand::PleaseWait:
-                PleaseWait->Visibility = ::Visibility::Visible;
+                //PleaseWait->Visibility = ::Visibility::Visible;
                 break;
             case GameInfoOverlayCommand::TapToContinue:
-                TapToContinue->Visibility = ::Visibility::Visible;
+                //TapToContinue->Visibility = ::Visibility::Visible;
                 break;
             case GameInfoOverlayCommand::None:
                 break;
@@ -171,13 +171,13 @@ void DirectXPage::SetGameLoading()
         CoreDispatcherPriority::Normal,
         ref new DispatchedHandler([this]()
         {
-            GameInfoOverlayTitle->Text = "Loading Resources";
+            //GameInfoOverlayTitle->Text = "Loading Resources";
 
-            Loading->Visibility = ::Visibility::Visible;
-            Stats->Visibility = ::Visibility::Collapsed;
-            LevelStart->Visibility = ::Visibility::Collapsed;
-            PauseData->Visibility = ::Visibility::Collapsed;
-            LoadingProgress->IsActive = true;
+            //Loading->Visibility = ::Visibility::Visible;
+            //Stats->Visibility = ::Visibility::Collapsed;
+            //LevelStart->Visibility = ::Visibility::Collapsed;
+            //PauseData->Visibility = ::Visibility::Collapsed;
+            //LoadingProgress->IsActive = true;
         })
         );
 }
@@ -196,30 +196,30 @@ void DirectXPage::SetGameStats(
         CoreDispatcherPriority::Normal,
         ref new DispatchedHandler([this, maxLevel, hitCount, shotCount]()
         {
-            GameInfoOverlayTitle->Text = "Game Statistics";
+            //GameInfoOverlayTitle->Text = "Game Statistics";
             m_possiblePurchaseUpgrade = true;
             OptionalTrialUpgrade();
 
-            Loading->Visibility = ::Visibility::Collapsed;
-            Stats->Visibility = ::Visibility::Visible;
-            LevelStart->Visibility = ::Visibility::Collapsed;
-            PauseData->Visibility = ::Visibility::Collapsed;
+            //Loading->Visibility = ::Visibility::Collapsed;
+            //Stats->Visibility = ::Visibility::Visible;
+            //LevelStart->Visibility = ::Visibility::Collapsed;
+            //PauseData->Visibility = ::Visibility::Collapsed;
 
             static const int bufferLength = 20;
             static char16 wsbuffer[bufferLength];
 
             int length = swprintf_s(wsbuffer, bufferLength, L"%d", maxLevel);
-            LevelsCompleted->Text = ref new Platform::String(wsbuffer, length);
+            //LevelsCompleted->Text = ref new Platform::String(wsbuffer, length);
 
             length = swprintf_s(wsbuffer, bufferLength, L"%d", hitCount);
-            TotalPoints->Text = ref new Platform::String(wsbuffer, length);
+            //TotalPoints->Text = ref new Platform::String(wsbuffer, length);
 
             length = swprintf_s(wsbuffer, bufferLength, L"%d", shotCount);
-            TotalShots->Text = ref new Platform::String(wsbuffer, length);
+            //TotalShots->Text = ref new Platform::String(wsbuffer, length);
 
             // High Score is not used for showing Game Statistics
-            HighScoreTitle->Visibility = ::Visibility::Collapsed;
-            HighScoreData->Visibility = ::Visibility::Collapsed;
+            //HighScoreTitle->Visibility = ::Visibility::Collapsed;
+            //HighScoreData->Visibility = ::Visibility::Collapsed;
         })
         );
 }
@@ -242,38 +242,38 @@ void DirectXPage::SetGameOver(
         {
             if (win)
             {
-                GameInfoOverlayTitle->Text = "You Won!";
+                //GameInfoOverlayTitle->Text = "You Won!";
                 m_possiblePurchaseUpgrade = true;
                 OptionalTrialUpgrade();
             }
             else
             {
-                GameInfoOverlayTitle->Text = "Game Over";
+                //GameInfoOverlayTitle->Text = "Game Over";
                 m_possiblePurchaseUpgrade = false;
-                PurchaseUpgrade->Visibility = ::Visibility::Collapsed;
+                //PurchaseUpgrade->Visibility = ::Visibility::Collapsed;
             }
-            Loading->Visibility = ::Visibility::Collapsed;
-            Stats->Visibility = ::Visibility::Visible;
-            LevelStart->Visibility = ::Visibility::Collapsed;
-            PauseData->Visibility = ::Visibility::Collapsed;
+            //Loading->Visibility = ::Visibility::Collapsed;
+            //Stats->Visibility = ::Visibility::Visible;
+            //LevelStart->Visibility = ::Visibility::Collapsed;
+            //PauseData->Visibility = ::Visibility::Collapsed;
 
             static const int bufferLength = 20;
             static char16 wsbuffer[bufferLength];
 
             int length = swprintf_s(wsbuffer, bufferLength, L"%d", maxLevel);
-            LevelsCompleted->Text = ref new Platform::String(wsbuffer, length);
+            //LevelsCompleted->Text = ref new Platform::String(wsbuffer, length);
 
             length = swprintf_s(wsbuffer, bufferLength, L"%d", hitCount);
-            TotalPoints->Text = ref new Platform::String(wsbuffer, length);
+            //TotalPoints->Text = ref new Platform::String(wsbuffer, length);
 
             length = swprintf_s(wsbuffer, bufferLength, L"%d", shotCount);
-            TotalShots->Text = ref new Platform::String(wsbuffer, length);
+            //TotalShots->Text = ref new Platform::String(wsbuffer, length);
 
             // Show High Score
-            HighScoreTitle->Visibility = ::Visibility::Visible;
-            HighScoreData->Visibility = ::Visibility::Visible;
+            //HighScoreTitle->Visibility = ::Visibility::Visible;
+            //HighScoreData->Visibility = ::Visibility::Visible;
             length = swprintf_s(wsbuffer, bufferLength, L"%d", highScore);
-            HighScore->Text = ref new Platform::String(wsbuffer, length);
+            //HighScore->Text = ref new Platform::String(wsbuffer, length);
         })
         );
 }
@@ -297,29 +297,29 @@ void DirectXPage::SetLevelStart(
             static char16 wsbuffer[bufferLength];
 
             int length = swprintf_s(wsbuffer, bufferLength, L"Level %d", level);
-            GameInfoOverlayTitle->Text = ref new Platform::String(wsbuffer, length);
+            //GameInfoOverlayTitle->Text = ref new Platform::String(wsbuffer, length);
 
-            Loading->Visibility = ::Visibility::Collapsed;
-            Stats->Visibility = ::Visibility::Collapsed;
-            LevelStart->Visibility = ::Visibility::Visible;
-            PauseData->Visibility = ::Visibility::Collapsed;
+            //Loading->Visibility = ::Visibility::Collapsed;
+            //Stats->Visibility = ::Visibility::Collapsed;
+            //LevelStart->Visibility = ::Visibility::Visible;
+            //PauseData->Visibility = ::Visibility::Collapsed;
 
-            Objective->Text = objective;
+            //Objective->Text = objective;
 
             length = swprintf_s(wsbuffer, bufferLength, L"%6.1f sec", timeLimit);
-            TimeLimit->Text = ref new Platform::String(wsbuffer, length);
+            //TimeLimit->Text = ref new Platform::String(wsbuffer, length);
 
             if (bonusTime > 0.0)
             {
-                BonusTimeTitle->Visibility = ::Visibility::Visible;
-                BonusTimeData->Visibility = ::Visibility::Visible;
+                //BonusTimeTitle->Visibility = ::Visibility::Visible;
+                //BonusTimeData->Visibility = ::Visibility::Visible;
                 length = swprintf_s(wsbuffer, bufferLength, L"%6.1f sec", bonusTime);
-                BonusTime->Text = ref new Platform::String(wsbuffer, length);
+                //BonusTime->Text = ref new Platform::String(wsbuffer, length);
             }
             else
             {
-                BonusTimeTitle->Visibility = ::Visibility::Collapsed;
-                BonusTimeData->Visibility = ::Visibility::Collapsed;
+                //BonusTimeTitle->Visibility = ::Visibility::Collapsed;
+                //BonusTimeData->Visibility = ::Visibility::Collapsed;
             }
         })
         );
@@ -335,26 +335,26 @@ void DirectXPage::SetPause(int level, int hitCount, int shotCount, float timeRem
         CoreDispatcherPriority::Normal,
         ref new DispatchedHandler([this, level, hitCount, shotCount, timeRemaining]()
         {
-            GameInfoOverlayTitle->Text = "Paused";
-            Loading->Visibility = ::Visibility::Collapsed;
-            Stats->Visibility = ::Visibility::Collapsed;
-            LevelStart->Visibility = ::Visibility::Collapsed;
-            PauseData->Visibility = ::Visibility::Visible;
+            //GameInfoOverlayTitle->Text = "Paused";
+            //Loading->Visibility = ::Visibility::Collapsed;
+            //Stats->Visibility = ::Visibility::Collapsed;
+            //LevelStart->Visibility = ::Visibility::Collapsed;
+            //PauseData->Visibility = ::Visibility::Visible;
 
             static const int bufferLength = 20;
             static char16 wsbuffer[bufferLength];
 
             int length = swprintf_s(wsbuffer, bufferLength, L"%d", level);
-            PauseLevel->Text = ref new Platform::String(wsbuffer, length);
+            //PauseLevel->Text = ref new Platform::String(wsbuffer, length);
 
             length = swprintf_s(wsbuffer, bufferLength, L"%d", hitCount);
-            PauseHits->Text = ref new Platform::String(wsbuffer, length);
+            //PauseHits->Text = ref new Platform::String(wsbuffer, length);
 
             length = swprintf_s(wsbuffer, bufferLength, L"%d", shotCount);
-            PauseShots->Text = ref new Platform::String(wsbuffer, length);
+            //PauseShots->Text = ref new Platform::String(wsbuffer, length);
 
             length = swprintf_s(wsbuffer, bufferLength, L"%6.1f sec", timeRemaining);
-            PauseTimeRemaining->Text = ref new Platform::String(wsbuffer, length);
+            //PauseTimeRemaining->Text = ref new Platform::String(wsbuffer, length);
         })
         );
 }
@@ -607,7 +607,7 @@ void DirectXPage::OnLicenseChanged()
             {
                 if (!m_licenseInformation->IsTrial)
                 {
-                    PurchaseUpgrade->Visibility = ::Visibility::Collapsed;
+                    //PurchaseUpgrade->Visibility = ::Visibility::Collapsed;
                 }
             }
             else
@@ -619,17 +619,17 @@ void DirectXPage::OnLicenseChanged()
             {
                 if (m_listingInformation != nullptr)
                 {
-                    PurchaseMessage->Text =
+                    //PurchaseMessage->Text =
                         "You are running a trial version. Purchase the full version for: " + m_listingInformation->FormattedPrice;
                 }
                 else
                 {
-                    PurchaseMessage->Text =
+                    //PurchaseMessage->Text =
                         "You are running a trial version. Purchase the full version.";
                 }
                 if (m_possiblePurchaseUpgrade)
                 {
-                    PurchaseUpgrade->Visibility = ::Visibility::Visible;
+                    //PurchaseUpgrade->Visibility = ::Visibility::Visible;
                 }
             }
 
@@ -790,7 +790,7 @@ void DirectXPage::OnResetLicenseButtonClicked(Object^ /* sender */, RoutedEventA
 
 void DirectXPage::OptionalTrialUpgrade()
 {
-    PurchaseUpgrade->Visibility = ::Visibility::Collapsed;
+    //PurchaseUpgrade->Visibility = ::Visibility::Collapsed;
 
     if (m_licenseInformation != nullptr)
     {
@@ -798,15 +798,15 @@ void DirectXPage::OptionalTrialUpgrade()
         {
             if (m_listingInformation != nullptr)
             {
-                PurchaseMessage->Text =
+                //PurchaseMessage->Text =
                     "You are running a trial version. Purchase the full version for: " + m_listingInformation->FormattedPrice;
             }
             else
             {
-                PurchaseMessage->Text =
+                //PurchaseMessage->Text =
                     "You are running a trial version. Purchase the full version.";
             }
-            PurchaseUpgrade->Visibility = ::Visibility::Visible;
+            //PurchaseUpgrade->Visibility = ::Visibility::Visible;
         }
     }
 }
@@ -875,3 +875,9 @@ void DirectXPage::ShowStoreFlyout()
 //----------------------------------------------------------------------
 
 
+
+
+void Simple3DGameXaml::DirectXPage::Image_ImageOpened(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	GameInfoOverlay->Background = ref new SolidColorBrush();
+}
