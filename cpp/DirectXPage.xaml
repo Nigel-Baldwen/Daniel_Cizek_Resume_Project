@@ -117,18 +117,36 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <!--Likely to add in buttons rather than images since that's what I want.-->
-            <Button Grid.Column="1" Grid.Row="6">
-                <Image Source="Assets/Images/Talk_UP.png"> </Image>
+            <!--Talk To Me Button-->
+            <Button Grid.Column="1" Grid.Row="1">
+                <Image Source="Assets/Images/Talk_UP.png"/>
+            </Button>
+
+            <!--I Want To See You Now Button-->
+            <Button Grid.Column="1" Grid.Row="3">
+                <Image Source="Assets/Images/See_UP.png"/>
+            </Button>
+
+            <!--Let Me Do Stuff Button-->
+            <Button Grid.Column="1" Grid.Row="5">
+                <Image Source="Assets/Images/Let_UP.png"/>
+            </Button>
+
+            <!--Design Documents Button-->
+            <Button Grid.Column="1" Grid.Row="7">
+                <Image Source="Assets/Images/Design_UP.png"/>
+            </Button>
+
+            <!--Where Can I Find You? Button-->
+            <Button Grid.Column="1" Grid.Row="9">
+                <Image Source="Assets/Images/Where_UP.png"/>
+            </Button>
+
+            <!--Quit Button-->
+            <Button Grid.Column="1" Grid.Row="11">
+                <Image Source="Assets/Images/Quit_UP.png"/>
             </Button>
             
-            <Image Grid.Column="1" Grid.Row="1" Source="Assets/Images/Talk_UP.png"/>
-            <Image Grid.Column="1" Grid.Row="3" Source="Assets/Images/See_UP.png"/>
-            <Image Grid.Column="1" Grid.Row="5" Source="Assets/Images/Let_UP.png"/>
-            <Image Grid.Column="1" Grid.Row="7" Source="Assets/Images/Design_UP.png"/>
-            <Image Grid.Column="1" Grid.Row="9" Source="Assets/Images/Where_UP.png"/>
-            <Image Grid.Column="1" Grid.Row="11" Source="Assets/Images/Quit_UP.png"/>
-
         </Grid>
         <!-- REMOVED FOR TESTING
         <Grid Grid.Row="1" Grid.ColumnSpan="3" x:Name="TooSmallView" Background="{StaticResource PageBackgroundBrush}" Visibility="Collapsed">
