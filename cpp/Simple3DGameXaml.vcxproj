@@ -232,6 +232,9 @@
     <ClInclude Include="Core\GameUIControl.h" />
     <ClInclude Include="Core\ProductItem.h" />
     <ClInclude Include="Core\Simple3DGame.h" />
+    <ClInclude Include="core\Twitch_Hype.xaml.h">
+      <DependentUpon>core\Twitch_Hype.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="GameLevels\Level.h" />
     <ClInclude Include="GameLevels\Level1.h" />
     <ClInclude Include="GameLevels\Level2.h" />
@@ -282,6 +285,9 @@
     <ClCompile Include="Core\GameMain.cpp" />
     <ClCompile Include="Core\ProductItem.cpp" />
     <ClCompile Include="Core\Simple3DGame.cpp" />
+    <ClCompile Include="core\Twitch_Hype.xaml.cpp">
+      <DependentUpon>core\Twitch_Hype.xaml</DependentUpon>
+    </ClCompile>
     <ClCompile Include="GameLevels\Level.cpp" />
     <ClCompile Include="GameLevels\Level1.cpp" />
     <ClCompile Include="GameLevels\Level2.cpp" />
@@ -396,6 +402,9 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="core\Twitch_Hype.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GameUIStyles.xaml">
       <DeploymentContent>true</DeploymentContent>
     </Page>

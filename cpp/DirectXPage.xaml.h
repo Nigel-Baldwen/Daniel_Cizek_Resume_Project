@@ -3,6 +3,7 @@
 #include "DirectXPage.g.h"
 #include "Core/GameMain.h"
 #include "Core/ProductItem.h"
+#include "Core/Twitch_Hype.xaml.h"
 
 // When submitting the app to the Microsoft Store, disable the Store Simulator by commenting out this definition.
 #define USE_STORE_SIMULATOR 1
@@ -96,6 +97,9 @@ namespace Simple3DGameXaml
         PersistentState^                                    m_licenseState;
         bool                                                m_isTrial;
 #endif
-		void Image_ImageOpened(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void Where_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+
+		//ADDED CODE
+		Twitch_Hype^ m_TwitchPage;
 	};
 }

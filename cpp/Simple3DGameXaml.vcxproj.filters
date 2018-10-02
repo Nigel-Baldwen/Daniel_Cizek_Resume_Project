@@ -51,6 +51,9 @@
   <ItemGroup>
     <Page Include="DirectXPage.xaml" />
     <Page Include="GameUIStyles.xaml" />
+    <Page Include="core\Twitch_Hype.xaml">
+      <Filter>Core</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />

@@ -84,6 +84,9 @@ DirectXPage::DirectXPage() :
     InitializeLicense();
 
     m_main->StartRenderLoop();
+
+	// ADDED CODE
+	m_TwitchPage = ref new Twitch_Hype();
 }
 
 //----------------------------------------------------------------------
@@ -394,7 +397,7 @@ void DirectXPage::HideTooSmall()
 
 void DirectXPage::OnVisibilityChanged(CoreWindow^ sender, VisibilityChangedEventArgs^ args)
 {
-    m_windowVisible = args->Visible;
+	m_windowVisible = args->Visible;
     if (m_windowVisible)
     {
         m_main->StartRenderLoop();
@@ -874,10 +877,7 @@ void DirectXPage::ShowStoreFlyout()
 
 //----------------------------------------------------------------------
 
-
-
-
-void Simple3DGameXaml::DirectXPage::Image_ImageOpened(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void Simple3DGameXaml::DirectXPage::Where_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	GameInfoOverlay->Background = ref new SolidColorBrush();
+	Window::Current->Content = m_TwitchPage;
 }
