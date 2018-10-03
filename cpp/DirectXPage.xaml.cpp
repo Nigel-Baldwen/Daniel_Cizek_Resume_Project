@@ -22,6 +22,7 @@ using namespace Windows::UI::Xaml::Data;
 using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
+using namespace Windows::UI::Xaml::Interop;
 using namespace Windows::ApplicationModel::Store;
 using namespace Windows::UI::Popups;
 using namespace concurrency;

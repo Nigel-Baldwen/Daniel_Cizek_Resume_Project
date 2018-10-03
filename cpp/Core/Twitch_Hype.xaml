@@ -9,6 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">
+            Hello! To see more of me, please visit me at
+            <Hyperlink NavigateUri="https://www.twitch.tv/nigel_baldwen" >
+            my twitch channel</Hyperlink>
+           .
+        </TextBlock>
     </Grid>
 </Page>
