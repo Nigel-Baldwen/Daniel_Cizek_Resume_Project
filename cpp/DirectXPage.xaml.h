@@ -101,5 +101,6 @@ namespace Simple3DGameXaml
 
 		//ADDED CODE
 		Twitch_Hype^ m_TwitchPage;
+		void Quit_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

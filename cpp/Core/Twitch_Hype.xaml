@@ -12,8 +12,9 @@
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">
             Hello! To see more of me, please visit me at
             <Hyperlink NavigateUri="https://www.twitch.tv/nigel_baldwen" >
-            my twitch channel</Hyperlink>
-           .
+            my twitch channel</Hyperlink>.
+            <LineBreak/>You can get all the dank details there!
+            <LineBreak/>Kappa.
         </TextBlock>
     </Grid>
 </Page>

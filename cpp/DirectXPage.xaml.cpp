@@ -882,3 +882,8 @@ void Simple3DGameXaml::DirectXPage::Where_Click(Platform::Object^ sender, Window
 {
 	Window::Current->Content = m_TwitchPage;
 }
+
+void Simple3DGameXaml::DirectXPage::Quit_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	Application::Current->Exit();
+}
