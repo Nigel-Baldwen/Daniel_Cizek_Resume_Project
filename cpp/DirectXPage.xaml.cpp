@@ -887,3 +887,9 @@ void Simple3DGameXaml::DirectXPage::Quit_Click(Platform::Object^ sender, Windows
 {
 	Application::Current->Exit();
 }
+
+
+void Simple3DGameXaml::DirectXPage::Let_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	GameInfoOverlay->Visibility = ::Visibility::Collapsed;
+}

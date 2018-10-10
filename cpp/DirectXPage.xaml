@@ -128,9 +128,10 @@
             </Button>
 
             <!--Let Me Do Stuff Button-->
-            <Button Grid.Column="1" Grid.Row="5">
+            <Button Grid.Column="1" Grid.Row="5"
+                    Click="Let_Click">
                 <Image Source="Assets/Images/Let_UP.png"/>
-            </Button>
+             </Button>
      
             <!--Design Documents Button-->
             <Button Grid.Column="1" Grid.Row="7">
