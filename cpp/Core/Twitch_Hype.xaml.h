@@ -6,6 +6,7 @@
 #pragma once
 
 #include "core\Twitch_Hype.g.h"
+#include "DirectXPage.xaml.h"
 
 namespace Simple3DGameXaml
 {
@@ -17,5 +18,9 @@ namespace Simple3DGameXaml
 	{
 	public:
 		Twitch_Hype();
+		Twitch_Hype(DirectXPage^ mainMenu);
+	private:
+		void ReturnToMain_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		DirectXPage^ MainMenu;
 	};
 }
