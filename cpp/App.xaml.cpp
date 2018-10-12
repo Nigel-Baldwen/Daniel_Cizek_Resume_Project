@@ -31,12 +31,61 @@ App::App()
 
 //----------------------------------------------------------------------
 
-void App::OnLaunched(_In_ LaunchActivatedEventArgs^ /* args */)
+void App::OnLaunched(_In_ LaunchActivatedEventArgs^ e)
 {
-    m_mainPage = ref new DirectXPage();
+	auto rootFrame = dynamic_cast<Controls::Frame^>(Window::Current->Content);
 
-    Window::Current->Content = m_mainPage;
-    Window::Current->Activate();
+	// Do not repeat app initialization when the Window already has content,
+	// just ensure that the window is active
+	if (rootFrame == nullptr)
+	{
+		// Create a Frame to act as the navigation context and associate it with
+		// a SuspensionManager key
+		rootFrame = ref new Controls::Frame();
+
+		rootFrame->NavigationFailed += ref new Windows::UI::Xaml::Navigation::NavigationFailedEventHandler(this, &App::OnNavigationFailed);
+
+		if (e->PreviousExecutionState == ApplicationExecutionState::Terminated)
+		{
+			// TODO: Restore the saved session state only when appropriate, scheduling the
+			// final launch steps after the restore is complete
+		}
+
+		if (rootFrame->Content == nullptr)
+		{
+			// When the navigation stack isn't restored navigate to the first page,
+			// configuring the new page by passing required information as a navigation
+			// parameter
+			rootFrame->Navigate(Interop::TypeName(DirectXPage::typeid), e->Arguments);
+		}
+		// Place the frame in the current Window
+		Window::Current->Content = rootFrame;
+		// Ensure the current window is active
+		Window::Current->Activate();
+	}
+	else
+	{
+		if (rootFrame->Content == nullptr)
+		{
+			// When the navigation stack isn't restored navigate to the first page,
+			// configuring the new page by passing required information as a navigation
+			// parameter
+			rootFrame->Navigate(Interop::TypeName(DirectXPage::typeid), e->Arguments);
+		}
+		// Ensure the current window is active
+		Window::Current->Activate();
+	}
+   
+	// m_mainPage = ref new DirectXPage();
+
+    // Window::Current->Content = m_mainPage;
+    
+	Window::Current->Activate();
+}
+
+void App::OnNavigationFailed(Platform::Object ^sender, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs ^e)
+{
+	throw ref new FailureException("Failed to load Page " + e->SourcePageType.Name);
 }
 
 //----------------------------------------------------------------------

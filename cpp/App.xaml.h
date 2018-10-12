@@ -36,6 +36,8 @@ namespace Simple3DGameXaml
             _In_ Windows::UI::Core::WindowActivatedEventArgs^ args
             );
 
+		void OnNavigationFailed(Platform::Object ^sender, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs ^e);
+
         DirectXPage^ m_mainPage;
     };
 }
