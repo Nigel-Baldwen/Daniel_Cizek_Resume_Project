@@ -33,5 +33,6 @@ Simple3DGameXaml::Twitch_Hype::Twitch_Hype(DirectXPage ^ mainMenu)
 
 void Simple3DGameXaml::Twitch_Hype::ReturnToMain_Click(Platform::Object ^ sender, Windows::UI::Xaml::RoutedEventArgs ^ e)
 {
-	Window::Current->Content = ref new DirectXPage();
+	this->Frame->Navigate(Interop::TypeName(DirectXPage::typeid));
+	//Window::Current->Content = ref new DirectXPage();
 }

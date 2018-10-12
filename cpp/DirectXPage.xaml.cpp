@@ -880,7 +880,8 @@ void DirectXPage::ShowStoreFlyout()
 
 void Simple3DGameXaml::DirectXPage::Where_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	Window::Current->Content = m_TwitchPage;
+	this->Frame->Navigate(TypeName(Twitch_Hype::typeid));
+	//Window::Current->Content = m_TwitchPage;
 }
 
 void Simple3DGameXaml::DirectXPage::Quit_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)

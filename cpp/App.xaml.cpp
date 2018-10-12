@@ -76,11 +76,18 @@ void App::OnLaunched(_In_ LaunchActivatedEventArgs^ e)
 		Window::Current->Activate();
 	}
    
+	/*
+	I need some way to address the current usage of m_mainPage.
+	At present, the program is dependent on it for functionality,
+	but I think it's bad design to leave it that way if I'm going
+	to be using the Frame.Navigate system.
+	*/
+
 	// m_mainPage = ref new DirectXPage();
 
     // Window::Current->Content = m_mainPage;
     
-	Window::Current->Activate();
+	// Window::Current->Activate();
 }
 
 void App::OnNavigationFailed(Platform::Object ^sender, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs ^e)
