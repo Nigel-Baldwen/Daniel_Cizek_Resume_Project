@@ -894,3 +894,10 @@ void Simple3DGameXaml::DirectXPage::Let_Click(Platform::Object^ sender, Windows:
 {
 	m_main->PressComplete();
 }
+
+void Simple3DGameXaml::DirectXPage::Talk_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (talkButtonPressCount == 0) {
+		
+	}
+}

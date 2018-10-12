@@ -101,7 +101,10 @@ namespace Simple3DGameXaml
 
 		//ADDED CODE
 		Twitch_Hype^ m_TwitchPage;
+		int talkButtonPressCount = 0;
+
 		void Quit_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Let_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void Talk_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

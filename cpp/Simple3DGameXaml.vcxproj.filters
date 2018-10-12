@@ -167,6 +167,7 @@
     <ClCompile Include="Rendering\GameRenderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="core\Twitch_Hype.xaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -301,6 +302,7 @@
     <ClInclude Include="Rendering\GameRenderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="core\Twitch_Hype.xaml.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Simple3DGameDX\Cpp\Assets\seafloor.dds">
@@ -374,6 +376,9 @@
     <Filter Include="Assets\Images">
       <UniqueIdentifier>{a3a29e1b-cf1c-46b4-9f0f-5298227d9f59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Sounds">
+      <UniqueIdentifier>{82a3d2f1-b88c-49de-9133-c747eca4a2c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -395,5 +400,10 @@
     <FxCompile Include="Shaders\VertexShaderFlat.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\Sounds\VO_Intro.mp3">
+      <Filter>Assets\Sounds</Filter>
+    </Media>
   </ItemGroup>
 </Project>
