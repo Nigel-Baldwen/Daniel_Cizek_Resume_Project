@@ -423,7 +423,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\Sounds\VO_Intro.mp3" />
+    <Media Include="Assets\Sounds\VO_Intro.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

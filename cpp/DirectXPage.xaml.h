@@ -79,7 +79,7 @@ namespace Simple3DGameXaml
         void OnAppBarOpened(Object^ sender, Object^ args);
         void OnStoreReturnClicked(Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ args);
         void OnLoadStoreClicked(Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ args);
-
+		 
         void OptionalTrialUpgrade();
         void ShowStoreFlyout();
 
@@ -97,12 +97,12 @@ namespace Simple3DGameXaml
         PersistentState^                                    m_licenseState;
         bool                                                m_isTrial;
 #endif
-		void Where_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-
+		
 		//ADDED CODE
 		Twitch_Hype^ m_TwitchPage;
 		int talkButtonPressCount = 0;
 
+		void Where_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Quit_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Let_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Talk_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);

@@ -402,7 +402,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Assets\Sounds\VO_Intro.mp3">
+    <Media Include="Assets\Sounds\VO_Intro.wav">
       <Filter>Assets\Sounds</Filter>
     </Media>
   </ItemGroup>
