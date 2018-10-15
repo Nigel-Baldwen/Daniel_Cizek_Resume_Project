@@ -146,5 +146,8 @@ private:
 
     DirectX::XMFLOAT3                           m_minBound;
     DirectX::XMFLOAT3                           m_maxBound;
+
+	//ADDED CODE
+	SoundEffect^ testVO_Intro;
 };
 
