@@ -4,6 +4,10 @@
 #include "Core/GameMain.h"
 #include "Core/ProductItem.h"
 #include "Core/Twitch_Hype.xaml.h"
+#include "Audio/Audio.h"
+#include "Audio/MediaReader.h"
+#include "Audio/SoundEffect.h"
+#include <random>
 
 // When submitting the app to the Microsoft Store, disable the Store Simulator by commenting out this definition.
 #define USE_STORE_SIMULATOR 1
@@ -100,6 +104,13 @@ namespace Simple3DGameXaml
 		
 		//ADDED CODE
 		Twitch_Hype^ m_TwitchPage;
+		
+		Audio^ buttonAudioController;
+		MediaReader^ buttonAudioMediaReader;
+		SoundEffect^ vo_Intro, ^vo_Pirate, ^vo_Japanese,
+			^vo_Southern, ^vo_Spanish, ^vo_Demon, ^vo_Mom;
+		std::default_random_engine generator;
+		int totalVoiceOvers = 7;
 		int talkButtonPressCount = 0;
 
 		void Where_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);

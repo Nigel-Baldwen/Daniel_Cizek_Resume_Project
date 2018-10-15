@@ -423,7 +423,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Assets\Sounds\VO_Demon.wav" />
     <Media Include="Assets\Sounds\VO_Intro.wav" />
+    <Media Include="Assets\Sounds\VO_Japanese.wav" />
+    <Media Include="Assets\Sounds\VO_Mom.wav" />
+    <Media Include="Assets\Sounds\VO_Pirate.wav" />
+    <Media Include="Assets\Sounds\VO_Southern.wav" />
+    <Media Include="Assets\Sounds\VO_Spanish.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

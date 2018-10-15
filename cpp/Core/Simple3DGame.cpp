@@ -243,17 +243,6 @@ void Simple3DGame::Initialize(
     LoadState();
 
     m_controller->Active(false);
-
-	// ADDED CODE
-	ammoHitSound = mediaReader->LoadMedia("Assets\\Sounds\\VO_Intro.wav");
-	testVO_Intro = ref new SoundEffect();
-	testVO_Intro->Initialize(
-		m_audioController->SoundEffectEngine(),
-		mediaReader->GetOutputWaveFormatEx(),
-		ammoHitSound);
-	//m_ammo[0]->PlaySound(2, m_player->Position());
-	//m_ammo[0]->HitSound()->PlaySound(0.8f);
-	testVO_Intro->PlaySound(0.8f);
 }
 
 //----------------------------------------------------------------------

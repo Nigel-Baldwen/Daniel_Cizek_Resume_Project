@@ -3,6 +3,7 @@
 #include "DirectXPage.xaml.h"
 #include "Core/ProductItem.h"
 
+
 using namespace Simple3DGameXaml;
 
 using namespace Microsoft::WRL;
@@ -88,6 +89,59 @@ DirectXPage::DirectXPage() :
 
 	// ADDED CODE
 	m_TwitchPage = ref new Twitch_Hype();
+	
+	buttonAudioController = ref new Audio;
+	buttonAudioController->CreateDeviceIndependentResources();
+	buttonAudioMediaReader = ref new MediaReader;
+	
+	auto audioSource = buttonAudioMediaReader->LoadMedia("Assets\\Sounds\\VO_Intro.wav");
+	vo_Intro = ref new SoundEffect();
+	vo_Intro->Initialize(
+		buttonAudioController->SoundEffectEngine(),
+		buttonAudioMediaReader->GetOutputWaveFormatEx(),
+		audioSource);
+	
+	audioSource = buttonAudioMediaReader->LoadMedia("Assets\\Sounds\\VO_Pirate.wav");
+	vo_Pirate = ref new SoundEffect();
+	vo_Pirate->Initialize(
+		buttonAudioController->SoundEffectEngine(),
+		buttonAudioMediaReader->GetOutputWaveFormatEx(),
+		audioSource);
+	
+	audioSource = buttonAudioMediaReader->LoadMedia("Assets\\Sounds\\VO_Japanese.wav");
+	vo_Japanese = ref new SoundEffect();
+	vo_Japanese->Initialize(
+		buttonAudioController->SoundEffectEngine(),
+		buttonAudioMediaReader->GetOutputWaveFormatEx(),
+		audioSource);
+	
+	audioSource = buttonAudioMediaReader->LoadMedia("Assets\\Sounds\\VO_Southern.wav");
+	vo_Southern = ref new SoundEffect();
+	vo_Southern->Initialize(
+		buttonAudioController->SoundEffectEngine(),
+		buttonAudioMediaReader->GetOutputWaveFormatEx(),
+		audioSource);
+	
+	audioSource = buttonAudioMediaReader->LoadMedia("Assets\\Sounds\\VO_Mom.wav");
+	vo_Mom = ref new SoundEffect();
+	vo_Mom->Initialize(
+		buttonAudioController->SoundEffectEngine(),
+		buttonAudioMediaReader->GetOutputWaveFormatEx(),
+		audioSource);
+	
+	audioSource = buttonAudioMediaReader->LoadMedia("Assets\\Sounds\\VO_Demon.wav");
+	vo_Demon = ref new SoundEffect();
+	vo_Demon->Initialize(
+		buttonAudioController->SoundEffectEngine(),
+		buttonAudioMediaReader->GetOutputWaveFormatEx(),
+		audioSource);
+	
+	audioSource = buttonAudioMediaReader->LoadMedia("Assets\\Sounds\\VO_Spanish.wav");
+	vo_Spanish = ref new SoundEffect();
+	vo_Spanish->Initialize(
+		buttonAudioController->SoundEffectEngine(),
+		buttonAudioMediaReader->GetOutputWaveFormatEx(),
+		audioSource);
 }
 
 //----------------------------------------------------------------------
@@ -898,6 +952,32 @@ void Simple3DGameXaml::DirectXPage::Let_Click(Platform::Object^ sender, Windows:
 void Simple3DGameXaml::DirectXPage::Talk_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (talkButtonPressCount == 0) {
-		
+		vo_Intro->PlaySound(0.8f);
+		talkButtonPressCount++;
+	}
+	else {
+		std::uniform_int_distribution<int> distribution(1, totalVoiceOvers - 1);
+
+		switch (distribution(generator))
+		{
+		case 1:
+			vo_Pirate->PlaySound(0.8f);
+			break;
+		case 2:
+			vo_Japanese->PlaySound(0.8f);
+			break;
+		case 3:
+			vo_Southern->PlaySound(0.8f);
+			break;
+		case 4:
+			vo_Mom->PlaySound(0.8f);
+			break;
+		case 5:
+			vo_Demon->PlaySound(0.8f);
+			break;
+		default:
+			vo_Spanish->PlaySound(0.8f);
+			break;
+		}
 	}
 }
