@@ -981,3 +981,9 @@ void Simple3DGameXaml::DirectXPage::Talk_Click(Platform::Object^ sender, Windows
 		}
 	}
 }
+
+
+void Simple3DGameXaml::DirectXPage::See_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	this->Frame->Navigate(TypeName(VideoPlayback::typeid));
+}

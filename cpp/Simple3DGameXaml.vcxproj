@@ -235,6 +235,9 @@
     <ClInclude Include="core\Twitch_Hype.xaml.h">
       <DependentUpon>core\Twitch_Hype.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="Core\VideoPlayback.xaml.h">
+      <DependentUpon>Core\VideoPlayback.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="GameLevels\Level.h" />
     <ClInclude Include="GameLevels\Level1.h" />
     <ClInclude Include="GameLevels\Level2.h" />
@@ -287,6 +290,9 @@
     <ClCompile Include="Core\Simple3DGame.cpp" />
     <ClCompile Include="core\Twitch_Hype.xaml.cpp">
       <DependentUpon>core\Twitch_Hype.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Core\VideoPlayback.xaml.cpp">
+      <DependentUpon>Core\VideoPlayback.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="GameLevels\Level.cpp" />
     <ClCompile Include="GameLevels\Level1.cpp" />
@@ -405,6 +411,9 @@
     <Page Include="core\Twitch_Hype.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Core\VideoPlayback.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GameUIStyles.xaml">
       <DeploymentContent>true</DeploymentContent>
     </Page>
@@ -430,6 +439,7 @@
     <Media Include="Assets\Sounds\VO_Pirate.wav" />
     <Media Include="Assets\Sounds\VO_Southern.wav" />
     <Media Include="Assets\Sounds\VO_Spanish.wav" />
+    <Media Include="Assets\Videos\Test.mp4" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

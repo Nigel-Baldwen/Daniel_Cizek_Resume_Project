@@ -54,6 +54,9 @@
     <Page Include="core\Twitch_Hype.xaml">
       <Filter>Core</Filter>
     </Page>
+    <Page Include="Core\VideoPlayback.xaml">
+      <Filter>Core</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />
@@ -379,6 +382,9 @@
     <Filter Include="Assets\Sounds">
       <UniqueIdentifier>{82a3d2f1-b88c-49de-9133-c747eca4a2c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Videos">
+      <UniqueIdentifier>{3b3487ff-7893-45af-8369-8051d4d592d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -422,6 +428,9 @@
     </Media>
     <Media Include="Assets\Sounds\VO_Spanish.wav">
       <Filter>Assets\Sounds</Filter>
+    </Media>
+    <Media Include="Assets\Videos\Test.mp4">
+      <Filter>Assets\Videos</Filter>
     </Media>
   </ItemGroup>
 </Project>

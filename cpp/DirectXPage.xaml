@@ -124,7 +124,8 @@
             </Button>
 
             <!--I Want To See You Now Button-->
-            <Button Grid.Column="1" Grid.Row="3">
+            <Button Grid.Column="1" Grid.Row="3"
+                    Click="See_Click">
                 <Image Source="Assets/Images/See_UP.png"/>
             </Button>
 
