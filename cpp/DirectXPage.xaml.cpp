@@ -142,6 +142,8 @@ DirectXPage::DirectXPage() :
 		buttonAudioController->SoundEffectEngine(),
 		buttonAudioMediaReader->GetOutputWaveFormatEx(),
 		audioSource);
+
+	this->NavigationCacheMode = Windows::UI::Xaml::Navigation::NavigationCacheMode::Enabled;
 }
 
 //----------------------------------------------------------------------
