@@ -6,6 +6,9 @@
 #pragma once
 
 #include "Core\VideoPlayback.g.h"
+#include "DirectXPage.xaml.h"
+
+using namespace Windows::Media::Playback;
 
 namespace Simple3DGameXaml
 {
@@ -17,5 +20,8 @@ namespace Simple3DGameXaml
 	{
 	public:
 		VideoPlayback();
+		
+	private:
+		void _thankYouVideo_MediaEnded(MediaPlayer^ sender, Object^ e);
 	};
 }

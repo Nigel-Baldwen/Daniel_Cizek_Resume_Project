@@ -934,8 +934,14 @@ void DirectXPage::ShowStoreFlyout()
 
 void Simple3DGameXaml::DirectXPage::Where_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	this->Frame->Navigate(TypeName(Twitch_Hype::typeid));
-	//Window::Current->Content = m_TwitchPage;
+	// Switching pages requires a Xaml update, so it has to be thread safe.
+	Dispatcher->RunAsync(
+		CoreDispatcherPriority::Normal,
+		ref new DispatchedHandler([this]()
+	{
+		this->Frame->Navigate(TypeName(Twitch_Hype::typeid));
+	})
+	);
 }
 
 void Simple3DGameXaml::DirectXPage::Quit_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -985,5 +991,12 @@ void Simple3DGameXaml::DirectXPage::Talk_Click(Platform::Object^ sender, Windows
 
 void Simple3DGameXaml::DirectXPage::See_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	this->Frame->Navigate(TypeName(VideoPlayback::typeid));
+	// Switching pages requires a Xaml update, so it has to be thread safe.
+	Dispatcher->RunAsync(
+		CoreDispatcherPriority::Normal,
+		ref new DispatchedHandler([this]()
+	{
+		this->Frame->Navigate(TypeName(VideoPlayback::typeid));
+	})
+	);
 }
