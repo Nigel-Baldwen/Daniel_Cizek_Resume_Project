@@ -5,6 +5,7 @@
 #include "Core/ProductItem.h"
 #include "Core/Twitch_Hype.xaml.h"
 #include "Core/VideoPlayback.xaml.h"
+#include "Core/DesignDocs.xaml.h"
 #include "Audio/Audio.h"
 #include "Audio/MediaReader.h"
 #include "Audio/SoundEffect.h"
@@ -119,5 +120,6 @@ namespace Simple3DGameXaml
 		void Let_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Talk_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void See_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void Design_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

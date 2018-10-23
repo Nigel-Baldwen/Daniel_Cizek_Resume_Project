@@ -136,7 +136,8 @@
              </Button>
      
             <!--Design Documents Button-->
-            <Button Grid.Column="1" Grid.Row="7">
+            <Button Grid.Column="1" Grid.Row="7"
+                    Click="Design_Click">
                 <Image Source="Assets/Images/Design_UP.png"/>
             </Button>
 

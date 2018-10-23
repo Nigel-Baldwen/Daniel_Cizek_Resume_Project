@@ -1,10 +1,10 @@
 ﻿//
-// Twitch_Hype.xaml.cpp
-// Implementation of the Twitch_Hype class
+// DesignDocs.xaml.cpp
+// Implementation of the DesignDocs class
 //
 
 #include "pch.h"
-#include "Twitch_Hype.xaml.h"
+#include "DesignDocs.xaml.h"
 
 using namespace Simple3DGameXaml;
 
@@ -19,14 +19,15 @@ using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 using namespace Windows::UI::Core;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-Twitch_Hype::Twitch_Hype()
+DesignDocs::DesignDocs()
 {
 	InitializeComponent();
 }
 
-void Simple3DGameXaml::Twitch_Hype::ReturnToMain_Click(Platform::Object ^ sender, Windows::UI::Xaml::RoutedEventArgs ^ e)
+void Simple3DGameXaml::DesignDocs::ReturnToMain_Click(Platform::Object ^ sender, Windows::UI::Xaml::RoutedEventArgs ^ e)
 {
 	// Switching pages requires a Xaml update, so it hase to be thread safe.
 	Dispatcher->RunAsync(

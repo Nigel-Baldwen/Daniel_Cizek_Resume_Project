@@ -1002,3 +1002,16 @@ void Simple3DGameXaml::DirectXPage::See_Click(Platform::Object^ sender, Windows:
 	})
 	);
 }
+
+
+void Simple3DGameXaml::DirectXPage::Design_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	// Switching pages requires a Xaml update, so it has to be thread safe.
+	Dispatcher->RunAsync(
+		CoreDispatcherPriority::Normal,
+		ref new DispatchedHandler([this]()
+	{
+		this->Frame->Navigate(TypeName(DesignDocs::typeid));
+	})
+	);
+}

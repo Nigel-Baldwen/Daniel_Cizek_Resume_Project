@@ -227,6 +227,9 @@
     <ClInclude Include="Audio\Audio.h" />
     <ClInclude Include="Audio\MediaReader.h" />
     <ClInclude Include="Audio\SoundEffect.h" />
+    <ClInclude Include="Core\DesignDocs.xaml.h">
+      <DependentUpon>Core\DesignDocs.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="Core\GameMain.h" />
     <ClInclude Include="Core\GameUIConstants.h" />
     <ClInclude Include="Core\GameUIControl.h" />
@@ -285,6 +288,9 @@
     <ClCompile Include="Audio\Audio.cpp" />
     <ClCompile Include="Audio\MediaReader.cpp" />
     <ClCompile Include="Audio\SoundEffect.cpp" />
+    <ClCompile Include="Core\DesignDocs.xaml.cpp">
+      <DependentUpon>Core\DesignDocs.xaml</DependentUpon>
+    </ClCompile>
     <ClCompile Include="Core\GameMain.cpp" />
     <ClCompile Include="Core\ProductItem.cpp" />
     <ClCompile Include="Core\Simple3DGame.cpp" />
@@ -408,6 +414,9 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Core\DesignDocs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="core\Twitch_Hype.xaml">
       <SubType>Designer</SubType>
     </Page>

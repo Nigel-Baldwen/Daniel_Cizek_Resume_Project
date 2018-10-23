@@ -57,6 +57,9 @@
     <Page Include="Core\VideoPlayback.xaml">
       <Filter>Core</Filter>
     </Page>
+    <Page Include="Core\DesignDocs.xaml">
+      <Filter>Core</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />

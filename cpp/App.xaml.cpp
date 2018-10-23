@@ -62,6 +62,11 @@ void App::OnLaunched(_In_ LaunchActivatedEventArgs^ e)
 		Window::Current->Content = rootFrame;
 		// Ensure the current window is active
 		Window::Current->Activate();
+		
+		// Set up a handle to the main page.
+		// This enables the various events such as
+		// Suspending and Resuming.
+		m_mainPage = (DirectXPage^) rootFrame->Content;
 	}
 	else
 	{
@@ -76,19 +81,6 @@ void App::OnLaunched(_In_ LaunchActivatedEventArgs^ e)
 		// Ensure the current window is active
 		Window::Current->Activate();
 	}
-   
-	/*
-	I need some way to address the current usage of m_mainPage.
-	At present, the program is dependent on it for functionality,
-	but I think it's bad design to leave it that way if I'm going
-	to be using the Frame.Navigate system.
-	*/
-
-	// m_mainPage = ref new DirectXPage();
-
-    // Window::Current->Content = m_mainPage;
-    
-	// Window::Current->Activate();
 }
 
 void App::OnNavigationFailed(Platform::Object ^sender, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs ^e)
