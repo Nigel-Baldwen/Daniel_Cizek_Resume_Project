@@ -171,6 +171,7 @@
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="core\Twitch_Hype.xaml.cpp" />
+    <ClCompile Include="Core\VideoPlayback.xaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -306,6 +307,7 @@
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="core\Twitch_Hype.xaml.h" />
+    <ClInclude Include="Core\VideoPlayback.xaml.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Simple3DGameDX\Cpp\Assets\seafloor.dds">
@@ -429,7 +431,7 @@
     <Media Include="Assets\Sounds\VO_Spanish.wav">
       <Filter>Assets\Sounds</Filter>
     </Media>
-    <Media Include="Assets\Videos\Test.mp4">
+    <Media Include="Assets\Videos\Intro_Video.mp4">
       <Filter>Assets\Videos</Filter>
     </Media>
   </ItemGroup>

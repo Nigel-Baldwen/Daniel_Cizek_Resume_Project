@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <MediaPlayerElement x:Name="_thankYouVideo" Source="ms-appx:///Assets//Videos//Test.mp4" AutoPlay="True"  HorizontalAlignment="Stretch"/>
+        <MediaPlayerElement x:Name="_thankYouVideo" Source="ms-appx:///Assets//Videos//Intro_Video.mp4" AutoPlay="True"  HorizontalAlignment="Stretch"/>
     </Grid>
 </Page>
