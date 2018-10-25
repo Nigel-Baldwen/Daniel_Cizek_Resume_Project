@@ -95,7 +95,7 @@
         -->
         
         <!-- FIRST PASS AT CUSTUM UI -->
-        <Grid Name="GameInfoOverlay" Background="{StaticResource PageBackgroundBrush}" Visibility="Visible">
+        <Grid x:Name="GameInfoOverlay" Background="{StaticResource PageBackgroundBrush}" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="2*"/>
@@ -407,6 +407,7 @@
         </Grid>
         -->
 
+        <!-- REMOVED FOR TESTING
         <Popup x:Name="StoreFlyout" IsLightDismissEnabled="true" Grid.ColumnSpan="3" Grid.RowSpan="3">
             <Grid x:Name="StoreGrid"
             HorizontalAlignment="Right"
@@ -457,8 +458,10 @@
                 </ListView>
             </Grid>
         </Popup>
+        -->
     </SwapChainPanel>
 
+    <!-- REMOVED FOR TESTING
     <Page.BottomAppBar>
         <AppBar x:Name="GameAppBar" Opened="OnAppBarOpened">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -470,4 +473,5 @@
           </StackPanel>
         </AppBar>
     </Page.BottomAppBar>
+    -->
 </Page>

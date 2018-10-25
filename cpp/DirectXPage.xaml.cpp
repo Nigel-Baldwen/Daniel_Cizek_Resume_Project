@@ -37,7 +37,7 @@ DirectXPage::DirectXPage() :
     InitializeComponent();
 
 #ifdef USE_STORE_SIMULATOR
-    ResetLicense->Visibility = ::Visibility::Visible;
+    //ResetLicense->Visibility = ::Visibility::Visible;
 #endif
 
     // Register event handlers for page lifecycle.
@@ -158,11 +158,11 @@ void DirectXPage::HideGameInfoOverlay()
         {
             VisualStateManager::GoToState(this, "NormalState", true);
 
-            StoreFlyout->IsOpen = false;
-            StoreFlyout->Visibility = ::Visibility::Collapsed;
-            GameAppBar->IsOpen = false;
-            Play->Label = "Pause";
-            Play->Icon = ref new SymbolIcon(Symbol::Pause);
+            //StoreFlyout->IsOpen = false;
+            //StoreFlyout->Visibility = ::Visibility::Collapsed;
+            //GameAppBar->IsOpen = false;
+            //Play->Label = "Pause";
+            //Play->Icon = ref new SymbolIcon(Symbol::Pause);
             m_playActive = true;
         })
         );
@@ -179,8 +179,8 @@ void DirectXPage::ShowGameInfoOverlay()
         ref new DispatchedHandler([this]()
         {
             VisualStateManager::GoToState(this, "GameInfoOverlayState", true);
-            Play->Label = "Play";
-            Play->Icon = ref new SymbolIcon(Symbol::Play);
+            //Play->Label = "Play";
+            //Play->Icon = ref new SymbolIcon(Symbol::Play);
             m_playActive = false;
         })
         );
@@ -577,7 +577,7 @@ void DirectXPage::OnPlayButtonClicked(Object^ /* sender */, RoutedEventArgs^ /* 
 void DirectXPage::OnResetButtonClicked(Object^ /* sender */, RoutedEventArgs^ /* args */)
 {
     m_main->ResetGame();
-    GameAppBar->IsOpen = false;
+    //GameAppBar->IsOpen = false;
 }
 
 //----------------------------------------------------------------------
@@ -672,7 +672,7 @@ void DirectXPage::OnLicenseChanged()
             }
             else
             {
-                ChangeBackground->Visibility = ::Visibility::Collapsed;
+                //ChangeBackground->Visibility = ::Visibility::Collapsed;
             }
 
             if (m_licenseInformation->IsActive && m_licenseInformation->IsTrial)
@@ -695,19 +695,19 @@ void DirectXPage::OnLicenseChanged()
 
             if (m_licenseInformation != nullptr)
             {
-                auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
-                for (uint32 i = 0; i < items->Size; i++)
-                {
-                    dynamic_cast<ProductItem^>(items->GetAt(i))->UpdateContent(m_licenseInformation);
-                }
+                //auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
+                //for (uint32 i = 0; i < items->Size; i++)
+                //{
+                //    dynamic_cast<ProductItem^>(items->GetAt(i))->UpdateContent(m_licenseInformation);
+                //}
             }
             if (m_listingInformation != nullptr)
             {
-                auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
-                for (uint32 i = 0; i < items->Size; i++)
-                {
-                    dynamic_cast<ProductItem^>(items->GetAt(i))->UpdateContent(m_listingInformation);
-                }
+                //auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
+                //for (uint32 i = 0; i < items->Size; i++)
+                //{
+                //    dynamic_cast<ProductItem^>(items->GetAt(i))->UpdateContent(m_listingInformation);
+                //}
             }
         })
         );
@@ -726,7 +726,7 @@ void DirectXPage::OnBuyAppButtonTapped(Object^ sender, TappedRoutedEventArgs^ ar
 void DirectXPage::OnBuySelectorClicked(Object^ sender, RoutedEventArgs^ /* args */)
 {
     Platform::String^ tag = dynamic_cast<Platform::String^>(dynamic_cast<Button^>(sender)->CommandParameter);
-    StoreUnavailable->Visibility = ::Visibility::Collapsed;
+    //StoreUnavailable->Visibility = ::Visibility::Collapsed;
 
     if (tag == "MainApp")
     {
@@ -760,7 +760,7 @@ void DirectXPage::OnBuySelectorClicked(Object^ sender, RoutedEventArgs^ /* args 
                     {
                         if (exception->HResult == E_FAIL)
                         {
-                            StoreUnavailable->Visibility = ::Visibility::Visible;
+                            //StoreUnavailable->Visibility = ::Visibility::Visible;
                         }
                     }
                 });
@@ -803,7 +803,7 @@ void DirectXPage::OnBuySelectorClicked(Object^ sender, RoutedEventArgs^ /* args 
                     {
                         if (exception->HResult == E_FAIL)
                         {
-                            StoreUnavailable->Visibility = ::Visibility::Visible;
+                            //StoreUnavailable->Visibility = ::Visibility::Visible;
                         }
                     }
                 });
@@ -875,8 +875,8 @@ void DirectXPage::OptionalTrialUpgrade()
 
 void DirectXPage::OnStoreReturnClicked(Object^ /* sender */, RoutedEventArgs^ /* args */)
 {
-    StoreFlyout->IsOpen = false;
-    StoreFlyout->Visibility = ::Visibility::Collapsed;
+    //StoreFlyout->IsOpen = false;
+    //StoreFlyout->Visibility = ::Visibility::Collapsed;
 }
 
 //----------------------------------------------------------------------
@@ -899,8 +899,8 @@ void DirectXPage::SetProductItems(
     items->Append(ref new ProductItem(listing, license, "AutoFire", false));
     items->Append(ref new ProductItem(listing, license, "NightBackground", false));
     items->Append(ref new ProductItem(listing, license, "DayBackground", false));
-    ProductListView->ItemsSource = items;
-    StoreUnavailable->Visibility = ::Visibility::Collapsed;
+    //ProductListView->ItemsSource = items;
+    //StoreUnavailable->Visibility = ::Visibility::Collapsed;
 }
 
 //----------------------------------------------------------------------
@@ -909,8 +909,8 @@ void DirectXPage::OnWindowSizeChanged(
     _In_ WindowSizeChangedEventArgs^ /* args */
     )
 {
-    StoreGrid->Height = Window::Current->Bounds.Height;
-    StoreFlyout->HorizontalOffset = Window::Current->Bounds.Width - StoreGrid->Width;
+    //StoreGrid->Height = Window::Current->Bounds.Height;
+    //StoreFlyout->HorizontalOffset = Window::Current->Bounds.Width - StoreGrid->Width;
 }
 
 //----------------------------------------------------------------------
@@ -924,12 +924,12 @@ void DirectXPage::OnAppBarOpened(Object^ /* sender */, Object^ /* args */)
 
 void DirectXPage::ShowStoreFlyout()
 {
-    StoreGrid->Height = Window::Current->Bounds.Height;
-    StoreUnavailable->Visibility = ::Visibility::Collapsed;
-    StoreFlyout->HorizontalOffset = Window::Current->Bounds.Width - StoreGrid->Width;
-    StoreFlyout->IsOpen = true;
-    StoreFlyout->Visibility = ::Visibility::Visible;
-    GameAppBar->IsOpen = false;
+    //StoreGrid->Height = Window::Current->Bounds.Height;
+    //StoreUnavailable->Visibility = ::Visibility::Collapsed;
+    //StoreFlyout->HorizontalOffset = Window::Current->Bounds.Width - StoreGrid->Width;
+    //StoreFlyout->IsOpen = true;
+    //StoreFlyout->Visibility = ::Visibility::Visible;
+    //GameAppBar->IsOpen = false;
 }
 
 //----------------------------------------------------------------------
