@@ -10,7 +10,8 @@
 
     <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="4.5*"/>
+            <RowDefinition Height="4.5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">
@@ -21,7 +22,15 @@
             <LineBreak/>Kappa.
         </TextBlock>
 
-        <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">
+            Hello! To see some of my game design documents, please visit my
+            <Hyperlink NavigateUri="https://drive.google.com/drive/folders/0B_BKO6q1TsTNTGlqdUl5bDhfdXM?usp=sharing" >
+            Google Drive</Hyperlink>.
+            <LineBreak/>You can get all the dank details there!
+            <LineBreak/>Kappa.
+        </TextBlock>
+        
+        <Button Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
                 Click="ReturnToMain_Click">
             Click Here To Return To Main Menu
         </Button>

@@ -117,16 +117,16 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
 
-            <!--Talk To Me Button-->
-            <Button Grid.Column="1" Grid.Row="1"
-                    Click="Talk_Click">
-                <Image Source="Assets/Images/Talk_UP.png"/>
-            </Button>
-
             <!--I Want To See You Now Button-->
-            <Button Grid.Column="1" Grid.Row="3"
+            <Button Grid.Column="1" Grid.Row="1"
                     Click="See_Click">
                 <Image Source="Assets/Images/See_UP.png"/>
+            </Button>
+            
+            <!--Talk To Me Button-->
+            <Button Grid.Column="1" Grid.Row="3"
+                    Click="Talk_Click">
+                <Image Source="Assets/Images/Talk_UP.png"/>
             </Button>
 
             <!--Let Me Do Stuff Button-->
@@ -137,8 +137,8 @@
      
             <!--Design Documents Button-->
             <Button Grid.Column="1" Grid.Row="7"
-                    Click="Design_Click">
-                <Image Source="Assets/Images/Design_UP.png"/>
+                    Click="Options_Click">
+                <Image Source="Assets/Images/Options_UP.png"/>
             </Button>
 
             <!--Where Can I Find You? Button-->

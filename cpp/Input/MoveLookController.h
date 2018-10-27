@@ -253,6 +253,9 @@ private:
     bool                        m_down;
     bool                        m_pause;
 
+	// Local Settings For Custom Bindings
+	Windows::Storage::ApplicationDataContainer^ localSettings;
+
     // Game controller related members.
     Windows::Gaming::Input::Gamepad^    m_activeGamepad;
     std::atomic<bool>                   m_gamepadsChanged;

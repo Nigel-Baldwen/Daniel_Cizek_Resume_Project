@@ -1,0 +1,142 @@
+﻿<Page
+    x:Class="Simple3DGameXaml.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Simple3DGameXaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox Margin="10" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock>
+                Settings
+            </TextBlock>
+        </Viewbox>
+
+        <Button x:Name="BackButton" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="20" Click="BackButton_Click">
+            <TextBlock>
+                Return To <LineBreak/>
+                Main Menu
+            </TextBlock>
+        </Button>
+        
+        <!-- Move Forward-->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Margin="10">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                Move Forward
+                </TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                <TextBox x:Name="ForwardBox" PlaceholderText="W" TextAlignment="Center" TextChanged="ForwardBox_TextChanged"/>
+            </Viewbox>    
+        </Grid>
+        <!-- Move Backward-->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Margin="10">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                Move Backward
+                </TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                <TextBox x:Name="BackwardBox" PlaceholderText="S" TextAlignment="Center" TextChanged="BackwardBox_TextChanged"/>
+            </Viewbox>
+        </Grid>
+        <!-- Move Left-->
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Margin="10">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                Move Left
+                </TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                <TextBox x:Name="LeftBox" PlaceholderText="A" TextAlignment="Center" TextChanged="LeftBox_TextChanged"/>
+            </Viewbox>
+        </Grid>
+        <!-- Move Right-->
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Margin="10">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                Move Right
+                </TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                <TextBox x:Name="RightBox" PlaceholderText="D" TextAlignment="Center" TextChanged="RightBox_TextChanged"/>
+            </Viewbox>
+        </Grid>
+        <!-- Move Up-->
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Margin="10">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                Move Up
+                </TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                <TextBox x:Name="UpBox" PlaceholderText="␣" TextAlignment="Center" TextChanged="UpBox_TextChanged"/>
+            </Viewbox>
+        </Grid>
+        <!-- Move Down-->
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Margin="10">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                Move Down
+                </TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                <TextBox x:Name="DownBox" PlaceholderText="X" TextAlignment="Center" TextChanged="DownBox_TextChanged"/>
+            </Viewbox>
+        </Grid>
+        <!-- Pause Menu-->
+        <Grid Grid.Row="4" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Margin="10">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                Pause
+                </TextBlock>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                <TextBox x:Name="PauseBox" PlaceholderText="P" TextAlignment="Center" TextChanged="PauseBox_TextChanged"/>
+            </Viewbox>
+        </Grid>
+    </Grid>
+</Page>

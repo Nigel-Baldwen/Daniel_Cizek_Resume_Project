@@ -218,22 +218,24 @@
     <Image Include="Assets\Images\Design_UP.png" />
     <Image Include="Assets\Images\Let_UP.png" />
     <Image Include="Assets\Images\Main_Menu_Template.png" />
+    <Image Include="Assets\Images\Options_UP.png" />
     <Image Include="Assets\Images\Quit_UP.png" />
     <Image Include="Assets\Images\See_UP.png" />
     <Image Include="Assets\Images\Talk_UP.png" />
     <Image Include="Assets\Images\Where_UP.png" />
+    <Image Include="Assets\Textures\Texture_Test.dds" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\Audio.h" />
     <ClInclude Include="Audio\MediaReader.h" />
     <ClInclude Include="Audio\SoundEffect.h" />
-    <ClInclude Include="Core\DesignDocs.xaml.h">
-      <DependentUpon>Core\DesignDocs.xaml</DependentUpon>
-    </ClInclude>
     <ClInclude Include="Core\GameMain.h" />
     <ClInclude Include="Core\GameUIConstants.h" />
     <ClInclude Include="Core\GameUIControl.h" />
     <ClInclude Include="Core\ProductItem.h" />
+    <ClInclude Include="Core\SettingsPage.xaml.h">
+      <DependentUpon>Core\SettingsPage.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="Core\Simple3DGame.h" />
     <ClInclude Include="core\Twitch_Hype.xaml.h">
       <DependentUpon>core\Twitch_Hype.xaml</DependentUpon>
@@ -288,11 +290,11 @@
     <ClCompile Include="Audio\Audio.cpp" />
     <ClCompile Include="Audio\MediaReader.cpp" />
     <ClCompile Include="Audio\SoundEffect.cpp" />
-    <ClCompile Include="Core\DesignDocs.xaml.cpp">
-      <DependentUpon>Core\DesignDocs.xaml</DependentUpon>
-    </ClCompile>
     <ClCompile Include="Core\GameMain.cpp" />
     <ClCompile Include="Core\ProductItem.cpp" />
+    <ClCompile Include="Core\SettingsPage.xaml.cpp">
+      <DependentUpon>Core\SettingsPage.xaml</DependentUpon>
+    </ClCompile>
     <ClCompile Include="Core\Simple3DGame.cpp" />
     <ClCompile Include="core\Twitch_Hype.xaml.cpp">
       <DependentUpon>core\Twitch_Hype.xaml</DependentUpon>
@@ -389,12 +391,14 @@
       <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EnableDebuggingInformation>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_1</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\PixelShaderFlat.hlsl">
       <DisableOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DisableOptimizations>
       <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EnableDebuggingInformation>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_1</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
     </FxCompile>
     <FxCompile Include="Shaders\VertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
@@ -414,7 +418,7 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Core\DesignDocs.xaml">
+    <Page Include="Core\SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="core\Twitch_Hype.xaml">

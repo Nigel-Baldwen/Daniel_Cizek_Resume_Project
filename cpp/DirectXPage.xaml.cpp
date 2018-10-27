@@ -143,6 +143,23 @@ DirectXPage::DirectXPage() :
 		buttonAudioMediaReader->GetOutputWaveFormatEx(),
 		audioSource);
 
+	// KeyBinding & Potentially Other Settings Local Data Support
+	localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
+	localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
+	keyBindingsContainer = localSettings->CreateContainer("KeyBindings", Windows::Storage::ApplicationDataCreateDisposition::Always);
+
+	if (localSettings->Containers->HasKey("KeyBindings"))
+	{
+		auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
+		values->Insert("forwardBinding", "W");
+		values->Insert("backBinding", "S");
+		values->Insert("leftBinding", "A");
+		values->Insert("rightBinding", "D");
+		values->Insert("upBinding", " ");
+		values->Insert("downBinding", "X");
+		values->Insert("pauseBinding", "P");
+	}
+
 	this->NavigationCacheMode = Windows::UI::Xaml::Navigation::NavigationCacheMode::Enabled;
 }
 
@@ -158,12 +175,14 @@ void DirectXPage::HideGameInfoOverlay()
         {
             VisualStateManager::GoToState(this, "NormalState", true);
 
-            //StoreFlyout->IsOpen = false;
+            /*
+			//StoreFlyout->IsOpen = false;
             //StoreFlyout->Visibility = ::Visibility::Collapsed;
             //GameAppBar->IsOpen = false;
             //Play->Label = "Pause";
             //Play->Icon = ref new SymbolIcon(Symbol::Pause);
-            m_playActive = true;
+            */
+			m_playActive = true;
         })
         );
 }
@@ -179,8 +198,10 @@ void DirectXPage::ShowGameInfoOverlay()
         ref new DispatchedHandler([this]()
         {
             VisualStateManager::GoToState(this, "GameInfoOverlayState", true);
-            //Play->Label = "Play";
+            /*
+			//Play->Label = "Play";
             //Play->Icon = ref new SymbolIcon(Symbol::Play);
+			*/
             m_playActive = false;
         })
         );
@@ -199,10 +220,11 @@ void DirectXPage::SetAction(GameInfoOverlayCommand action)
             // Enable only one of the four possible commands at the bottom of the
             // Game Info Overlay.
 
-            //PlayAgain->Visibility = ::Visibility::Collapsed;
+            /*
+			//PlayAgain->Visibility = ::Visibility::Collapsed;
             //PleaseWait->Visibility = ::Visibility::Collapsed;
             //TapToContinue->Visibility = ::Visibility::Collapsed;
-
+			*/
             switch (action)
             {
             case GameInfoOverlayCommand::PlayAgain:
@@ -233,11 +255,13 @@ void DirectXPage::SetGameLoading()
         {
             //GameInfoOverlayTitle->Text = "Loading Resources";
 
+			/*
             //Loading->Visibility = ::Visibility::Visible;
             //Stats->Visibility = ::Visibility::Collapsed;
             //LevelStart->Visibility = ::Visibility::Collapsed;
             //PauseData->Visibility = ::Visibility::Collapsed;
             //LoadingProgress->IsActive = true;
+			*/
         })
         );
 }
@@ -260,10 +284,12 @@ void DirectXPage::SetGameStats(
             m_possiblePurchaseUpgrade = true;
             OptionalTrialUpgrade();
 
-            //Loading->Visibility = ::Visibility::Collapsed;
+            /*
+			//Loading->Visibility = ::Visibility::Collapsed;
             //Stats->Visibility = ::Visibility::Visible;
             //LevelStart->Visibility = ::Visibility::Collapsed;
             //PauseData->Visibility = ::Visibility::Collapsed;
+			*/
 
             static const int bufferLength = 20;
             static char16 wsbuffer[bufferLength];
@@ -278,8 +304,10 @@ void DirectXPage::SetGameStats(
             //TotalShots->Text = ref new Platform::String(wsbuffer, length);
 
             // High Score is not used for showing Game Statistics
-            //HighScoreTitle->Visibility = ::Visibility::Collapsed;
+            /*
+			//HighScoreTitle->Visibility = ::Visibility::Collapsed;
             //HighScoreData->Visibility = ::Visibility::Collapsed;
+			*/
         })
         );
 }
@@ -312,10 +340,12 @@ void DirectXPage::SetGameOver(
                 m_possiblePurchaseUpgrade = false;
                 //PurchaseUpgrade->Visibility = ::Visibility::Collapsed;
             }
-            //Loading->Visibility = ::Visibility::Collapsed;
+            /*
+			//Loading->Visibility = ::Visibility::Collapsed;
             //Stats->Visibility = ::Visibility::Visible;
             //LevelStart->Visibility = ::Visibility::Collapsed;
             //PauseData->Visibility = ::Visibility::Collapsed;
+			*/
 
             static const int bufferLength = 20;
             static char16 wsbuffer[bufferLength];
@@ -357,7 +387,8 @@ void DirectXPage::SetLevelStart(
             static char16 wsbuffer[bufferLength];
 
             int length = swprintf_s(wsbuffer, bufferLength, L"Level %d", level);
-            //GameInfoOverlayTitle->Text = ref new Platform::String(wsbuffer, length);
+            /*
+			//GameInfoOverlayTitle->Text = ref new Platform::String(wsbuffer, length);
 
             //Loading->Visibility = ::Visibility::Collapsed;
             //Stats->Visibility = ::Visibility::Collapsed;
@@ -365,21 +396,26 @@ void DirectXPage::SetLevelStart(
             //PauseData->Visibility = ::Visibility::Collapsed;
 
             //Objective->Text = objective;
+			*/
 
             length = swprintf_s(wsbuffer, bufferLength, L"%6.1f sec", timeLimit);
             //TimeLimit->Text = ref new Platform::String(wsbuffer, length);
 
             if (bonusTime > 0.0)
             {
-                //BonusTimeTitle->Visibility = ::Visibility::Visible;
+                /*
+				//BonusTimeTitle->Visibility = ::Visibility::Visible;
                 //BonusTimeData->Visibility = ::Visibility::Visible;
+				*/
                 length = swprintf_s(wsbuffer, bufferLength, L"%6.1f sec", bonusTime);
                 //BonusTime->Text = ref new Platform::String(wsbuffer, length);
             }
             else
             {
-                //BonusTimeTitle->Visibility = ::Visibility::Collapsed;
+                /*
+				//BonusTimeTitle->Visibility = ::Visibility::Collapsed;
                 //BonusTimeData->Visibility = ::Visibility::Collapsed;
+				*/
             }
         })
         );
@@ -395,11 +431,13 @@ void DirectXPage::SetPause(int level, int hitCount, int shotCount, float timeRem
         CoreDispatcherPriority::Normal,
         ref new DispatchedHandler([this, level, hitCount, shotCount, timeRemaining]()
         {
-            //GameInfoOverlayTitle->Text = "Paused";
+			/*
+			//GameInfoOverlayTitle->Text = "Paused";
             //Loading->Visibility = ::Visibility::Collapsed;
             //Stats->Visibility = ::Visibility::Collapsed;
             //LevelStart->Visibility = ::Visibility::Collapsed;
             //PauseData->Visibility = ::Visibility::Visible;
+			*/
 
             static const int bufferLength = 20;
             static char16 wsbuffer[bufferLength];
@@ -695,19 +733,23 @@ void DirectXPage::OnLicenseChanged()
 
             if (m_licenseInformation != nullptr)
             {
-                //auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
+				/*
+				//auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
                 //for (uint32 i = 0; i < items->Size; i++)
                 //{
                 //    dynamic_cast<ProductItem^>(items->GetAt(i))->UpdateContent(m_licenseInformation);
                 //}
+				*/
             }
             if (m_listingInformation != nullptr)
             {
-                //auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
+				/*
+				//auto items = dynamic_cast<Platform::Collections::Vector<Platform::Object^>^>(ProductListView->ItemsSource);
                 //for (uint32 i = 0; i < items->Size; i++)
                 //{
                 //    dynamic_cast<ProductItem^>(items->GetAt(i))->UpdateContent(m_listingInformation);
                 //}
+				*/
             }
         })
         );
@@ -875,8 +917,10 @@ void DirectXPage::OptionalTrialUpgrade()
 
 void DirectXPage::OnStoreReturnClicked(Object^ /* sender */, RoutedEventArgs^ /* args */)
 {
-    //StoreFlyout->IsOpen = false;
+    /*
+	//StoreFlyout->IsOpen = false;
     //StoreFlyout->Visibility = ::Visibility::Collapsed;
+	*/
 }
 
 //----------------------------------------------------------------------
@@ -899,8 +943,10 @@ void DirectXPage::SetProductItems(
     items->Append(ref new ProductItem(listing, license, "AutoFire", false));
     items->Append(ref new ProductItem(listing, license, "NightBackground", false));
     items->Append(ref new ProductItem(listing, license, "DayBackground", false));
-    //ProductListView->ItemsSource = items;
+    /*
+	//ProductListView->ItemsSource = items;
     //StoreUnavailable->Visibility = ::Visibility::Collapsed;
+	*/
 }
 
 //----------------------------------------------------------------------
@@ -909,8 +955,10 @@ void DirectXPage::OnWindowSizeChanged(
     _In_ WindowSizeChangedEventArgs^ /* args */
     )
 {
+	/*
     //StoreGrid->Height = Window::Current->Bounds.Height;
     //StoreFlyout->HorizontalOffset = Window::Current->Bounds.Width - StoreGrid->Width;
+	*/
 }
 
 //----------------------------------------------------------------------
@@ -924,12 +972,14 @@ void DirectXPage::OnAppBarOpened(Object^ /* sender */, Object^ /* args */)
 
 void DirectXPage::ShowStoreFlyout()
 {
+	/*
     //StoreGrid->Height = Window::Current->Bounds.Height;
     //StoreUnavailable->Visibility = ::Visibility::Collapsed;
     //StoreFlyout->HorizontalOffset = Window::Current->Bounds.Width - StoreGrid->Width;
     //StoreFlyout->IsOpen = true;
     //StoreFlyout->Visibility = ::Visibility::Visible;
     //GameAppBar->IsOpen = false;
+	*/
 }
 
 //----------------------------------------------------------------------
@@ -1004,14 +1054,14 @@ void Simple3DGameXaml::DirectXPage::See_Click(Platform::Object^ sender, Windows:
 }
 
 
-void Simple3DGameXaml::DirectXPage::Design_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void Simple3DGameXaml::DirectXPage::Options_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	// Switching pages requires a Xaml update, so it has to be thread safe.
 	Dispatcher->RunAsync(
 		CoreDispatcherPriority::Normal,
 		ref new DispatchedHandler([this]()
 	{
-		this->Frame->Navigate(TypeName(DesignDocs::typeid));
+		this->Frame->Navigate(TypeName(SettingsPage::typeid));
 	})
 	);
 }

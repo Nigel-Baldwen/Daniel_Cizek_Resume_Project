@@ -44,6 +44,12 @@
     <Image Include="Assets\Images\Let_UP.png">
       <Filter>Assets\Images</Filter>
     </Image>
+    <Image Include="Assets\Textures\Texture_Test.dds">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="Assets\Images\Options_UP.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -57,7 +63,7 @@
     <Page Include="Core\VideoPlayback.xaml">
       <Filter>Core</Filter>
     </Page>
-    <Page Include="Core\DesignDocs.xaml">
+    <Page Include="Core\SettingsPage.xaml">
       <Filter>Core</Filter>
     </Page>
   </ItemGroup>
@@ -175,6 +181,7 @@
     </ClCompile>
     <ClCompile Include="core\Twitch_Hype.xaml.cpp" />
     <ClCompile Include="Core\VideoPlayback.xaml.cpp" />
+    <ClCompile Include="Core\DesignDocs.xaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -311,6 +318,7 @@
     </ClInclude>
     <ClInclude Include="core\Twitch_Hype.xaml.h" />
     <ClInclude Include="Core\VideoPlayback.xaml.h" />
+    <ClInclude Include="Core\DesignDocs.xaml.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Simple3DGameDX\Cpp\Assets\seafloor.dds">
@@ -389,6 +397,9 @@
     </Filter>
     <Filter Include="Assets\Videos">
       <UniqueIdentifier>{3b3487ff-7893-45af-8369-8051d4d592d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures">
+      <UniqueIdentifier>{3de9dec1-3545-43cc-8401-ea7dad802f3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

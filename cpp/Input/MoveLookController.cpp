@@ -89,6 +89,8 @@ void MoveLookController::InitWindow(_In_ CoreWindow^ window)
 
     Gamepad::GamepadRemoved +=
         ref new EventHandler<Gamepad^>(this, &MoveLookController::OnGamepadRemoved);
+
+	localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
 }
 
 //----------------------------------------------------------------------
@@ -556,22 +558,28 @@ void MoveLookController::OnKeyDown(
 {
     Windows::System::VirtualKey Key;
     Key = args->VirtualKey;
+	args->KeyStatus;
 
+	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
+	String^ test = safe_cast<String^>(values->Lookup("forwardBinding"));
+
+	/*
     // Figure out the command from the keyboard.
-    if (Key == VirtualKey::W)
+    if (Key == values->Lookup("forwardBinding")
         m_forward = true;
-    if (Key == VirtualKey::S)
+    if (Key == back_Bind)
         m_back = true;
-    if (Key == VirtualKey::A)
+    if (Key == left_Bind)
         m_left = true;
-    if (Key == VirtualKey::D)
+    if (Key == right_Bind)
         m_right = true;
-    if (Key == VirtualKey::Space)
+    if (Key == up_Bind)
         m_up = true;
-    if (Key == VirtualKey::X)
+    if (Key == down_Bind)
         m_down = true;
-    if (Key == VirtualKey::P)
+    if (Key == pause_Bind)
         m_pause = true;
+	*/
 }
 
 //----------------------------------------------------------------------
@@ -584,20 +592,21 @@ void MoveLookController::OnKeyUp(
     Windows::System::VirtualKey Key;
     Key = args->VirtualKey;
 
+	/*
     // Figure out the command from the keyboard.
-    if (Key == VirtualKey::W)
+    if (Key == forward_Bind)
         m_forward = false;
-    if (Key == VirtualKey::S)
+    if (Key == back_Bind)
         m_back = false;
-    if (Key == VirtualKey::A)
+    if (Key == left_Bind)
         m_left = false;
-    if (Key == VirtualKey::D)
+    if (Key == right_Bind)
         m_right = false;
-    if (Key == VirtualKey::Space)
+    if (Key == up_Bind)
         m_up = false;
-    if (Key == VirtualKey::X)
+    if (Key == down_Bind)
         m_down = false;
-    if (Key == VirtualKey::P)
+    if (Key == pause_Bind)
     {
         if (m_pause)
         {
@@ -606,6 +615,7 @@ void MoveLookController::OnKeyUp(
             m_pause = false;
         }
     }
+	*/
 }
 
 //----------------------------------------------------------------------
