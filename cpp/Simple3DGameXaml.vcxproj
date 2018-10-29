@@ -258,7 +258,7 @@
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Sphere.h" />
     <ClInclude Include="Input\MoveLookController.h" />
-    <ClInclude Include="Input\VirtualKey_CodeToStringArray.h" />
+    <ClInclude Include="Input\VirtualKey_IndexToStringVector.h" />
     <ClInclude Include="Meshes\CylinderMesh.h" />
     <ClInclude Include="Meshes\FaceMesh.h" />
     <ClInclude Include="Meshes\SphereMesh.h" />

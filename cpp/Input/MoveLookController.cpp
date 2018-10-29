@@ -556,6 +556,13 @@ void MoveLookController::OnKeyDown(
     _In_ KeyEventArgs^ args
     )
 {
+	// Steps To Success
+	// 1:	Create a static association between virtual keys, numbers, &
+	//		string representations of them. - DONE
+	// 2:	Given a string representation, find a corresponding virtual key.
+	// 3:	Given a virtual key, find a corresponding string representation.
+	// 4:	Establish a set of saved bindings and use them to compare vs input.
+
     Windows::System::VirtualKey Key;
     Key = args->VirtualKey;
 	args->KeyStatus;
@@ -564,20 +571,20 @@ void MoveLookController::OnKeyDown(
 	String^ test = safe_cast<String^>(values->Lookup("forwardBinding"));
 
 	// Figure out the command from the keyboard.
-    if (Key.ToString() == values->Lookup("forwardBinding"))
-        m_forward = true;
-    if (Key == back_Bind)
-        m_back = true;
-    if (Key == left_Bind)
-        m_left = true;
-    if (Key == right_Bind)
-        m_right = true;
-    if (Key == up_Bind)
-        m_up = true;
-    if (Key == down_Bind)
-        m_down = true;
-    if (Key == pause_Bind)
-        m_pause = true;
+	if ("W" == virtualKey_IndexToString[(int)Key])
+		m_forward = true;
+	if ("S" == virtualKey_IndexToString[(int)Key])
+		m_back = true;
+	if ("A" == virtualKey_IndexToString[(int)Key])
+		m_left = true;
+	if ("D" == virtualKey_IndexToString[(int)Key])
+		m_right = true;
+	if ("SPCE" == virtualKey_IndexToString[(int)Key])
+		m_up = true;
+	if ("X" == virtualKey_IndexToString[(int)Key])
+		m_down = true;
+	if ("P" == virtualKey_IndexToString[(int)Key])
+		m_pause = true;
 }
 
 //----------------------------------------------------------------------
@@ -590,21 +597,20 @@ void MoveLookController::OnKeyUp(
     Windows::System::VirtualKey Key;
     Key = args->VirtualKey;
 
-	/*
     // Figure out the command from the keyboard.
-    if (Key == forward_Bind)
+    if ("W" == virtualKey_IndexToString[(int)Key])
         m_forward = false;
-    if (Key == back_Bind)
+    if ("S" == virtualKey_IndexToString[(int)Key])
         m_back = false;
-    if (Key == left_Bind)
+    if ("A" == virtualKey_IndexToString[(int)Key])
         m_left = false;
-    if (Key == right_Bind)
+    if ("D" == virtualKey_IndexToString[(int)Key])
         m_right = false;
-    if (Key == up_Bind)
+    if ("SPCE" == virtualKey_IndexToString[(int)Key])
         m_up = false;
-    if (Key == down_Bind)
+    if ("X" == virtualKey_IndexToString[(int)Key])
         m_down = false;
-    if (Key == pause_Bind)
+    if ("P" == virtualKey_IndexToString[(int)Key])
     {
         if (m_pause)
         {
@@ -613,7 +619,6 @@ void MoveLookController::OnKeyUp(
             m_pause = false;
         }
     }
-	*/
 }
 
 //----------------------------------------------------------------------

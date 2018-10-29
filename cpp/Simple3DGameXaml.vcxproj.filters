@@ -319,7 +319,7 @@
     <ClInclude Include="core\Twitch_Hype.xaml.h" />
     <ClInclude Include="Core\VideoPlayback.xaml.h" />
     <ClInclude Include="Core\SettingsPage.xaml.h" />
-    <ClInclude Include="Input\VirtualKey_CodeToStringArray.h">
+    <ClInclude Include="Input\VirtualKey_IndexToStringVector.h">
       <Filter>Input</Filter>
     </ClInclude>
   </ItemGroup>
