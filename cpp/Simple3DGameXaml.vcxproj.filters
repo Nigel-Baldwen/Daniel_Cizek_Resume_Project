@@ -181,7 +181,7 @@
     </ClCompile>
     <ClCompile Include="core\Twitch_Hype.xaml.cpp" />
     <ClCompile Include="Core\VideoPlayback.xaml.cpp" />
-    <ClCompile Include="Core\DesignDocs.xaml.cpp" />
+    <ClCompile Include="Core\SettingsPage.xaml.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -318,7 +318,10 @@
     </ClInclude>
     <ClInclude Include="core\Twitch_Hype.xaml.h" />
     <ClInclude Include="Core\VideoPlayback.xaml.h" />
-    <ClInclude Include="Core\DesignDocs.xaml.h" />
+    <ClInclude Include="Core\SettingsPage.xaml.h" />
+    <ClInclude Include="Input\VirtualKey_CodeToStringArray.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Simple3DGameDX\Cpp\Assets\seafloor.dds">

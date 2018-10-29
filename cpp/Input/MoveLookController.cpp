@@ -563,9 +563,8 @@ void MoveLookController::OnKeyDown(
 	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
 	String^ test = safe_cast<String^>(values->Lookup("forwardBinding"));
 
-	/*
-    // Figure out the command from the keyboard.
-    if (Key == values->Lookup("forwardBinding")
+	// Figure out the command from the keyboard.
+    if (Key.ToString() == values->Lookup("forwardBinding"))
         m_forward = true;
     if (Key == back_Bind)
         m_back = true;
@@ -579,7 +578,6 @@ void MoveLookController::OnKeyDown(
         m_down = true;
     if (Key == pause_Bind)
         m_pause = true;
-	*/
 }
 
 //----------------------------------------------------------------------
