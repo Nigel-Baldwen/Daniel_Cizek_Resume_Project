@@ -155,7 +155,7 @@ DirectXPage::DirectXPage() :
 		values->Insert("backBinding", "S");
 		values->Insert("leftBinding", "A");
 		values->Insert("rightBinding", "D");
-		values->Insert("upBinding", " ");
+		values->Insert("upBinding", "SPCE");
 		values->Insert("downBinding", "X");
 		values->Insert("pauseBinding", "P");
 	}

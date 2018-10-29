@@ -45,8 +45,9 @@
                 </TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-                <TextBox x:Name="ForwardBox" PlaceholderText="W" TextAlignment="Center" TextChanged="ForwardBox_TextChanged"/>
-            </Viewbox>    
+                <TextBox x:Name="ForwardBox" PlaceholderText="W" TextAlignment="Center" IsReadOnly="True"
+                           KeyDown="ForwardBox_KeyDown" PointerPressed="BindingBox_PointerPressed"/>
+            </Viewbox>
         </Grid>
         <!-- Move Backward-->
         <Grid Grid.Row="1" Grid.Column="1">
@@ -60,7 +61,8 @@
                 </TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-                <TextBox x:Name="BackwardBox" PlaceholderText="S" TextAlignment="Center" TextChanged="BackwardBox_TextChanged"/>
+                <TextBox x:Name="BackwardBox" PlaceholderText="S" TextAlignment="Center" IsReadOnly="True"
+                         KeyDown="BackwardBox_KeyDown" PointerPressed="BindingBox_PointerPressed"/>
             </Viewbox>
         </Grid>
         <!-- Move Left-->
@@ -75,7 +77,8 @@
                 </TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-                <TextBox x:Name="LeftBox" PlaceholderText="A" TextAlignment="Center" TextChanged="LeftBox_TextChanged"/>
+                <TextBox x:Name="LeftBox" PlaceholderText="A" TextAlignment="Center" IsReadOnly="True"
+                           KeyDown="LeftBox_KeyDown" PointerPressed="BindingBox_PointerPressed"/>
             </Viewbox>
         </Grid>
         <!-- Move Right-->
@@ -90,7 +93,8 @@
                 </TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-                <TextBox x:Name="RightBox" PlaceholderText="D" TextAlignment="Center" TextChanged="RightBox_TextChanged"/>
+                <TextBox x:Name="RightBox" PlaceholderText="D" TextAlignment="Center" IsReadOnly="True"
+                         KeyDown="RightBox_KeyDown" PointerPressed="BindingBox_PointerPressed"/>
             </Viewbox>
         </Grid>
         <!-- Move Up-->
@@ -105,7 +109,8 @@
                 </TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-                <TextBox x:Name="UpBox" PlaceholderText="␣" TextAlignment="Center" TextChanged="UpBox_TextChanged"/>
+                <TextBox x:Name="UpBox" PlaceholderText="SPCE" TextAlignment="Center" IsReadOnly="True"
+                         KeyDown="UpBox_KeyDown" PointerPressed="BindingBox_PointerPressed"/>
             </Viewbox>
         </Grid>
         <!-- Move Down-->
@@ -120,7 +125,8 @@
                 </TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-                <TextBox x:Name="DownBox" PlaceholderText="X" TextAlignment="Center" TextChanged="DownBox_TextChanged"/>
+                <TextBox x:Name="DownBox" PlaceholderText="X" TextAlignment="Center" IsReadOnly="True"
+                         KeyDown="DownBox_KeyDown" PointerPressed="BindingBox_PointerPressed"/>
             </Viewbox>
         </Grid>
         <!-- Pause Menu-->
@@ -135,7 +141,8 @@
                 </TextBlock>
             </Viewbox>
             <Viewbox Grid.Column="1" HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
-                <TextBox x:Name="PauseBox" PlaceholderText="P" TextAlignment="Center" TextChanged="PauseBox_TextChanged"/>
+                <TextBox x:Name="PauseBox" PlaceholderText="P" TextAlignment="Center" IsReadOnly="True"
+                         KeyDown="PauseBox_KeyDown" PointerPressed="BindingBox_PointerPressed"/>
             </Viewbox>
         </Grid>
     </Grid>

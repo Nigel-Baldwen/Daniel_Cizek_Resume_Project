@@ -28,6 +28,7 @@ SettingsPage::SettingsPage()
 	InitializeComponent();
 	this->NavigationCacheMode = Windows::UI::Xaml::Navigation::NavigationCacheMode::Enabled;
 	localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
+	keyBindingsList = localSettings->Containers->Lookup("KeyBindings")->Values;
 }
 
 
@@ -43,51 +44,69 @@ void Simple3DGameXaml::SettingsPage::BackButton_Click(Platform::Object^ sender, 
 	);
 }
 
+//void Simple3DGameXaml::SettingsPage::ForwardBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+//{
+//	keyBindingsList->Insert("forwardBinding", ProcessTextBoxText(ForwardBox->Text));
+//}
 
-void Simple3DGameXaml::SettingsPage::ForwardBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+void Simple3DGameXaml::SettingsPage::ForwardBox_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	values->Insert("forwardBinding", ForwardBox->Text);
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->Text = virtualKey_IndexToString[(int)e->Key];
+	keyBindingsList->Insert("forwardBinding", textBox->Text);
 }
 
 
-void Simple3DGameXaml::SettingsPage::BackwardBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+void Simple3DGameXaml::SettingsPage::BackwardBox_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	values->Insert("backBinding", ForwardBox->Text);
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->Text = virtualKey_IndexToString[(int)e->Key];
+	keyBindingsList->Insert("backBinding", textBox->Text);
 }
 
 
-void Simple3DGameXaml::SettingsPage::LeftBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+void Simple3DGameXaml::SettingsPage::LeftBox_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	values->Insert("leftBinding", ForwardBox->Text);
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->Text = virtualKey_IndexToString[(int)e->Key];
+	keyBindingsList->Insert("leftBinding", textBox->Text);
 }
 
 
-void Simple3DGameXaml::SettingsPage::RightBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+void Simple3DGameXaml::SettingsPage::RightBox_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	values->Insert("rightBinding", ForwardBox->Text);
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->Text = virtualKey_IndexToString[(int)e->Key];
+	keyBindingsList->Insert("rightBinding", textBox->Text);
 }
 
 
-void Simple3DGameXaml::SettingsPage::UpBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+void Simple3DGameXaml::SettingsPage::UpBox_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	values->Insert("upBinding", ForwardBox->Text);
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->Text = virtualKey_IndexToString[(int)e->Key];
+	keyBindingsList->Insert("upBinding", textBox->Text);
 }
 
 
-void Simple3DGameXaml::SettingsPage::DownBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+void Simple3DGameXaml::SettingsPage::DownBox_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	values->Insert("downBinding", ForwardBox->Text);
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->Text = virtualKey_IndexToString[(int)e->Key];
+	keyBindingsList->Insert("downBinding", textBox->Text);
 }
 
 
-void Simple3DGameXaml::SettingsPage::PauseBox_TextChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::TextChangedEventArgs^ e)
+void Simple3DGameXaml::SettingsPage::PauseBox_KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	values->Insert("pauseBinding", ForwardBox->Text);
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->Text = virtualKey_IndexToString[(int)e->Key];
+	keyBindingsList->Insert("pauseBinding", textBox->Text);
+}
+
+
+void Simple3DGameXaml::SettingsPage::BindingBox_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
+{
+	auto textBox = safe_cast<TextBox^>(sender);
+	textBox->PlaceholderText = "";
 }

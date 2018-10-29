@@ -91,6 +91,7 @@ void MoveLookController::InitWindow(_In_ CoreWindow^ window)
         ref new EventHandler<Gamepad^>(this, &MoveLookController::OnGamepadRemoved);
 
 	localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
+	keyBindingsList = localSettings->Containers->Lookup("KeyBindings")->Values;
 }
 
 //----------------------------------------------------------------------
@@ -556,34 +557,23 @@ void MoveLookController::OnKeyDown(
     _In_ KeyEventArgs^ args
     )
 {
-	// Steps To Success
-	// 1:	Create a static association between virtual keys, numbers, &
-	//		string representations of them. - DONE
-	// 2:	Given a string representation, find a corresponding virtual key.
-	// 3:	Given a virtual key, find a corresponding string representation.
-	// 4:	Establish a set of saved bindings and use them to compare vs input.
-
-    Windows::System::VirtualKey Key;
+	Windows::System::VirtualKey Key;
     Key = args->VirtualKey;
-	args->KeyStatus;
-
-	auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-	String^ test = safe_cast<String^>(values->Lookup("forwardBinding"));
-
+	
 	// Figure out the command from the keyboard.
-	if ("W" == virtualKey_IndexToString[(int)Key])
+	if (safe_cast<String^>(keyBindingsList->Lookup("forwardBinding")) == virtualKey_IndexToString[(int)Key])
 		m_forward = true;
-	if ("S" == virtualKey_IndexToString[(int)Key])
+	if (safe_cast<String^>(keyBindingsList->Lookup("backBinding")) == virtualKey_IndexToString[(int)Key])
 		m_back = true;
-	if ("A" == virtualKey_IndexToString[(int)Key])
+	if (safe_cast<String^>(keyBindingsList->Lookup("leftBinding")) == virtualKey_IndexToString[(int)Key])
 		m_left = true;
-	if ("D" == virtualKey_IndexToString[(int)Key])
+	if (safe_cast<String^>(keyBindingsList->Lookup("rightBinding")) == virtualKey_IndexToString[(int)Key])
 		m_right = true;
-	if ("SPCE" == virtualKey_IndexToString[(int)Key])
+	if (safe_cast<String^>(keyBindingsList->Lookup("upBinding")) == virtualKey_IndexToString[(int)Key])
 		m_up = true;
-	if ("X" == virtualKey_IndexToString[(int)Key])
+	if (safe_cast<String^>(keyBindingsList->Lookup("downBinding")) == virtualKey_IndexToString[(int)Key])
 		m_down = true;
-	if ("P" == virtualKey_IndexToString[(int)Key])
+	if (safe_cast<String^>(keyBindingsList->Lookup("pauseBinding")) == virtualKey_IndexToString[(int)Key])
 		m_pause = true;
 }
 
@@ -597,20 +587,22 @@ void MoveLookController::OnKeyUp(
     Windows::System::VirtualKey Key;
     Key = args->VirtualKey;
 
+
+
     // Figure out the command from the keyboard.
-    if ("W" == virtualKey_IndexToString[(int)Key])
+    if (safe_cast<String^>(keyBindingsList->Lookup("forwardBinding")) == virtualKey_IndexToString[(int)Key])
         m_forward = false;
-    if ("S" == virtualKey_IndexToString[(int)Key])
+    if (safe_cast<String^>(keyBindingsList->Lookup("backBinding")) == virtualKey_IndexToString[(int)Key])
         m_back = false;
-    if ("A" == virtualKey_IndexToString[(int)Key])
+    if (safe_cast<String^>(keyBindingsList->Lookup("leftBinding")) == virtualKey_IndexToString[(int)Key])
         m_left = false;
-    if ("D" == virtualKey_IndexToString[(int)Key])
+    if (safe_cast<String^>(keyBindingsList->Lookup("rightBinding")) == virtualKey_IndexToString[(int)Key])
         m_right = false;
-    if ("SPCE" == virtualKey_IndexToString[(int)Key])
+    if (safe_cast<String^>(keyBindingsList->Lookup("upBinding")) == virtualKey_IndexToString[(int)Key])
         m_up = false;
-    if ("X" == virtualKey_IndexToString[(int)Key])
+    if (safe_cast<String^>(keyBindingsList->Lookup("downBinding")) == virtualKey_IndexToString[(int)Key])
         m_down = false;
-    if ("P" == virtualKey_IndexToString[(int)Key])
+    if (safe_cast<String^>(keyBindingsList->Lookup("pauseBinding")) == virtualKey_IndexToString[(int)Key])
     {
         if (m_pause)
         {
