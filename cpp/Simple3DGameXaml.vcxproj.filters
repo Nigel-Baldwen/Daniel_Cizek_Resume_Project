@@ -182,6 +182,9 @@
     <ClCompile Include="core\Twitch_Hype.xaml.cpp" />
     <ClCompile Include="Core\VideoPlayback.xaml.cpp" />
     <ClCompile Include="Core\SettingsPage.xaml.cpp" />
+    <ClCompile Include="GameObjects\RectangularPrism.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -321,6 +324,9 @@
     <ClInclude Include="Core\SettingsPage.xaml.h" />
     <ClInclude Include="Input\VirtualKey_IndexToStringVector.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\RectangularPrism.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -252,6 +252,7 @@
     <ClInclude Include="GameLevels\Level6.h" />
     <ClInclude Include="GameObjects\Animate.h" />
     <ClInclude Include="GameObjects\Camera.h" />
+    <ClInclude Include="GameObjects\RectangularPrism.h" />
     <ClInclude Include="GameObjects\Cylinder.h" />
     <ClInclude Include="GameObjects\Face.h" />
     <ClInclude Include="GameObjects\GameConstants.h" />
@@ -315,6 +316,7 @@
     <ClCompile Include="GameObjects\Cylinder.cpp" />
     <ClCompile Include="GameObjects\Face.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\RectangularPrism.cpp" />
     <ClCompile Include="GameObjects\Sphere.cpp" />
     <ClCompile Include="Input\MoveLookController.cpp" />
     <ClCompile Include="Meshes\CylinderMesh.cpp" />

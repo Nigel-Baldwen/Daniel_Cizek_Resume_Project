@@ -732,120 +732,232 @@ void Simple3DGame::UpdateDynamics()
 
 #pragma region Apply Gravity and world intersection
             // Apply gravity and check for collision against enclosing volume.
-            for (uint32 i = 0; i < m_ammoCount; i++)
-            {
-                // Update the position and velocity of the ammo instance.
-                m_ammo[i]->Position(m_ammo[i]->VectorPosition() + m_ammo[i]->VectorVelocity() * elapsedFrameTime);
+			for (uint32 i = 0; i < m_ammoCount; i++)
+			{
+				// Update the position and velocity of the ammo instance.
+				m_ammo[i]->Position(m_ammo[i]->VectorPosition() + m_ammo[i]->VectorVelocity() * elapsedFrameTime);
 
-                XMFLOAT3 velocity = m_ammo[i]->Velocity();
-                XMFLOAT3 position = m_ammo[i]->Position();
+				XMFLOAT3 velocity = m_ammo[i]->Velocity();
+				XMFLOAT3 position = m_ammo[i]->Position();
 
-                velocity.x -= velocity.x * 0.1f * elapsedFrameTime;
-                velocity.z -= velocity.z * 0.1f * elapsedFrameTime;
-                if (!m_ammo[i]->OnGround())
-                {
-                    // Apply gravity if the ammo instance is not already resting on the ground.
-                    velocity.y -= GameConstants::Physics::Gravity * elapsedFrameTime;
-                }
+				velocity.x -= velocity.x * 0.1f * elapsedFrameTime;
+				velocity.z -= velocity.z * 0.1f * elapsedFrameTime;
+				if (!m_ammo[i]->OnGround())
+				{
+					// Apply gravity if the ammo instance is not already resting on the ground.
+					velocity.y -= GameConstants::Physics::Gravity * elapsedFrameTime;
+				}
 
-                if (!m_ammo[i]->OnGround())
-                {
-                    float limit = m_minBound.y + GameConstants::AmmoRadius;
-                    if (position.y < limit)
-                    {
-                        // The ammo instance hit the ground.
-                        // Align the ammo instance to the ground, invert the Y component of the velocity and
-                        // play the impact sound. The X and Z velocity components will be reduced
-                        // because of friction.
-                        position.y = limit;
-                        m_ammo[i]->PlaySound(-velocity.y, m_player->Position());
+				if (!m_ammo[i]->OnGround())
+				{
+					float limit = m_minBound.y + GameConstants::AmmoRadius;
+					if (position.y < limit)
+					{
+						// The ammo instance hit the ground.
+						// Align the ammo instance to the ground, invert the Y component of the velocity and
+						// play the impact sound. The X and Z velocity components will be reduced
+						// because of friction.
+						position.y = limit;
+						m_ammo[i]->PlaySound(-velocity.y, m_player->Position());
 
-                        velocity.y = -velocity.y * GameConstants::Physics::GroundRestitution;
-                        velocity.x *= GameConstants::Physics::Friction;
-                        velocity.z *= GameConstants::Physics::Friction;
-                    }
-                }
-                else
-                {
-                    // The ammo instance is resting or rolling on ground.
-                    // X and Z velocity components are reduced because of friction.
-                    velocity.x *= GameConstants::Physics::Friction;
-                    velocity.z *= GameConstants::Physics::Friction;
-                }
+						velocity.y = -velocity.y * GameConstants::Physics::GroundRestitution;
+						velocity.x *= GameConstants::Physics::Friction;
+						velocity.z *= GameConstants::Physics::Friction;
+					}
+				}
+				else
+				{
+					// The ammo instance is resting or rolling on ground.
+					// X and Z velocity components are reduced because of friction.
+					velocity.x *= GameConstants::Physics::Friction;
+					velocity.z *= GameConstants::Physics::Friction;
+				}
 
-                float limit = m_maxBound.y - GameConstants::AmmoRadius;
-                if (position.y > limit)
-                {
-                    // The ammo instance hit the ceiling.
-                    // Align the ammo instance to the ceiling, invert the Y component of the velocity and
-                    // play the impact sound. The X and Z velocity components will be reduced
-                    // because of friction.
-                    position.y = limit;
-                    m_ammo[i]->PlaySound(-velocity.y, m_player->Position());
+				float limit = m_maxBound.y - GameConstants::AmmoRadius;
+				if (position.y > limit)
+				{
+					// The ammo instance hit the ceiling.
+					// Align the ammo instance to the ceiling, invert the Y component of the velocity and
+					// play the impact sound. The X and Z velocity components will be reduced
+					// because of friction.
+					position.y = limit;
+					m_ammo[i]->PlaySound(-velocity.y, m_player->Position());
 
-                    velocity.y = -velocity.y * GameConstants::Physics::GroundRestitution;
-                    velocity.x *= GameConstants::Physics::Friction;
-                    velocity.z *= GameConstants::Physics::Friction;
-                }
+					velocity.y = -velocity.y * GameConstants::Physics::GroundRestitution;
+					velocity.x *= GameConstants::Physics::Friction;
+					velocity.z *= GameConstants::Physics::Friction;
+				}
 
-                limit = m_minBound.y + GameConstants::AmmoRadius;
-                if ((GameConstants::Physics::Gravity * (position.y - limit) + 0.5f * velocity.y * velocity.y) < GameConstants::Physics::RestThreshold)
-                {
-                    // The Y velocity component is below the resting threshold so flag the instance as
-                    // laying on the ground and set the Y velocity component to zero.
-                    position.y = limit;
-                    velocity.y = 0.0f;
-                    m_ammo[i]->OnGround(true);
-                }
+				limit = m_minBound.y + GameConstants::AmmoRadius;
+				if ((GameConstants::Physics::Gravity * (position.y - limit) + 0.5f * velocity.y * velocity.y) < GameConstants::Physics::RestThreshold)
+				{
+					// The Y velocity component is below the resting threshold so flag the instance as
+					// laying on the ground and set the Y velocity component to zero.
+					position.y = limit;
+					velocity.y = 0.0f;
+					m_ammo[i]->OnGround(true);
+				}
 
-                limit = m_minBound.z + GameConstants::AmmoRadius;
-                if (position.z < limit)
-                {
-                    // The ammo instance hit the a wall in the min Z direction.
-                    // Align the ammo instance to the wall, invert the Z component of the velocity and
-                    // play the impact sound.
-                    position.z = limit;
-                    m_ammo[i]->PlaySound(-velocity.z, m_player->Position());
-                    velocity.z = -velocity.z * GameConstants::Physics::GroundRestitution;
-                }
+				limit = m_minBound.z + GameConstants::AmmoRadius;
+				if (position.z < limit)
+				{
+					// The ammo instance hit the a wall in the min Z direction.
+					// Align the ammo instance to the wall, invert the Z component of the velocity and
+					// play the impact sound.
+					position.z = limit;
+					m_ammo[i]->PlaySound(-velocity.z, m_player->Position());
+					velocity.z = -velocity.z * GameConstants::Physics::GroundRestitution;
+				}
 
-                limit = m_maxBound.z - GameConstants::AmmoRadius;
-                if (position.z > limit)
-                {
-                    // The ammo instance hit the a wall in the max Z direction.
-                    // Align the ammo instance to the wall, invert the Z component of the velocity and
-                    // play the impact sound.
-                    position.z = limit;
-                    m_ammo[i]->PlaySound(-velocity.z, m_player->Position());
-                    velocity.z = -velocity.z * GameConstants::Physics::GroundRestitution;
-                }
+				limit = m_maxBound.z - GameConstants::AmmoRadius;
+				if (position.z > limit)
+				{
+					// The ammo instance hit the a wall in the max Z direction.
+					// Align the ammo instance to the wall, invert the Z component of the velocity and
+					// play the impact sound.
+					position.z = limit;
+					m_ammo[i]->PlaySound(-velocity.z, m_player->Position());
+					velocity.z = -velocity.z * GameConstants::Physics::GroundRestitution;
+				}
 
-                limit = m_minBound.x + GameConstants::AmmoRadius;
-                if (position.x < limit)
-                {
-                    // The ammo instance hit the a wall in the min X direction.
-                    // Align the ammo instance to the wall, invert the X component of the velocity and
-                    // play the impact sound.
-                    position.x = limit;
-                    m_ammo[i]->PlaySound(-velocity.x, m_player->Position());
-                    velocity.x = -velocity.x * GameConstants::Physics::GroundRestitution;
-                }
+				limit = m_minBound.x + GameConstants::AmmoRadius;
+				if (position.x < limit)
+				{
+					// The ammo instance hit the a wall in the min X direction.
+					// Align the ammo instance to the wall, invert the X component of the velocity and
+					// play the impact sound.
+					position.x = limit;
+					m_ammo[i]->PlaySound(-velocity.x, m_player->Position());
+					velocity.x = -velocity.x * GameConstants::Physics::GroundRestitution;
+				}
 
-                limit = m_maxBound.x - GameConstants::AmmoRadius;
-                if (position.x > limit)
-                {
-                    // The ammo instance hit the a wall in the max X direction.
-                    // Align the ammo instance to the wall, invert the X component of the velocity and
-                    // play the impact sound.
-                    position.x = limit;
-                    m_ammo[i]->PlaySound(-velocity.x, m_player->Position());
-                    velocity.x = -velocity.x * GameConstants::Physics::GroundRestitution;
-                }
+				limit = m_maxBound.x - GameConstants::AmmoRadius;
+				if (position.x > limit)
+				{
+					// The ammo instance hit the a wall in the max X direction.
+					// Align the ammo instance to the wall, invert the X component of the velocity and
+					// play the impact sound.
+					position.x = limit;
+					m_ammo[i]->PlaySound(-velocity.x, m_player->Position());
+					velocity.x = -velocity.x * GameConstants::Physics::GroundRestitution;
+				}
 
-                // Save the updated velocity and position for the ammo instance.
-                m_ammo[i]->Velocity(velocity);
-                m_ammo[i]->Position(position);
-            }
+				// Save the updated velocity and position for the ammo instance.
+				m_ammo[i]->Velocity(velocity);
+				m_ammo[i]->Position(position);
+			}
+			
+			// Update the position and velocity of the player instance.
+			m_player->Position(m_player->VectorPosition() + m_player->VectorVelocity() * elapsedFrameTime);
+
+			XMFLOAT3 velocity = m_player->Velocity();
+			XMFLOAT3 position = m_player->Position();
+
+			velocity.x -= velocity.x * 0.1f * elapsedFrameTime;
+			velocity.z -= velocity.z * 0.1f * elapsedFrameTime;
+			if (!m_player->OnGround())
+			{
+				// Apply gravity if the ammo instance is not already resting on the ground.
+				velocity.y -= GameConstants::Physics::Gravity * elapsedFrameTime;
+			}
+
+			if (!m_player->OnGround())
+			{
+				float limit = m_minBound.y + GameConstants::AmmoRadius;
+				if (position.y < limit)
+				{
+					// The ammo instance hit the ground.
+					// Align the ammo instance to the ground, invert the Y component of the velocity and
+					// play the impact sound. The X and Z velocity components will be reduced
+					// because of friction.
+					position.y = limit;
+					m_player->PlaySound(-velocity.y, m_player->Position());
+
+					velocity.y = -velocity.y * GameConstants::Physics::GroundRestitution;
+					velocity.x *= GameConstants::Physics::Friction;
+					velocity.z *= GameConstants::Physics::Friction;
+				}
+			}
+			else
+			{
+				// The ammo instance is resting or rolling on ground.
+				// X and Z velocity components are reduced because of friction.
+				velocity.x *= GameConstants::Physics::Friction;
+				velocity.z *= GameConstants::Physics::Friction;
+			}
+
+			float limit = m_maxBound.y - GameConstants::AmmoRadius;
+			if (position.y > limit)
+			{
+				// The ammo instance hit the ceiling.
+				// Align the ammo instance to the ceiling, invert the Y component of the velocity and
+				// play the impact sound. The X and Z velocity components will be reduced
+				// because of friction.
+				position.y = limit;
+				m_player->PlaySound(-velocity.y, m_player->Position());
+
+				velocity.y = -velocity.y * GameConstants::Physics::GroundRestitution;
+				velocity.x *= GameConstants::Physics::Friction;
+				velocity.z *= GameConstants::Physics::Friction;
+			}
+
+			limit = m_minBound.y + GameConstants::AmmoRadius;
+			if ((GameConstants::Physics::Gravity * (position.y - limit) + 0.5f * velocity.y * velocity.y) < GameConstants::Physics::RestThreshold)
+			{
+				// The Y velocity component is below the resting threshold so flag the instance as
+				// laying on the ground and set the Y velocity component to zero.
+				position.y = limit;
+				velocity.y = 0.0f;
+				m_player->OnGround(true);
+			}
+
+			limit = m_minBound.z + GameConstants::AmmoRadius;
+			if (position.z < limit)
+			{
+				// The ammo instance hit the a wall in the min Z direction.
+				// Align the ammo instance to the wall, invert the Z component of the velocity and
+				// play the impact sound.
+				position.z = limit;
+				m_player->PlaySound(-velocity.z, m_player->Position());
+				velocity.z = -velocity.z * GameConstants::Physics::GroundRestitution;
+			}
+
+			limit = m_maxBound.z - GameConstants::AmmoRadius;
+			if (position.z > limit)
+			{
+				// The ammo instance hit the a wall in the max Z direction.
+				// Align the ammo instance to the wall, invert the Z component of the velocity and
+				// play the impact sound.
+				position.z = limit;
+				m_player->PlaySound(-velocity.z, m_player->Position());
+				velocity.z = -velocity.z * GameConstants::Physics::GroundRestitution;
+			}
+
+			limit = m_minBound.x + GameConstants::AmmoRadius;
+			if (position.x < limit)
+			{
+				// The ammo instance hit the a wall in the min X direction.
+				// Align the ammo instance to the wall, invert the X component of the velocity and
+				// play the impact sound.
+				position.x = limit;
+				m_player->PlaySound(-velocity.x, m_player->Position());
+				velocity.x = -velocity.x * GameConstants::Physics::GroundRestitution;
+			}
+
+			limit = m_maxBound.x - GameConstants::AmmoRadius;
+			if (position.x > limit)
+			{
+				// The ammo instance hit the a wall in the max X direction.
+				// Align the ammo instance to the wall, invert the X component of the velocity and
+				// play the impact sound.
+				position.x = limit;
+				m_player->PlaySound(-velocity.x, m_player->Position());
+				velocity.x = -velocity.x * GameConstants::Physics::GroundRestitution;
+			}
+
+			// Save the updated velocity and position for the ammo instance.
+			m_player->Velocity(velocity);
+			m_player->Position(position);
         }
     }
 #pragma endregion
