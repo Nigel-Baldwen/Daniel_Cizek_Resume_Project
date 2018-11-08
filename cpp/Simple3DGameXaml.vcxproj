@@ -252,11 +252,11 @@
     <ClInclude Include="GameLevels\Level6.h" />
     <ClInclude Include="GameObjects\Animate.h" />
     <ClInclude Include="GameObjects\Camera.h" />
+    <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\RectangularPrism.h" />
     <ClInclude Include="GameObjects\Cylinder.h" />
     <ClInclude Include="GameObjects\Face.h" />
     <ClInclude Include="GameObjects\GameConstants.h" />
-    <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Sphere.h" />
     <ClInclude Include="Input\MoveLookController.h" />
     <ClInclude Include="Input\VirtualKey_IndexToStringVector.h" />

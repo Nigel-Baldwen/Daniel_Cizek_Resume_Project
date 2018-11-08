@@ -234,9 +234,6 @@
     <ClInclude Include="GameObjects\GameConstants.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\GameObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\Sphere.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
@@ -326,6 +323,9 @@
       <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\RectangularPrism.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObject.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
