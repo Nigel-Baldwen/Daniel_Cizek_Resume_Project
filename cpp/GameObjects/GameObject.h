@@ -102,6 +102,9 @@ protected private:
 	MeshObject^         m_mesh;
 
 	SoundEffect^        m_hitSound;
+
+	// Tools for Collision Detection
+	float xMin, xMax, yMin, yMax, zMin, zMax;
 };
 
 

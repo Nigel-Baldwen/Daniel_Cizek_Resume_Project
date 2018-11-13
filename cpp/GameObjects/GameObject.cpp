@@ -27,6 +27,14 @@ GameObject::GameObject() :
     m_hitTime         = 0.0f;
 
     m_animatePosition = nullptr;
+
+	// Added Code
+	xMin = 0;
+	xMax = 0;
+	yMin = 0;
+	yMax = 0;
+	zMin = 0;
+	zMax = 0;
 }
 
 //----------------------------------------------------------------------

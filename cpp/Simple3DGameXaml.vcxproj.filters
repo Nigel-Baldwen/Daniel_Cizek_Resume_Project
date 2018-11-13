@@ -185,6 +185,9 @@
     <ClCompile Include="GameObjects\RectangularPrism.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\BoundingBoxTest.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -326,6 +329,9 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\GameObject.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\BoundingBoxTest.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>

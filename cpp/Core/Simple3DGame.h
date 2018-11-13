@@ -29,6 +29,7 @@
 #include "Utilities/PersistentState.h"
 #include "GameObjects/Sphere.h"
 #include "Rendering/GameRenderer.h"
+#include <list>
 
 //--------------------------------------------------------------------------------------
 
@@ -149,5 +150,6 @@ private:
 
 	//ADDED CODE
 	SoundEffect^ testVO_Intro;
+	std::list<std::pair<float, int>> xAxisSweep, yAxisSweep, zAxisSweep;
 };
 

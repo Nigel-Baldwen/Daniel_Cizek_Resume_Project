@@ -251,6 +251,7 @@
     <ClInclude Include="GameLevels\Level5.h" />
     <ClInclude Include="GameLevels\Level6.h" />
     <ClInclude Include="GameObjects\Animate.h" />
+    <ClInclude Include="GameObjects\BoundingBoxTest.h" />
     <ClInclude Include="GameObjects\Camera.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="GameObjects\RectangularPrism.h" />
@@ -312,6 +313,7 @@
     <ClCompile Include="GameLevels\Level5.cpp" />
     <ClCompile Include="GameLevels\Level6.cpp" />
     <ClCompile Include="GameObjects\Animate.cpp" />
+    <ClCompile Include="GameObjects\BoundingBoxTest.cpp" />
     <ClCompile Include="GameObjects\Camera.cpp" />
     <ClCompile Include="GameObjects\Cylinder.cpp" />
     <ClCompile Include="GameObjects\Face.cpp" />
