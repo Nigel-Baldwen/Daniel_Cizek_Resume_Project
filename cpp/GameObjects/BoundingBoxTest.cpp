@@ -60,7 +60,7 @@ std::list<std::list<int>> BoundingBoxTest::axisOverlapTest(std::list<std::pair<f
 
 		// Check to remove interior overlaps.
 		while (l != potentialCollisions.end() && !((*l).empty())) {
-			if ((*(*l).begin()) = (*i).second) {
+			if ((*(*l).begin()) == (*i).second) {
 				std::swap((*j), (*l));  // Swap complete list with incomplete list.
 				j++;
 				goto EXITLOOP;

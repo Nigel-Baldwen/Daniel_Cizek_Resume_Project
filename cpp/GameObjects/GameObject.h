@@ -14,6 +14,10 @@
 #include "Audio/SoundEffect.h"
 #include "GameObjects/Animate.h"
 #include "Rendering/Material.h"
+#include <list>
+
+// Forward declaration
+struct XYZOverlapBools;
 
 ref class GameObject
 {
@@ -104,7 +108,24 @@ protected private:
 	SoundEffect^        m_hitSound;
 
 	// Tools for Collision Detection
+	
+	// These values describe the object's bounding box
 	float xMin, xMax, yMin, yMax, zMin, zMax;
+
+	// This list tracks XYZ overlaps for each potentially
+	// colliding other object.
+	std::list<XYZOverlapBools> potentialCollisionsList;
+};
+
+struct XYZOverlapBools
+{
+	// Handle to the object in potential collision
+	GameObject^ otherObject;
+
+	// These flags will be set by processing done elsewhere
+	bool	isXOverlap = false,
+		isYOverlap = false,
+		isZOverlap = false;
 };
 
 

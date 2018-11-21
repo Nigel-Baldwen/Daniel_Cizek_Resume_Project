@@ -12,6 +12,14 @@ Face::Face()
         XMFLOAT3(1.0f, 0.0f, 0.0f),
         XMFLOAT3(0.0f, 1.0f, 0.0f)
         );
+
+	// Establishing bounding box
+	xMin = 0.0f;
+	xMax = 1.0f;
+	yMin = 0.0f;
+	yMax = 1.0f;
+	zMin = 0.0f;
+	zMax = 0.0f;
 }
 
 //----------------------------------------------------------------------
@@ -23,6 +31,14 @@ Face::Face(
     )
 {
     SetPlane(origin, p1, p2);
+
+	// Establishing bounding box
+	xMin = origin.x;
+	xMax = p1.x;
+	yMin = origin.y;
+	yMax = p2.y;
+	zMin = min(origin.z, min(p1.z, p2.z));
+	zMax = max(origin.z, max(p1.z, p2.z));
 }
 
 //--------------------------------------------------------------------------------
@@ -65,6 +81,14 @@ void Face::UpdatePosition()
     XMStoreFloat3(&m_point[1], XMLoadFloat3(&m_position) + XMLoadFloat3(&m_widthVector));
     XMStoreFloat3(&m_point[3], XMLoadFloat3(&m_position) + XMLoadFloat3(&m_heightVector));
     XMStoreFloat3(&m_point[2], XMLoadFloat3(&m_point[1]) + XMLoadFloat3(&m_heightVector));
+
+	// Updating bounding box
+	xMin = m_point[0].x; // origin.x
+	xMax = m_point[1].x; // p1.x
+	yMin = m_point[0].y; // origin.y
+	yMax = m_point[3].y; // p2.y
+	zMin = min(m_point[0].z, min(m_point[1].z, m_point[3].z)); // origin.z, p1.z, p2.z
+	zMax = max(m_point[0].z, max(m_point[1].z, m_point[3].z)); // origin.z, p1.z, p2.z
 
     XMStoreFloat4x4(
         &m_modelMatrix,
@@ -190,15 +214,19 @@ void Face::UpdateMatrix()
 
     XMVECTOR w = XMVectorSet(1.0f, 0.0f, 0.0f, 1.0f);
     XMVECTOR h = XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f);
-    XMVECTOR epsilon = XMVectorReplicate(0.0001f);
-    XMVECTOR width = XMVectorScale(XMLoadFloat3(&m_widthVector), 1.0f / m_width);
+    XMVECTOR epsilon = XMVectorReplicate(0.0001f); // Could be used to capture acceptable error margin
+    
+	// Scale down the length of the width and height vectors to match the canonical length
+	XMVECTOR width = XMVectorScale(XMLoadFloat3(&m_widthVector), 1.0f / m_width);
     XMVECTOR height = XMVectorScale(XMLoadFloat3(&m_heightVector), 1.0f / m_height);
-    XMMATRIX mat1 = XMMatrixIdentity();
+    
+	// Make some identity matrices
+	XMMATRIX mat1 = XMMatrixIdentity();
     XMMATRIX mat2 = XMMatrixIdentity();
 
     // Determine the necessary rotation to align the widthVector with the +X axis.
     // Then apply the rotation to the cannonical H vector (+Y).
-    if (!XMVector3NearEqual(w, width, epsilon))
+    if (!XMVector3NearEqual(w, width, epsilon)) // If w/width vectors are NOT in alignment
     {
         float angle1 = XMVectorGetX(
             XMVector3AngleBetweenVectors(w, width)
@@ -207,11 +235,11 @@ void Face::UpdateMatrix()
         if (XMVector3NearEqual(w, XMVectorNegate(width), epsilon))
         {
             // The angle between w and width is ~180 degrees, so
-            // pick a axis of rotation perpendicular to the W vector.
+            // pick an axis of rotation perpendicular to the W vector.
             mat1 = XMMatrixRotationAxis(XMVector3Orthogonal(w), angle1);
             h = XMVector3TransformCoord(h, mat1);
         }
-        else if ((angle1 * angle1) > 0.025)
+        else if ((angle1 * angle1) > 0.025) // We only care about angles greater than ~0.16 degrees
         {
             // Take the cross product between the w and width vectors to
             // determine the axis to rotate that is perpendicular to both vectors.

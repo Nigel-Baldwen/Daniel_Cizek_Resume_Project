@@ -24,9 +24,12 @@ internal:
         _Out_ DirectX::XMFLOAT3 *normal
         ) override;
 
+protected:
+	virtual void UpdatePosition() override;
+
 private:
     void Update();
-
+	
     float m_radius;
 };
 
@@ -34,13 +37,15 @@ private:
 __forceinline void Sphere::Position(DirectX::XMFLOAT3 position)
 {
     m_position = position;
-    Update();
+	UpdatePosition();
+	Update();
 }
 
 __forceinline void Sphere::Position(DirectX::XMVECTOR position)
 {
     DirectX::XMStoreFloat3(&m_position, position);
-    Update();
+	UpdatePosition();
+	Update();
 }
 
 __forceinline void Sphere::Radius(float radius)

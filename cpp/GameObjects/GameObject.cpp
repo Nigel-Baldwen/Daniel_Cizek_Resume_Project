@@ -51,10 +51,22 @@ void GameObject::Render(
 
     ConstantBufferChangesEveryPrim constantBuffer;
 
+	// Put the model matrix info into a constant buffer, in world matrix.
     XMStoreFloat4x4(
         &constantBuffer.worldMatrix,
         XMMatrixTranspose(ModelMatrix())
         );
+
+	// Check to see which material to use on the object.
+	// If a collision (a hit) is detected, GameObject::Render checks the current context, which 
+	// indicates whether the target has been hit by an ammo sphere. If the target has been hit, 
+	// this method applies a hit material, which reverses the colors of the rings of the target to 
+	// indicate a successful hit to the player. Otherwise, it applies the default material 
+	// with the same method. In both cases, it sets the material by calling Material::RenderSetup, 
+	// which sets the appropriate constants into the constant buffer. Then, it calls 
+	// ID3D11DeviceContext::PSSetShaderResources to set the corresponding texture resource for the 
+	// pixel shader, and ID3D11DeviceContext::VSSetShader and ID3D11DeviceContext::PSSetShader 
+	// to set the vertex shader and pixel shader objects themselves, respectively.
 
     if (m_hit && m_hitMaterial != nullptr)
     {
@@ -64,9 +76,12 @@ void GameObject::Render(
     {
         m_normalMaterial->RenderSetup(context, &constantBuffer);
     }
+
+	// Update the primitive constant buffer with the object model's info.
     context->UpdateSubresource(primitiveConstantBuffer, 0, nullptr, &constantBuffer, 0, 0);
 
-    m_mesh->Render(context);
+	// Render the mesh.
+	m_mesh->Render(context);
 }
 
 //----------------------------------------------------------------------

@@ -9,7 +9,18 @@ Sphere::Sphere()
 {
     m_position = XMFLOAT3(0.0f, 0.0f, 0.0f);
     m_radius = 1.0f;
-    Update();
+	
+	// A sphere's bounding box never rotates and is always given by
+	// Adding/Subtracting its radius to its position on the relevant
+	// axis.
+	xMin = -1.0f;
+	xMax = 1.0f;
+	yMin = -1.0f;
+	yMax = 1.0f;
+	zMin = -1.0f;
+	zMax = 1.0f;
+    
+	Update();
 }
 
 //----------------------------------------------------------------------
@@ -21,7 +32,18 @@ Sphere::Sphere(
 {
     m_position = position;
     m_radius = radius;
-    Update();
+    
+	// A sphere's bounding box never rotates and is always given by
+	// Adding/Subtracting its radius to its position on the relevant
+	// axis.
+	xMin = position.x - radius;
+	xMax = position.x + radius;
+	yMin = position.y - radius;
+	yMax = position.y + radius;
+	zMin = position.z - radius;
+	zMax = position.z + radius;
+
+	Update();
 }
 
 //----------------------------------------------------------------------
@@ -36,6 +58,19 @@ void Sphere::Update()
 }
 
 //----------------------------------------------------------------------
+
+void Sphere::UpdatePosition()
+{
+	// The only relevant change is that the bounding box needs
+	// to be shifted in accordance with the new position.
+
+	xMin = m_position.x - m_radius;
+	xMax = m_position.x + m_radius;
+	yMin = m_position.y - m_radius;
+	yMax = m_position.y + m_radius;
+	zMin = m_position.z - m_radius;
+	zMax = m_position.z + m_radius;
+}
 
 bool Sphere::IsTouching(
     XMFLOAT3 point,

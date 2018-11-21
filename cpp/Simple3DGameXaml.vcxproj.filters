@@ -176,9 +176,6 @@
     <ClCompile Include="Rendering\GameHud.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\GameRenderer.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="core\Twitch_Hype.xaml.cpp" />
     <ClCompile Include="Core\VideoPlayback.xaml.cpp" />
     <ClCompile Include="Core\SettingsPage.xaml.cpp" />
@@ -187,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="GameObjects\BoundingBoxTest.cpp">
       <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\GameRenderer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

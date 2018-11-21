@@ -3,7 +3,8 @@
 // RectangularPrism:
 // This class is a specialization of GameObject that represents
 // a right-rectangular prism primitive.
-// The prism is defined by a 'position', width, height, depth,
+// The prism is defined by an upper leftmost (closest to 0, 0 ,0)
+// corner 'position', width, height, depth,
 // and a set of rotation values for each axis.
 // These elements are represented by three, three-component vectors.
 

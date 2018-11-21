@@ -689,6 +689,8 @@ void DX::DeviceResources::Present()
 
     // If the device was removed either by a disconnection or a driver upgrade, we 
     // must recreate all device resources.
+	// For more info about how to handle a device lost scenario, go to:
+	// https://docs.microsoft.com/windows/uwp/gaming/handling-device-lost-scenarios
     if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET)
     {
         HandleDeviceLost();

@@ -8,7 +8,7 @@ using namespace DirectX;
 
 Level1::Level1()
 {
-    m_timeLimit = 20.0f;
+    m_timeLimit = 2000.0f;
     m_objective =  "Hit each of the targets before time runs out.\nTouch to aim.  Tap in right box to fire.  Drag in left box to move.";
 }
 
@@ -18,6 +18,17 @@ void Level1::Initialize(std::vector<GameObject^> objects)
 {
     XMFLOAT3 position[] =
     {
+		XMFLOAT3(-0.5f, -0.5f,  0.0f),
+		//XMFLOAT3( 2.0f,  2.0f,  1.0f),
+		XMFLOAT3( 1.0f, -0.5f,  0.0f),
+		XMFLOAT3( 1.0f, -2.0f,  0.0f),
+		XMFLOAT3(-0.5f, -2.0f,  0.0f),
+		XMFLOAT3(-2.0f, -2.0f,  0.0f),
+		XMFLOAT3(-2.0f, -0.5f,  0.0f),
+		XMFLOAT3(-2.0f,  1.0f,  0.0f),
+		XMFLOAT3(-0.5f,  1.0f,  0.0f),
+		XMFLOAT3( 1.0f,  1.0f,  0.0f)
+		/*
         XMFLOAT3(-2.5f, -1.0f, -1.5f),
         XMFLOAT3(-1.0f,  1.0f, -3.0f),
         XMFLOAT3( 1.5f,  0.0f, -3.0f),
@@ -27,6 +38,7 @@ void Level1::Initialize(std::vector<GameObject^> objects)
         XMFLOAT3( 2.0f,  0.0f,  0.0f),
         XMFLOAT3( 0.0f,  0.0f,  0.0f),
         XMFLOAT3(-2.0f,  0.0f,  0.0f)
+		*/
     };
 
     int targetCount = 0;
