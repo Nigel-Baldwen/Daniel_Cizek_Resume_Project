@@ -161,8 +161,8 @@ void Simple3DGame::Initialize(
     {
 		// Position is a 'dummy' value in the constructor.
 		// It is replaced before modeling/rendering in LevelX.cpp
-		// Therefore, the only thing this block does is determine
-		// the size and orientation of the face.
+		// Therefore, the only thing these constructors do is
+		// determine the size and orientation of the face.
         Face^ target;
         switch (a)
         {

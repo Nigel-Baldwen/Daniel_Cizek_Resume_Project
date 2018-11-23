@@ -116,3 +116,41 @@ void GameObject::PlaySound(float impactSpeed, XMFLOAT3 eyePoint)
 }
 
 //----------------------------------------------------------------------
+
+bool GameObject::UpdateOverlapFlags(Simple3DGame::Axes axis, GameObject^ otherObject)
+{
+	switch (axis)
+	{
+	case Simple3DGame::Axes::X_Axis:
+		// This is the first axis checked, so the corresponding YZOverlapBool structure will not be here yet.
+		potentialCollisionsMap.emplace(otherObject, otherObject); // We construct it as we add it into the map
+		break;
+	case Simple3DGame::Axes::Y_Axis:
+		// Any objects that qualify for collision testing satisfy the overlap test on all three axes.
+		// Therefore, the otherObject must already be in the map in order to bother setting its flag.
+		if (potentialCollisionsMap.find(otherObject) != potentialCollisionsMap.end()) {
+			// We found the otherObject in the list.
+			potentialCollisionsMap[otherObject].isYOverlap = true;
+		}
+		break;
+	default: // Defaults to Z axis
+		// As above.
+		if (potentialCollisionsMap.find(otherObject) != potentialCollisionsMap.end()) {
+			// Now we only care about otherObject if it is both already in the map
+			// and has its isYOverlap flag set.
+			if (potentialCollisionsMap[otherObject].isYOverlap) {
+				// Since we know that X and Y overlaps occurred
+				// We know that these two objects qualify for further
+				// collision detection testing.
+				return true;
+			}
+		}
+		break;
+	}
+	return false; // Signifies that we have yet to determine that these objects require further testing.
+}
+
+void GameObject::ClearOverlapFlags()
+{
+	potentialCollisionsMap.clear();
+}

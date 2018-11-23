@@ -103,6 +103,7 @@ internal:
     void SetBackground(uint32 background);
     void CycleBackground();
 
+	enum class Axes {X_Axis, Y_Axis, Z_Axis};
 
 private:
     void LoadState();
@@ -149,7 +150,9 @@ private:
     DirectX::XMFLOAT3                           m_maxBound;
 
 	//ADDED CODE
-	SoundEffect^ testVO_Intro;
-	std::list<std::pair<float, int>> xAxisSweep, yAxisSweep, zAxisSweep;
+	// UNUSED:: SoundEffect^ testVO_Intro;
+
+	// List of pairs for axis overlap testing
+	std::list<std::pair<float, GameObject^>> xAxisSweep, yAxisSweep, zAxisSweep;
 };
 

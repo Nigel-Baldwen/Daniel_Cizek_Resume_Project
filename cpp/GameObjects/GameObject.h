@@ -14,10 +14,11 @@
 #include "Audio/SoundEffect.h"
 #include "GameObjects/Animate.h"
 #include "Rendering/Material.h"
-#include <list>
+#include <unordered_map>
+#include "Core/Simple3DGame.h"
 
 // Forward declaration
-struct XYZOverlapBools;
+struct YZOverlapBools;
 
 ref class GameObject
 {
@@ -80,6 +81,9 @@ internal:
 	DirectX::XMVECTOR VectorVelocity();
 	DirectX::XMFLOAT3 Velocity();
 
+	bool UpdateOverlapFlags(Simple3DGame::Axes axis, GameObject^ otherObject);
+	void ClearOverlapFlags();
+
 protected private:
 	virtual void UpdatePosition() {};
 	// Object Data
@@ -112,20 +116,23 @@ protected private:
 	// These values describe the object's bounding box
 	float xMin, xMax, yMin, yMax, zMin, zMax;
 
-	// This list tracks XYZ overlaps for each potentially
+	// This map tracks XYZ overlaps for each potentially
 	// colliding other object.
-	std::list<XYZOverlapBools> potentialCollisionsList;
+	std::unordered_map<GameObject^, YZOverlapBools> potentialCollisionsMap;
 };
 
-struct XYZOverlapBools
+struct YZOverlapBools
 {
 	// Handle to the object in potential collision
 	GameObject^ otherObject;
 
 	// These flags will be set by processing done elsewhere
-	bool	isXOverlap = false,
-		isYOverlap = false,
-		isZOverlap = false;
+	// The isXOverlap flag is implied by the creation of a
+	// new link between this and the other object.
+	bool	isYOverlap = false,
+			isZOverlap = false;
+
+	YZOverlapBools(GameObject^ other) :otherObject(other) { }
 };
 
 

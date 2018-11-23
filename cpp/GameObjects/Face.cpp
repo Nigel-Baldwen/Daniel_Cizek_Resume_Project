@@ -214,7 +214,7 @@ void Face::UpdateMatrix()
 
     XMVECTOR w = XMVectorSet(1.0f, 0.0f, 0.0f, 1.0f);
     XMVECTOR h = XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f);
-    XMVECTOR epsilon = XMVectorReplicate(0.0001f); // Could be used to capture acceptable error margin
+    XMVECTOR epsilon = XMVectorReplicate(0.0001f); // Used to capture acceptable error margin in vector comparison
     
 	// Scale down the length of the width and height vectors to match the canonical length
 	XMVECTOR width = XMVectorScale(XMLoadFloat3(&m_widthVector), 1.0f / m_width);
