@@ -14,12 +14,12 @@ Face::Face()
         );
 
 	// Establishing bounding box
-	xMin = 0.0f;
-	xMax = 1.0f;
-	yMin = 0.0f;
-	yMax = 1.0f;
-	zMin = 0.0f;
-	zMax = 0.0f;
+	//xMin = 0.0f;
+	//xMax = 1.0f;
+	//yMin = 0.0f;
+	//yMax = 1.0f;
+	//zMin = 0.0f;
+	//zMax = 0.0f;
 }
 
 //----------------------------------------------------------------------
@@ -33,12 +33,12 @@ Face::Face(
     SetPlane(origin, p1, p2);
 
 	// Establishing bounding box
-	xMin = origin.x;
-	xMax = p1.x;
-	yMin = origin.y;
-	yMax = p2.y;
-	zMin = min(origin.z, min(p1.z, p2.z));
-	zMax = max(origin.z, max(p1.z, p2.z));
+	//xMin = origin.x;
+	//xMax = p1.x;
+	//yMin = origin.y;
+	//yMax = p2.y;
+	//zMin = min(origin.z, min(p1.z, p2.z));
+	//zMax = max(origin.z, max(p1.z, p2.z));
 }
 
 //--------------------------------------------------------------------------------
@@ -83,12 +83,12 @@ void Face::UpdatePosition()
     XMStoreFloat3(&m_point[2], XMLoadFloat3(&m_point[1]) + XMLoadFloat3(&m_heightVector));
 
 	// Updating bounding box
-	xMin = m_point[0].x; // origin.x
-	xMax = m_point[1].x; // p1.x
-	yMin = m_point[0].y; // origin.y
-	yMax = m_point[3].y; // p2.y
-	zMin = min(m_point[0].z, min(m_point[1].z, m_point[3].z)); // origin.z, p1.z, p2.z
-	zMax = max(m_point[0].z, max(m_point[1].z, m_point[3].z)); // origin.z, p1.z, p2.z
+	//xMin = m_point[0].x; // origin.x
+	//xMax = m_point[1].x; // p1.x
+	//yMin = m_point[0].y; // origin.y
+	//yMax = m_point[3].y; // p2.y
+	//zMin = min(m_point[0].z, min(m_point[1].z, m_point[3].z)); // origin.z, p1.z, p2.z
+	//zMax = max(m_point[0].z, max(m_point[1].z, m_point[3].z)); // origin.z, p1.z, p2.z
 
     XMStoreFloat4x4(
         &m_modelMatrix,

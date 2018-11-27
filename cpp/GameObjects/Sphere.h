@@ -24,6 +24,8 @@ internal:
         _Out_ DirectX::XMFLOAT3 *normal
         ) override;
 
+	//virtual bool IsColliding(GameObject^ otherObject) override;
+
 protected:
 	virtual void UpdatePosition() override;
 

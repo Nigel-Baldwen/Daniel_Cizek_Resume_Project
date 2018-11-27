@@ -15,15 +15,20 @@
 #include "GameObjects/Animate.h"
 #include "Rendering/Material.h"
 #include <unordered_map>
-#include "Core/Simple3DGame.h"
+#include "GameObjects/AxesEnum.h"
 
 // Forward declaration
-struct YZOverlapBools;
+//enum class GameObjectType
+//{
+//	Sphere, Cylinder, Face, RectangularPrism
+//};
 
 ref class GameObject
 {
 internal:
 	GameObject();
+
+	size_t hashCode;
 
 	// Expect the IsTouching method to be overloaded by subclasses.
 	virtual bool IsTouching(
@@ -81,8 +86,23 @@ internal:
 	DirectX::XMVECTOR VectorVelocity();
 	DirectX::XMFLOAT3 Velocity();
 
-	bool UpdateOverlapFlags(Simple3DGame::Axes axis, GameObject^ otherObject);
+	bool operator < (const GameObject^ gO);
+	bool UpdateOverlapFlags(Axes axis, int oOHashID);
 	void ClearOverlapFlags();
+
+	// Expect the IsColliding method to be overloaded by subclasses.
+	// It is essentially just a public switch statement.
+	//virtual bool IsColliding(GameObject^ otherObject);
+
+	//virtual GameObjectType Type();
+
+	float XMin();
+	float XMax();
+	float YMin();
+	float YMax();
+	float ZMin();
+	float ZMax();
+	
 
 protected private:
 	virtual void UpdatePosition() {};
@@ -112,29 +132,54 @@ protected private:
 	SoundEffect^        m_hitSound;
 
 	// Tools for Collision Detection
-	
+
+	// Basically just a wrapper for a bool in order
+	// to smoothly use the unordered_map below.
+	struct IsYOverlap {
+		bool isYOverlap = false;
+	};
+
 	// These values describe the object's bounding box
 	float xMin, xMax, yMin, yMax, zMin, zMax;
 
 	// This map tracks XYZ overlaps for each potentially
-	// colliding other object.
-	std::unordered_map<GameObject^, YZOverlapBools> potentialCollisionsMap;
+	// colliding other object. The 'int' portion is the
+	// GetHashCode() return value of the other object.
+	// The usage logic is as follows:
+	// 1.) The addition of a new key signifies an X Overlap.
+	// 2.) When discovering Y Overlaps, we only care about
+	// keys already present in the map. Set the bool to
+	// true for these values.
+	// 3.) When discovering Z Overlaps, we only care about
+	// keys already present in the map which also have
+	// a bool member set to true. The matched key signifies
+	// the X Overlap and the true bool signifies the Y Overlap. 
+	std::unordered_map<int, IsYOverlap> potentialCollisionsMap;
 };
 
-struct YZOverlapBools
-{
-	// Handle to the object in potential collision
-	GameObject^ otherObject;
+__forceinline float GameObject::XMin() {
+	return xMin;
+}
 
-	// These flags will be set by processing done elsewhere
-	// The isXOverlap flag is implied by the creation of a
-	// new link between this and the other object.
-	bool	isYOverlap = false,
-			isZOverlap = false;
+__forceinline float GameObject::XMax() {
+	return xMax;
+}
 
-	YZOverlapBools(GameObject^ other) :otherObject(other) { }
-};
+__forceinline float GameObject::YMin() {
+	return yMin;
+}
 
+__forceinline float GameObject::YMax() {
+	return yMax;
+}
+
+__forceinline float GameObject::ZMin() {
+	return zMin;
+}
+
+__forceinline float GameObject::ZMax() {
+	return zMax;
+}
 
 __forceinline void GameObject::Active(bool active)
 {

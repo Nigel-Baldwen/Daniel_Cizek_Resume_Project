@@ -65,6 +65,8 @@ void Simple3DGame::Initialize(
     m_renderObjects = std::vector<GameObject^>();
     m_level = std::vector<Level^>();
 
+	boundingBoxTester = ref new BoundingBoxTest();
+
     m_savedState = ref new PersistentState();
     m_savedState->Initialize(ApplicationData::Current->LocalSettings->Values, "Game");
 
@@ -111,10 +113,10 @@ void Simple3DGame::Initialize(
 
     // Min and max Bound are defining the world space of the game.
     // All camera motion and dynamics are confined to this space.
-	m_minBound = XMFLOAT3(-12.0f, -9.0f, -18.0f);
-	m_maxBound = XMFLOAT3(12.0f, 9.0f, 18.0f);
-	//m_minBound = XMFLOAT3(-4.0f, -3.0f, -6.0f);
-	//m_maxBound = XMFLOAT3(4.0f, 3.0f, 6.0f);
+	//m_minBound = XMFLOAT3(-12.0f, -9.0f, -18.0f);
+	//m_maxBound = XMFLOAT3(12.0f, 9.0f, 18.0f);
+	m_minBound = XMFLOAT3(-4.0f, -3.0f, -6.0f);
+	m_maxBound = XMFLOAT3(4.0f, 3.0f, 6.0f);
 
     // Instantiate the Cylinders for use in the various game levels.
     // Each cylinder has a different initial position, radius and direction vector,
@@ -449,6 +451,65 @@ void Simple3DGame::UpdateDynamics()
     float timeTotal = m_timer->PlayingTime();
     float timeFrame = m_timer->DeltaTime();
     bool fire = m_controller->IsFiring();
+
+#pragma region New Collision Detection
+	// First we need to add all x, y, and z coordinates with
+	// Their associated GameObject^ to the sweep sets.
+	// This effectively groups all of their bounding boxes in
+	// one place described by three lists.
+	for each (GameObject^ gOH in m_objects)
+	{
+		// [X/Y/Z][Min/Max] + Handle
+		xAxisSweep.emplace_back(gOH->XMin(), gOH);
+		xAxisSweep.emplace_back(gOH->XMax(), gOH);
+	
+		yAxisSweep.emplace_back(gOH->YMin(), gOH);
+		yAxisSweep.emplace_back(gOH->YMax(), gOH);
+	
+		zAxisSweep.emplace_back(gOH->ZMin(), gOH);
+		zAxisSweep.emplace_back(gOH->ZMax(), gOH);
+	}
+
+	
+	// Sort the lists prior to processing.
+	// We get the default float comparator,
+	// but we have to make our own, dummy
+	// GameObject^ comparator which ends
+	// up just returning true for this<that
+	xAxisSweep.sort();
+	yAxisSweep.sort();
+	zAxisSweep.sort();
+
+	// Set flags for X Axis overlaps
+	boundingBoxTester->axisOverlapTest(xAxisSweep, Axes::X_Axis);
+
+	// Set flags for Y Axis overlaps
+	boundingBoxTester->axisOverlapTest(yAxisSweep, Axes::Y_Axis);
+
+	// Generate the list of pairs qualified for further testing
+	precisionCollision = boundingBoxTester->axisOverlapTest(zAxisSweep, Axes::Z_Axis);
+
+	// Do the precision testing between pairs of objects
+	//for each (std::pair<GameObject^, GameObject^> pair in precisionCollision)
+	//{
+		// This is the plan. We discover whether or not two objects are
+		// colliding. If they aren't colliding, we don't do anything, but
+		// when they are colliding we want to handle the resolution according
+		// to whichever types of objects are colliding.
+		// if (pair.first->IsColliding(pair.second)) { ... }
+
+		// Unfortunately, at this time, I think in order to do this I'll need
+		// to add some more robust collision detection methods to individual
+		// object types so we'll need to wait a moment longer to do this.
+	//}
+
+	// Reset state for each GameObject potentialCollisionsMap
+	for each (GameObject^ gOH in m_objects)
+	{
+		gOH->ClearOverlapFlags();
+	}
+	
+#pragma endregion
 
 #pragma region Shoot Ammo
     // Shoot ammo.

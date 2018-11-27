@@ -334,6 +334,9 @@
     <ClInclude Include="GameObjects\BoundingBoxTest.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\AxesEnum.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Simple3DGameDX\Cpp\Assets\seafloor.dds">

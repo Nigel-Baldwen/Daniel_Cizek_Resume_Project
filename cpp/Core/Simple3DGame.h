@@ -30,6 +30,7 @@
 #include "GameObjects/Sphere.h"
 #include "Rendering/GameRenderer.h"
 #include <list>
+#include "GameObjects/BoundingBoxTest.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -103,8 +104,6 @@ internal:
     void SetBackground(uint32 background);
     void CycleBackground();
 
-	enum class Axes {X_Axis, Y_Axis, Z_Axis};
-
 private:
     void LoadState();
     void SaveState();
@@ -152,7 +151,13 @@ private:
 	//ADDED CODE
 	// UNUSED:: SoundEffect^ testVO_Intro;
 
+	// Handle to BoundingBoxTest object
+	BoundingBoxTest^ boundingBoxTester;
+
 	// List of pairs for axis overlap testing
 	std::list<std::pair<float, GameObject^>> xAxisSweep, yAxisSweep, zAxisSweep;
+
+	// List of GameObject^ Pairs for precise collision testing
+	std::list<std::pair<GameObject^, GameObject^>> precisionCollision;
 };
 
