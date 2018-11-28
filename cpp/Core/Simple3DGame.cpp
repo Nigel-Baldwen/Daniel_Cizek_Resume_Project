@@ -489,6 +489,10 @@ void Simple3DGame::UpdateDynamics()
 	// Generate the list of pairs qualified for further testing
 	precisionCollision = boundingBoxTester->axisOverlapTest(zAxisSweep, Axes::Z_Axis);
 
+	xAxisSweep.clear();
+	yAxisSweep.clear();
+	zAxisSweep.clear();
+
 	// Do the precision testing between pairs of objects
 	//for each (std::pair<GameObject^, GameObject^> pair in precisionCollision)
 	//{
