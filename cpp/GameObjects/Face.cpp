@@ -285,4 +285,10 @@ void Face::UpdateMatrix()
         );
 }
 
+GameObjectType Face::Type()
+{
+	return GameObjectType::Face;
+}
+
+
 //--------------------------------------------------------------------------------

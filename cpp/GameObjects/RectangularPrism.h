@@ -37,6 +37,8 @@ internal:
 		_Out_ DirectX::XMFLOAT3 *normal
 	) override;
 
+	virtual GameObjectType Type() override;
+
 private:
 	void Update();
 

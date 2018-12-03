@@ -5,6 +5,7 @@
 // The sphere is defined by a 'position' and radius.
 
 #include "GameObjects/GameObject.h"
+#include "GameObjects/GameObjectTypeEnum.h"
 
 ref class Sphere: public GameObject
 {
@@ -24,11 +25,11 @@ internal:
         _Out_ DirectX::XMFLOAT3 *normal
         ) override;
 
-	//virtual bool IsColliding(GameObject^ otherObject) override;
+	virtual GameObjectType Type() override;
 
 protected:
 	virtual void UpdatePosition() override;
-
+	
 private:
     void Update();
 	

@@ -19,6 +19,9 @@ namespace Simple3DGameXaml
 	public:
 		Twitch_Hype();
 	private:
+		bool inUpperHalf = false;
 		void ReturnToMain_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void UpperHalf_PointerEntered(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
+		void UpperHalf_PointerExited(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 	};
 }

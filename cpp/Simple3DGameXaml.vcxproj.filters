@@ -50,6 +50,48 @@
     <Image Include="Assets\Images\Options_UP.png">
       <Filter>Assets\Images</Filter>
     </Image>
+    <Image Include="Assets\Images\Twitch_PoE_Still.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Twitch_DD_Still.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Twitch_DD_Still_Grey.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Twitch_PoE_Still_Grey.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Twitch_Hype.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Back_Button_BW.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Death_Loop.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Endless_Masquerade.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Franchise_Development.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Legion_Alone.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Rainbow_Ring.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Reapers_Delight.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Soul_Ascent.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
+    <Image Include="Assets\Images\Tech_Blade.png">
+      <Filter>Assets\Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -182,11 +224,14 @@
     <ClCompile Include="GameObjects\RectangularPrism.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\BoundingBoxTest.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\GameRenderer.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\BoundingBoxTest.cpp">
+      <Filter>GameObjects\CollisionDetectionTools</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\CollisionDetectionTools\PrecisionCollision.cpp">
+      <Filter>GameObjects\CollisionDetectionTools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,10 +377,16 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\BoundingBoxTest.h">
-      <Filter>GameObjects</Filter>
+      <Filter>GameObjects\CollisionDetectionTools</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\AxesEnum.h">
-      <Filter>GameObjects</Filter>
+      <Filter>GameObjects\CollisionDetectionTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObjectTypeEnum.h">
+      <Filter>GameObjects\CollisionDetectionTools</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\CollisionDetectionTools\PrecisionCollision.h">
+      <Filter>GameObjects\CollisionDetectionTools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -418,6 +469,9 @@
     </Filter>
     <Filter Include="Assets\Textures">
       <UniqueIdentifier>{3de9dec1-3545-43cc-8401-ea7dad802f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\CollisionDetectionTools">
+      <UniqueIdentifier>{ffaf08bb-29f7-4352-9b49-db8dad88fdeb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

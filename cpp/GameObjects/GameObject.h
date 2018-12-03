@@ -16,12 +16,7 @@
 #include "Rendering/Material.h"
 #include <unordered_map>
 #include "GameObjects/AxesEnum.h"
-
-// Forward declaration
-//enum class GameObjectType
-//{
-//	Sphere, Cylinder, Face, RectangularPrism
-//};
+#include "GameObjects/GameObjectTypeEnum.h"
 
 ref class GameObject
 {
@@ -90,11 +85,7 @@ internal:
 	bool UpdateOverlapFlags(Axes axis, int oOHashID);
 	void ClearOverlapFlags();
 
-	// Expect the IsColliding method to be overloaded by subclasses.
-	// It is essentially just a public switch statement.
-	//virtual bool IsColliding(GameObject^ otherObject);
-
-	//virtual GameObjectType Type();
+	virtual GameObjectType Type();
 
 	float XMin();
 	float XMax();

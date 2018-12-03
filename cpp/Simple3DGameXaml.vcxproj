@@ -215,13 +215,27 @@
     <Image Include="..\..\..\SharedContent\media\windows-sdk.png">
       <Link>Assets\windows-sdk.png</Link>
     </Image>
+    <Image Include="Assets\Images\Back_Button_BW.png" />
+    <Image Include="Assets\Images\Death_Loop.png" />
     <Image Include="Assets\Images\Design_UP.png" />
+    <Image Include="Assets\Images\Endless_Masquerade.png" />
+    <Image Include="Assets\Images\Franchise_Development.png" />
+    <Image Include="Assets\Images\Legion_Alone.png" />
     <Image Include="Assets\Images\Let_UP.png" />
     <Image Include="Assets\Images\Main_Menu_Template.png" />
     <Image Include="Assets\Images\Options_UP.png" />
     <Image Include="Assets\Images\Quit_UP.png" />
+    <Image Include="Assets\Images\Rainbow_Ring.png" />
+    <Image Include="Assets\Images\Reapers_Delight.png" />
     <Image Include="Assets\Images\See_UP.png" />
+    <Image Include="Assets\Images\Soul_Ascent.png" />
     <Image Include="Assets\Images\Talk_UP.png" />
+    <Image Include="Assets\Images\Tech_Blade.png" />
+    <Image Include="Assets\Images\Twitch_DD_Still_Grey.png" />
+    <Image Include="Assets\Images\Twitch_Hype.png" />
+    <Image Include="Assets\Images\Twitch_PoE_Still.png" />
+    <Image Include="Assets\Images\Twitch_DD_Still.png" />
+    <Image Include="Assets\Images\Twitch_PoE_Still_Grey.png" />
     <Image Include="Assets\Images\Where_UP.png" />
     <Image Include="Assets\Textures\Texture_Test.dds" />
   </ItemGroup>
@@ -254,7 +268,9 @@
     <ClInclude Include="GameObjects\AxesEnum.h" />
     <ClInclude Include="GameObjects\BoundingBoxTest.h" />
     <ClInclude Include="GameObjects\Camera.h" />
+    <ClInclude Include="GameObjects\CollisionDetectionTools\PrecisionCollision.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\GameObjectTypeEnum.h" />
     <ClInclude Include="GameObjects\RectangularPrism.h" />
     <ClInclude Include="GameObjects\Cylinder.h" />
     <ClInclude Include="GameObjects\Face.h" />
@@ -316,6 +332,7 @@
     <ClCompile Include="GameObjects\Animate.cpp" />
     <ClCompile Include="GameObjects\BoundingBoxTest.cpp" />
     <ClCompile Include="GameObjects\Camera.cpp" />
+    <ClCompile Include="GameObjects\CollisionDetectionTools\PrecisionCollision.cpp" />
     <ClCompile Include="GameObjects\Cylinder.cpp" />
     <ClCompile Include="GameObjects\Face.cpp" />
     <ClCompile Include="GameObjects\GameObject.cpp" />

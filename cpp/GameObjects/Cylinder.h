@@ -25,6 +25,8 @@ internal:
         _Out_ DirectX::XMFLOAT3 *normal
         ) override;
 
+	virtual GameObjectType Type() override;
+
 protected:
     virtual void UpdatePosition() override;
 

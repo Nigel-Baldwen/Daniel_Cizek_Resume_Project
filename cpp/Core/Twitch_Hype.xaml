@@ -6,33 +6,93 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="Aqua">
+    Background="Black">
 
     <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
-            <RowDefinition Height="4.5*"/>
-            <RowDefinition Height="4.5*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">
-            Hello! To see more of me, please visit me at
-            <Hyperlink NavigateUri="https://www.twitch.tv/nigel_baldwen" >
-            my twitch channel</Hyperlink>.
-            <LineBreak/>You can get all the dank details there!
-            <LineBreak/>Kappa.
-        </TextBlock>
-
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">
-            Hello! To see some of my game design documents, please visit my
-            <Hyperlink NavigateUri="https://drive.google.com/drive/folders/0B_BKO6q1TsTNTGlqdUl5bDhfdXM?usp=sharing" >
-            Google Drive</Hyperlink>.
-            <LineBreak/>You can get all the dank details there!
-            <LineBreak/>Kappa.
-        </TextBlock>
         
-        <Button Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+
+        <Grid PointerEntered="UpperHalf_PointerEntered" PointerExited="UpperHalf_PointerExited">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="1.25*"/>
+             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="DD_Still" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0"
+               Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Source="../Assets/Images/Twitch_DD_Still.png"/>
+
+            <Image x:Name="PoE_Still" Grid.Row="0" Grid.RowSpan="4" Grid.Column="1"
+               Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Source="../Assets/Images/Twitch_PoE_Still.png"/>
+
+            <HyperlinkButton x:Name="Twitch_Button" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"
+                         Visibility="Collapsed"
+                         NavigateUri="https://www.twitch.tv/nigel_baldwen">
+                <Image Source="../Assets/Images/Twitch_Hype.png"/>
+            </HyperlinkButton>
+
+            <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top"
                 Click="ReturnToMain_Click">
-            Click Here To Return To Main Menu
-        </Button>
+                <Image Source="../Assets/Images/Back_Button_BW.png"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3.33*"/>
+                <RowDefinition Height="3.33*"/>
+                <RowDefinition Height="3.33*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.33*"/>
+                <ColumnDefinition Width="3.33*"/>
+                <ColumnDefinition Width="3.33*"/>
+            </Grid.ColumnDefinitions>
+
+            <HyperlinkButton Grid.Row="0" Grid.Column="0"
+                             NavigateUri="https://drive.google.com/open?id=0B_BKO6q1TsTNNFpuNVdGZWVIVDg">
+                <Image Source="../Assets/Images/Death_Loop.png"/>
+            </HyperlinkButton>
+            <HyperlinkButton Grid.Row="1" Grid.Column="0"
+                             NavigateUri="https://drive.google.com/open?id=1CqNuy5EgxzKZP6rQDgYKGMG1W22Rahh1">
+                <Image Source="../Assets/Images/Tech_Blade.png"/>
+            </HyperlinkButton>
+            <HyperlinkButton Grid.Row="2" Grid.Column="0"
+                             NavigateUri="https://drive.google.com/open?id=1hh--dilMU2yR7FqcrU3a9y1ZyciAZb9T">
+                <Image Source="../Assets/Images/Rainbow_Ring.png"/>
+            </HyperlinkButton>
+            <HyperlinkButton Grid.Row="0" Grid.Column="1"
+                   Grid.RowSpan="2" VerticalAlignment="Center"
+                             NavigateUri="https://drive.google.com/open?id=0B_BKO6q1TsTNTGlqdUl5bDhfdXM">
+                <Image Source="../Assets/Images/Franchise_Development.png"/>
+            </HyperlinkButton>
+            <HyperlinkButton Grid.Row="2" Grid.Column="1"
+                             NavigateUri="https://drive.google.com/open?id=1fOSjJx9At8gTWZ2CBBlGS5-t-tQMTiAw">
+                <Image Source="../Assets/Images/Soul_Ascent.png"/>
+            </HyperlinkButton>
+            <HyperlinkButton Grid.Row="0" Grid.Column="2"
+                             NavigateUri="https://drive.google.com/open?id=1kOyWnRVgt4KcrcP_zArhN5e_T0UqhVfe">
+                <Image Source="../Assets/Images/Reapers_Delight.png"/>
+            </HyperlinkButton>
+            <HyperlinkButton Grid.Row="1" Grid.Column="2"
+                             NavigateUri="https://drive.google.com/open?id=1vViQjBxU1l_WkRM-I_iZHen-AU-s5Erm">
+                <Image Source="../Assets/Images/Legion_Alone.png"/>
+            </HyperlinkButton>
+            <HyperlinkButton Grid.Row="2" Grid.Column="2"
+                             NavigateUri="https://drive.google.com/open?id=1qeMA6JUa433tdBwV-CEF8Z5vt4sTEA2e">
+                <Image Source="../Assets/Images/Endless_Masquerade.png"/>
+            </HyperlinkButton>
+        </Grid>
     </Grid>
 </Page>

@@ -126,4 +126,10 @@ bool Cylinder::IsTouching(
     return false;
 }
 
+GameObjectType Cylinder::Type()
+{
+	return GameObjectType::Cylinder;
+}
+
+
 //--------------------------------------------------------------------------------

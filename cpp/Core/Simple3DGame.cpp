@@ -12,6 +12,7 @@
 #include "GameObjects/Cylinder.h"
 #include "GameObjects/Face.h"
 #include "Audio/MediaReader.h"
+#include "GameObjects/CollisionDetectionTools/PrecisionCollision.h"
 
 using namespace concurrency;
 using namespace DirectX;
@@ -60,6 +61,9 @@ void Simple3DGame::Initialize(
 
     InitializeGameConfig();
 
+	// TODO :: This isn't right. We need only one list of collision capable objects
+	// This dichotomy between these two seems wrong to me.
+	// Conceptually, we need to be checking all objects with 'mass' 
     m_ammo = std::vector<Sphere^>(GameConstants::MaxAmmo);
     m_objects = std::vector<GameObject^>();
     m_renderObjects = std::vector<GameObject^>();
@@ -100,16 +104,19 @@ void Simple3DGame::Initialize(
     world->TargetId(GameConstants::WorldFloorId);
     world->Active(true);
     m_renderObjects.push_back(world);
+	m_objects.push_back(world);
 
     world = ref new GameObject();
     world->TargetId(GameConstants::WorldCeilingId);
     world->Active(true);
     m_renderObjects.push_back(world);
+	m_objects.push_back(world);
 
     world = ref new GameObject();
     world->TargetId(GameConstants::WorldWallsId);
     world->Active(true);
     m_renderObjects.push_back(world);
+	m_objects.push_back(world); // TODO :: Adding these in here seems suspect. Maybe I should do this differently.
 
     // Min and max Bound are defining the world space of the game.
     // All camera motion and dynamics are confined to this space.
@@ -121,31 +128,32 @@ void Simple3DGame::Initialize(
     // Instantiate the Cylinders for use in the various game levels.
     // Each cylinder has a different initial position, radius and direction vector,
     // but share a common set of material properties.
-    for (int a = 0; a < GameConstants::MaxCylinders; a++)
-    {
-        Cylinder^ cylinder;
-        switch (a)
-        {
-        case 0:
-            cylinder = ref new Cylinder(XMFLOAT3(-2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 1:
-            cylinder = ref new Cylinder(XMFLOAT3(2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 2:
-            cylinder = ref new Cylinder(XMFLOAT3(0.0f, -3.0f, -2.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 3:
-            cylinder = ref new Cylinder(XMFLOAT3(-1.5f, -3.0f, -4.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 4:
-            cylinder = ref new Cylinder(XMFLOAT3(1.5f, -3.0f, -4.0f), 0.50f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        }
-        cylinder->Active(true);
-        m_objects.push_back(cylinder);
-        m_renderObjects.push_back(cylinder);
-    }
+    //for (int a = 0; a < GameConstants::MaxCylinders; a++)
+    //{
+    //    Cylinder^ cylinder;
+    //    switch (a)
+    //    {
+    //    case 0:
+    //        cylinder = ref new Cylinder(XMFLOAT3(-2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 1:
+    //        cylinder = ref new Cylinder(XMFLOAT3(2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 2:
+    //        cylinder = ref new Cylinder(XMFLOAT3(0.0f, -3.0f, -2.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 3:
+    //        cylinder = ref new Cylinder(XMFLOAT3(-1.5f, -3.0f, -4.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 4:
+    //        cylinder = ref new Cylinder(XMFLOAT3(1.5f, -3.0f, -4.0f), 0.50f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    }
+    //    cylinder->Active(true);
+    //    m_objects.push_back(cylinder);
+    //    m_renderObjects.push_back(cylinder);
+    //}
+	// TODO :: NO CYLINDERS FOR NOW
 
     MediaReader^ mediaReader = ref new MediaReader;
     auto targetHitSound = mediaReader->LoadMedia("Assets\\hit.wav");
@@ -159,66 +167,67 @@ void Simple3DGame::Initialize(
     // Each target is assigned a number for identification purposes.
     // The Target ID number is 1 based.
     // All targets have the same material properties.
-    for (int a = 1; a < GameConstants::MaxTargets; a++)
-    {
-		// Position is a 'dummy' value in the constructor.
-		// It is replaced before modeling/rendering in LevelX.cpp
-		// Therefore, the only thing these constructors do is
-		// determine the size and orientation of the face.
-        Face^ target;
-        switch (a)
-        {
-        case 1:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(2.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 2.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -1.5f), XMFLOAT3(-1.5f, -1.0f, -2.0f), XMFLOAT3(-2.5f, 1.0f, -1.5f));
-            break;
-        case 2:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-			//target = ref new Face(XMFLOAT3(-1.0f, 1.0f, -3.0f), XMFLOAT3(0.0f, 1.0f, -3.0f), XMFLOAT3(-1.0f, 2.0f, -3.0f));
-            break;
-        case 3:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(1.5f, 0.0f, -3.0f), XMFLOAT3(2.5f, 0.0f, -2.0f), XMFLOAT3(1.5f, 2.0f, -3.0f));
-            break;
-        case 4:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -5.5f), XMFLOAT3(-0.5f, -1.0f, -5.5f), XMFLOAT3(-2.5f, 1.0f, -5.5f));
-            break;
-        case 5:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, -2.0f, -5.0f), XMFLOAT3(0.5f, 0.0f, -5.0f));
-            break;
-        case 6:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(1.5f, -2.0f, -5.5f), XMFLOAT3(2.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, 0.0f, -5.5f));
-            break;
-        case 7:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-            break;
-        case 8:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-            break;
-        case 9:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-            break;
-        }
-
-        target->Target(true);
-        target->TargetId(a);
-        target->Active(true);
-        target->HitSound(ref new SoundEffect());
-        target->HitSound()->Initialize(
-            m_audioController->SoundEffectEngine(),
-            mediaReader->GetOutputWaveFormatEx(),
-            targetHitSound
-            );
-
-        m_objects.push_back(target);
-        m_renderObjects.push_back(target);
-    }
+    //for (int a = 1; a < GameConstants::MaxTargets; a++)
+    //{
+	//	// Position is a 'dummy' value in the constructor.
+	//	// It is replaced before modeling/rendering in LevelX.cpp
+	//	// Therefore, the only thing these constructors do is
+	//	// determine the size and orientation of the face.
+    //    Face^ target;
+    //    switch (a)
+    //    {
+    //    case 1:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(2.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 2.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -1.5f), XMFLOAT3(-1.5f, -1.0f, -2.0f), XMFLOAT3(-2.5f, 1.0f, -1.5f));
+    //        break;
+    //    case 2:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(-1.0f, 1.0f, -3.0f), XMFLOAT3(0.0f, 1.0f, -3.0f), XMFLOAT3(-1.0f, 2.0f, -3.0f));
+    //        break;
+    //    case 3:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(1.5f, 0.0f, -3.0f), XMFLOAT3(2.5f, 0.0f, -2.0f), XMFLOAT3(1.5f, 2.0f, -3.0f));
+    //        break;
+    //    case 4:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -5.5f), XMFLOAT3(-0.5f, -1.0f, -5.5f), XMFLOAT3(-2.5f, 1.0f, -5.5f));
+    //        break;
+    //    case 5:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, -2.0f, -5.0f), XMFLOAT3(0.5f, 0.0f, -5.0f));
+    //        break;
+    //    case 6:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(1.5f, -2.0f, -5.5f), XMFLOAT3(2.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, 0.0f, -5.5f));
+    //        break;
+    //    case 7:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+    //        break;
+    //    case 8:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+    //        break;
+    //    case 9:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+    //        break;
+    //    }
+	//
+    //    target->Target(true);
+    //    target->TargetId(a);
+    //    target->Active(true);
+    //    target->HitSound(ref new SoundEffect());
+    //    target->HitSound()->Initialize(
+    //        m_audioController->SoundEffectEngine(),
+    //        mediaReader->GetOutputWaveFormatEx(),
+    //        targetHitSound
+    //        );
+	//
+    //    m_objects.push_back(target);
+    //    m_renderObjects.push_back(target);
+    //}
+	// TODO :: NO TARGETS FOR NOW
 
     // Instantiate a set of spheres to be used as ammunition for the game
     // and set the material properties of the spheres.
@@ -236,21 +245,23 @@ void Simple3DGame::Initialize(
             );
         m_ammo[a]->Active(false);
         m_renderObjects.push_back(m_ammo[a]);
+		m_objects.push_back(m_ammo[a]); // TODO :: I added this, potentially remove it later.
     }
 
     // Instantiate each of the game levels. The Level class contains methods
     // that initialize the objects in the world for the given level and also
     // define any motion paths for the objects in that level.
 
+	// TODO :: I only want one level for now.
     m_level.push_back(ref new Level1);
-    m_level.push_back(ref new Level2);
-    if (!m_gameConfig.isTrial)
-    {
-        m_level.push_back(ref new Level3);
-        m_level.push_back(ref new Level4);
-        m_level.push_back(ref new Level5);
-        m_level.push_back(ref new Level6);
-    }
+    //m_level.push_back(ref new Level2);
+    //if (!m_gameConfig.isTrial)
+    //{
+    //    m_level.push_back(ref new Level3);
+    //    m_level.push_back(ref new Level4);
+    //    m_level.push_back(ref new Level5);
+    //    m_level.push_back(ref new Level6);
+    //}
     m_levelCount = static_cast<uint32>(m_level.size());
 
     // Load the top score from disk if it exists.
@@ -475,7 +486,10 @@ void Simple3DGame::UpdateDynamics()
 	// We get the default float comparator,
 	// but we have to make our own, dummy
 	// GameObject^ comparator which ends
-	// up just returning true for this<that
+	// up just returning false for this<that.
+	// Interestingly, it has to be false rather than true
+	// in order to satisfy the expected ordering on
+	// the < operator for equal objects.
 	xAxisSweep.sort();
 	yAxisSweep.sort();
 	zAxisSweep.sort();
@@ -492,20 +506,18 @@ void Simple3DGame::UpdateDynamics()
 	xAxisSweep.clear();
 	yAxisSweep.clear();
 	zAxisSweep.clear();
-
+	
 	// Do the precision testing between pairs of objects
-	//for each (std::pair<GameObject^, GameObject^> pair in precisionCollision)
-	//{
+	for each (std::pair<GameObject^, GameObject^> pair in precisionCollision)
+	{
 		// This is the plan. We discover whether or not two objects are
 		// colliding. If they aren't colliding, we don't do anything, but
 		// when they are colliding we want to handle the resolution according
 		// to whichever types of objects are colliding.
-		// if (pair.first->IsColliding(pair.second)) { ... }
-
-		// Unfortunately, at this time, I think in order to do this I'll need
-		// to add some more robust collision detection methods to individual
-		// object types so we'll need to wait a moment longer to do this.
-	//}
+		if (PrecisionCollision::IsColliding(pair.first, pair.second)) {
+			// For now, let's just see if this runs.
+		}
+	}
 
 	// Reset state for each GameObject potentialCollisionsMap
 	for each (GameObject^ gOH in m_objects)

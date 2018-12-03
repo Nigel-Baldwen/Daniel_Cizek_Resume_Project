@@ -70,4 +70,9 @@ bool RectangularPrism::IsTouching(
 	//}
 }
 
+GameObjectType RectangularPrism::Type()
+{
+	return GameObjectType::RectangularPrism;
+}
+
 //----------------------------------------------------------------------

@@ -26,13 +26,11 @@
             </TextBlock>
         </Viewbox>
 
-        <Button x:Name="BackButton" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="20" Click="BackButton_Click">
-            <TextBlock>
-                Return To <LineBreak/>
-                Main Menu
-            </TextBlock>
+        <Button x:Name="BackButton" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                Margin="0" VerticalAlignment="Top" Click="BackButton_Click">
+            <Image Source="../Assets/Images/Back_Button_BW.png"/>
         </Button>
-        
+
         <!-- Move Forward-->
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>

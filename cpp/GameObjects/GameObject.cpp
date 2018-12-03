@@ -160,3 +160,9 @@ void GameObject::ClearOverlapFlags()
 {
 	potentialCollisionsMap.clear();
 }
+
+// We should never be invoking this method, but it will be here for completeness.
+GameObjectType GameObject::Type() {
+	// We don't know what type of object this is. Should assist with graceful error checking and handling.
+	return GameObjectType::UNKNOWN;
+}

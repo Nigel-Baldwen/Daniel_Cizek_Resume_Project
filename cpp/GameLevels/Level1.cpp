@@ -20,14 +20,14 @@ void Level1::Initialize(std::vector<GameObject^> objects)
     {
 		XMFLOAT3(-0.5f, -0.5f,  0.0f),
 		//XMFLOAT3( 2.0f,  2.0f,  1.0f),
-		XMFLOAT3( 1.0f, -0.5f,  0.0f),
+		XMFLOAT3( 1.0f, -0.5f,  1.0f),
 		XMFLOAT3( 1.0f, -2.0f,  0.0f),
 		XMFLOAT3(-0.5f, -2.0f,  0.0f),
-		XMFLOAT3(-2.0f, -2.0f,  0.0f),
+		XMFLOAT3(-2.0f, -2.0f,  1.5f),
 		XMFLOAT3(-2.0f, -0.5f,  0.0f),
-		XMFLOAT3(-2.0f,  1.0f,  0.0f),
+		XMFLOAT3(-2.0f,  1.0f,  -1.0f),
 		XMFLOAT3(-0.5f,  1.0f,  0.0f),
-		XMFLOAT3( 1.0f,  1.0f,  0.0f)
+		XMFLOAT3( 1.0f,  1.0f,  -1.5f)
 		/*
         XMFLOAT3(-2.5f, -1.0f, -1.5f),
         XMFLOAT3(-1.0f,  1.0f, -3.0f),
@@ -62,7 +62,8 @@ void Level1::Initialize(std::vector<GameObject^> objects)
         }
         else
         {
-            (*object)->Active(false);
+			// TODO :: Temporarily enabling all objects for testing.
+            //(*object)->Active(false);
         }
     }
 }
