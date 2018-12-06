@@ -2,7 +2,7 @@
 
 namespace GameConstants
 {
-    static const int MaxAmmo                    = 10;
+    static const int MaxAmmo                    = 0; // TODO :: Changed to zero from ten for testing collision stuff.
     static const int MaxCylinders               = 5;
     static const int MaxTargets                 = 10;
     static const float AmmoSize                 = 0.2f;

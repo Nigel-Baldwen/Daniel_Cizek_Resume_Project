@@ -29,6 +29,12 @@ SettingsPage::SettingsPage()
 	this->NavigationCacheMode = Windows::UI::Xaml::Navigation::NavigationCacheMode::Enabled;
 	localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
 	keyBindingsList = localSettings->Containers->Lookup("KeyBindings")->Values;
+
+	// TODO :: We properly save keybinding state between runs, but it isn't reflected
+	// when you revisit the page since the value of the text box reverts to the placeholder
+	// text every reload. It ought to be the case that after setting a bind, the user sees
+	// the custom binding in place when they revisit the menu. This is more than just QOL,
+	// but at the end of the day, there are more pressing matters currently.
 }
 
 

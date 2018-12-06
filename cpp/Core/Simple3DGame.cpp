@@ -104,19 +104,19 @@ void Simple3DGame::Initialize(
     world->TargetId(GameConstants::WorldFloorId);
     world->Active(true);
     m_renderObjects.push_back(world);
-	m_objects.push_back(world);
+	//m_objects.push_back(world);
 
     world = ref new GameObject();
     world->TargetId(GameConstants::WorldCeilingId);
     world->Active(true);
     m_renderObjects.push_back(world);
-	m_objects.push_back(world);
+	//m_objects.push_back(world);
 
     world = ref new GameObject();
     world->TargetId(GameConstants::WorldWallsId);
     world->Active(true);
     m_renderObjects.push_back(world);
-	m_objects.push_back(world); // TODO :: Adding these in here seems suspect. Maybe I should do this differently.
+	//m_objects.push_back(world); // TODO :: Adding these in here seems suspect. Maybe I should do this differently.
 
     // Min and max Bound are defining the world space of the game.
     // All camera motion and dynamics are confined to this space.
@@ -154,6 +154,12 @@ void Simple3DGame::Initialize(
     //    m_renderObjects.push_back(cylinder);
     //}
 	// TODO :: NO CYLINDERS FOR NOW
+
+	// TODO :: Test cylinders for collision proofing
+	Cylinder^ cylinder = ref new Cylinder(XMFLOAT3(0.0f, 0.0f, 0.0f), 1.0f, XMFLOAT3(0.0f, 0.0f, 1.0f));
+	cylinder->Active(true);
+	m_objects.push_back(cylinder);
+	m_renderObjects.push_back(cylinder);
 
     MediaReader^ mediaReader = ref new MediaReader;
     auto targetHitSound = mediaReader->LoadMedia("Assets\\hit.wav");
@@ -233,20 +239,21 @@ void Simple3DGame::Initialize(
     // and set the material properties of the spheres.
     auto ammoHitSound = mediaReader->LoadMedia("Assets\\bounce.wav");
 
-    for (int a = 0; a < GameConstants::MaxAmmo; a++)
-    {
-        m_ammo[a] = ref new Sphere;
-        m_ammo[a]->Radius(GameConstants::AmmoRadius);
-        m_ammo[a]->HitSound(ref new SoundEffect());
-        m_ammo[a]->HitSound()->Initialize(
-            m_audioController->SoundEffectEngine(),
-            mediaReader->GetOutputWaveFormatEx(),
-            ammoHitSound
-            );
-        m_ammo[a]->Active(false);
-        m_renderObjects.push_back(m_ammo[a]);
-		m_objects.push_back(m_ammo[a]); // TODO :: I added this, potentially remove it later.
-    }
+	// TODO :: Disabled for testing, but this means no clicking or it'll crash!
+    //for (int a = 0; a < GameConstants::MaxAmmo; a++)
+    //{
+    //    m_ammo[a] = ref new Sphere;
+    //    m_ammo[a]->Radius(GameConstants::AmmoRadius);
+    //    m_ammo[a]->HitSound(ref new SoundEffect());
+    //    m_ammo[a]->HitSound()->Initialize(
+    //        m_audioController->SoundEffectEngine(),
+    //        mediaReader->GetOutputWaveFormatEx(),
+    //        ammoHitSound
+    //        );
+    //    m_ammo[a]->Active(false);
+    //    m_renderObjects.push_back(m_ammo[a]);
+	//	m_objects.push_back(m_ammo[a]); // TODO :: I added this, potentially remove it later.
+    //}
 
     // Instantiate each of the game levels. The Level class contains methods
     // that initialize the objects in the world for the given level and also

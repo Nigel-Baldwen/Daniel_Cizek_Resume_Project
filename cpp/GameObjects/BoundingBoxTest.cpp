@@ -114,6 +114,11 @@ std::list<std::pair<GameObject^, GameObject^>> BoundingBoxTest::axisOverlapTest(
 		i++;
 	}
 
+	// TODO :: Change to a pointer return.
+	// This is too expensive because it uses the copy constructor for this
+	// list of pairs which ultimately recreates the list. I suppose the thing
+	// that I'll end up doing is creating the list of pairs in simple3dgame and
+	// passing in an __OUT__ parameter to this function.
 	return objectsRequiringFurtherTesting;
 }
 

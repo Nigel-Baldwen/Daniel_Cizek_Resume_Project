@@ -148,7 +148,8 @@ DirectXPage::DirectXPage() :
 	localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
 	keyBindingsContainer = localSettings->CreateContainer("KeyBindings", Windows::Storage::ApplicationDataCreateDisposition::Always);
 
-	if (localSettings->Containers->HasKey("KeyBindings"))
+	// If there are no current settings, set the bindings to the defaults.
+	if (!localSettings->Containers->HasKey("KeyBindings"))
 	{
 		auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
 		values->Insert("forwardBinding", "W");
