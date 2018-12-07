@@ -426,6 +426,7 @@
     <None Include="Shaders\ConstantBuffers.hlsli">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Simple3DGameXaml_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">

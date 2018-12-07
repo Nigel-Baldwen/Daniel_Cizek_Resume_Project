@@ -8,8 +8,10 @@ namespace PrecisionCollision {
 		bool SphereSphere(Sphere^ ibb, Sphere^ obb) {
 
 			//OutputDebugStringW(L"REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE/n/n/n/n/n//n/n/n/n/n/nREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+			auto ibbPos = ibb->Position(),
+				obbPos = obb->Position();
 
-			XMVECTOR ibbToObb = XMLoadFloat3(&(ibb->Position())) - XMLoadFloat3(&(obb->Position()));
+			XMVECTOR ibbToObb = XMLoadFloat3(&ibbPos) - XMLoadFloat3(&obbPos);
 			float distance = XMVectorGetX(XMVector3Length(ibbToObb));
 
 			ibbToObb = XMVector3Normalize(ibbToObb);

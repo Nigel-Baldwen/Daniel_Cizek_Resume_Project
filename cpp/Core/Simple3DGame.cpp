@@ -128,38 +128,38 @@ void Simple3DGame::Initialize(
     // Instantiate the Cylinders for use in the various game levels.
     // Each cylinder has a different initial position, radius and direction vector,
     // but share a common set of material properties.
-    //for (int a = 0; a < GameConstants::MaxCylinders; a++)
-    //{
-    //    Cylinder^ cylinder;
-    //    switch (a)
-    //    {
-    //    case 0:
-    //        cylinder = ref new Cylinder(XMFLOAT3(-2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-    //        break;
-    //    case 1:
-    //        cylinder = ref new Cylinder(XMFLOAT3(2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-    //        break;
-    //    case 2:
-    //        cylinder = ref new Cylinder(XMFLOAT3(0.0f, -3.0f, -2.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-    //        break;
-    //    case 3:
-    //        cylinder = ref new Cylinder(XMFLOAT3(-1.5f, -3.0f, -4.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-    //        break;
-    //    case 4:
-    //        cylinder = ref new Cylinder(XMFLOAT3(1.5f, -3.0f, -4.0f), 0.50f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-    //        break;
-    //    }
-    //    cylinder->Active(true);
-    //    m_objects.push_back(cylinder);
-    //    m_renderObjects.push_back(cylinder);
-    //}
+    for (int a = 0; a < GameConstants::MaxCylinders; a++)
+    {
+        Cylinder^ cylinder;
+        switch (a)
+        {
+        case 0:
+            cylinder = ref new Cylinder(XMFLOAT3(-2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+            break;
+        case 1:
+            cylinder = ref new Cylinder(XMFLOAT3(2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+            break;
+        case 2:
+            cylinder = ref new Cylinder(XMFLOAT3(0.0f, -3.0f, -2.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+            break;
+        case 3:
+            cylinder = ref new Cylinder(XMFLOAT3(-1.5f, -3.0f, -4.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+            break;
+        case 4:
+            cylinder = ref new Cylinder(XMFLOAT3(1.5f, -3.0f, -4.0f), 0.50f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+            break;
+        }
+        cylinder->Active(true);
+        m_objects.push_back(cylinder);
+        m_renderObjects.push_back(cylinder);
+    }
 	// TODO :: NO CYLINDERS FOR NOW
 
 	// TODO :: Test cylinders for collision proofing
-	Cylinder^ cylinder = ref new Cylinder(XMFLOAT3(0.0f, 0.0f, 0.0f), 1.0f, XMFLOAT3(0.0f, 0.0f, 1.0f));
-	cylinder->Active(true);
-	m_objects.push_back(cylinder);
-	m_renderObjects.push_back(cylinder);
+	//Cylinder^ cylinder = ref new Cylinder(XMFLOAT3(0.0f, 0.0f, 0.0f), 1.0f, XMFLOAT3(0.0f, 0.0f, 1.0f));
+	//cylinder->Active(true);
+	//m_objects.push_back(cylinder);
+	//m_renderObjects.push_back(cylinder);
 
     MediaReader^ mediaReader = ref new MediaReader;
     auto targetHitSound = mediaReader->LoadMedia("Assets\\hit.wav");
@@ -173,66 +173,66 @@ void Simple3DGame::Initialize(
     // Each target is assigned a number for identification purposes.
     // The Target ID number is 1 based.
     // All targets have the same material properties.
-    //for (int a = 1; a < GameConstants::MaxTargets; a++)
-    //{
-	//	// Position is a 'dummy' value in the constructor.
-	//	// It is replaced before modeling/rendering in LevelX.cpp
-	//	// Therefore, the only thing these constructors do is
-	//	// determine the size and orientation of the face.
-    //    Face^ target;
-    //    switch (a)
-    //    {
-    //    case 1:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(2.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 2.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -1.5f), XMFLOAT3(-1.5f, -1.0f, -2.0f), XMFLOAT3(-2.5f, 1.0f, -1.5f));
-    //        break;
-    //    case 2:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(-1.0f, 1.0f, -3.0f), XMFLOAT3(0.0f, 1.0f, -3.0f), XMFLOAT3(-1.0f, 2.0f, -3.0f));
-    //        break;
-    //    case 3:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(1.5f, 0.0f, -3.0f), XMFLOAT3(2.5f, 0.0f, -2.0f), XMFLOAT3(1.5f, 2.0f, -3.0f));
-    //        break;
-    //    case 4:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -5.5f), XMFLOAT3(-0.5f, -1.0f, -5.5f), XMFLOAT3(-2.5f, 1.0f, -5.5f));
-    //        break;
-    //    case 5:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(0.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, -2.0f, -5.0f), XMFLOAT3(0.5f, 0.0f, -5.0f));
-    //        break;
-    //    case 6:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(1.5f, -2.0f, -5.5f), XMFLOAT3(2.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, 0.0f, -5.5f));
-    //        break;
-    //    case 7:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-    //        break;
-    //    case 8:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-    //        break;
-    //    case 9:
-	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-    //        break;
-    //    }
-	//
-    //    target->Target(true);
-    //    target->TargetId(a);
-    //    target->Active(true);
-    //    target->HitSound(ref new SoundEffect());
-    //    target->HitSound()->Initialize(
-    //        m_audioController->SoundEffectEngine(),
-    //        mediaReader->GetOutputWaveFormatEx(),
-    //        targetHitSound
-    //        );
-	//
-    //    m_objects.push_back(target);
-    //    m_renderObjects.push_back(target);
-    //}
+    for (int a = 1; a < GameConstants::MaxTargets; a++)
+    {
+		// Position is a 'dummy' value in the constructor.
+		// It is replaced before modeling/rendering in LevelX.cpp
+		// Therefore, the only thing these constructors do is
+		// determine the size and orientation of the face.
+        Face^ target;
+        switch (a)
+        {
+        case 1:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(2.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 2.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -1.5f), XMFLOAT3(-1.5f, -1.0f, -2.0f), XMFLOAT3(-2.5f, 1.0f, -1.5f));
+            break;
+        case 2:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+			//target = ref new Face(XMFLOAT3(-1.0f, 1.0f, -3.0f), XMFLOAT3(0.0f, 1.0f, -3.0f), XMFLOAT3(-1.0f, 2.0f, -3.0f));
+            break;
+        case 3:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(1.5f, 0.0f, -3.0f), XMFLOAT3(2.5f, 0.0f, -2.0f), XMFLOAT3(1.5f, 2.0f, -3.0f));
+            break;
+        case 4:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -5.5f), XMFLOAT3(-0.5f, -1.0f, -5.5f), XMFLOAT3(-2.5f, 1.0f, -5.5f));
+            break;
+        case 5:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(0.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, -2.0f, -5.0f), XMFLOAT3(0.5f, 0.0f, -5.0f));
+            break;
+        case 6:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(1.5f, -2.0f, -5.5f), XMFLOAT3(2.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, 0.0f, -5.5f));
+            break;
+        case 7:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+            break;
+        case 8:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+            break;
+        case 9:
+			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+            break;
+        }
+	
+        target->Target(true);
+        target->TargetId(a);
+        target->Active(true);
+        target->HitSound(ref new SoundEffect());
+        target->HitSound()->Initialize(
+            m_audioController->SoundEffectEngine(),
+            mediaReader->GetOutputWaveFormatEx(),
+            targetHitSound
+            );
+	
+        m_objects.push_back(target);
+        m_renderObjects.push_back(target);
+    }
 	// TODO :: NO TARGETS FOR NOW
 
     // Instantiate a set of spheres to be used as ammunition for the game
@@ -240,20 +240,20 @@ void Simple3DGame::Initialize(
     auto ammoHitSound = mediaReader->LoadMedia("Assets\\bounce.wav");
 
 	// TODO :: Disabled for testing, but this means no clicking or it'll crash!
-    //for (int a = 0; a < GameConstants::MaxAmmo; a++)
-    //{
-    //    m_ammo[a] = ref new Sphere;
-    //    m_ammo[a]->Radius(GameConstants::AmmoRadius);
-    //    m_ammo[a]->HitSound(ref new SoundEffect());
-    //    m_ammo[a]->HitSound()->Initialize(
-    //        m_audioController->SoundEffectEngine(),
-    //        mediaReader->GetOutputWaveFormatEx(),
-    //        ammoHitSound
-    //        );
-    //    m_ammo[a]->Active(false);
-    //    m_renderObjects.push_back(m_ammo[a]);
-	//	m_objects.push_back(m_ammo[a]); // TODO :: I added this, potentially remove it later.
-    //}
+    for (int a = 0; a < GameConstants::MaxAmmo; a++)
+    {
+        m_ammo[a] = ref new Sphere;
+        m_ammo[a]->Radius(GameConstants::AmmoRadius);
+        m_ammo[a]->HitSound(ref new SoundEffect());
+        m_ammo[a]->HitSound()->Initialize(
+            m_audioController->SoundEffectEngine(),
+            mediaReader->GetOutputWaveFormatEx(),
+            ammoHitSound
+            );
+        m_ammo[a]->Active(false);
+        m_renderObjects.push_back(m_ammo[a]);
+		m_objects.push_back(m_ammo[a]); // TODO :: I added this, potentially remove it later.
+    }
 
     // Instantiate each of the game levels. The Level class contains methods
     // that initialize the objects in the world for the given level and also
@@ -261,14 +261,14 @@ void Simple3DGame::Initialize(
 
 	// TODO :: I only want one level for now.
     m_level.push_back(ref new Level1);
-    //m_level.push_back(ref new Level2);
-    //if (!m_gameConfig.isTrial)
-    //{
-    //    m_level.push_back(ref new Level3);
-    //    m_level.push_back(ref new Level4);
-    //    m_level.push_back(ref new Level5);
-    //    m_level.push_back(ref new Level6);
-    //}
+    m_level.push_back(ref new Level2);
+    if (!m_gameConfig.isTrial)
+    {
+        m_level.push_back(ref new Level3);
+        m_level.push_back(ref new Level4);
+        m_level.push_back(ref new Level5);
+        m_level.push_back(ref new Level6);
+    }
     m_levelCount = static_cast<uint32>(m_level.size());
 
     // Load the top score from disk if it exists.
@@ -570,7 +570,7 @@ void Simple3DGame::UpdateDynamics()
             // Set position in array of next Ammo to use.
             // We will re-use ammo taking the least recently used once we have hit the
             // MaxAmmo in use.
-            m_ammoNext = (m_ammoNext + 1) % GameConstants::MaxAmmo;
+			m_ammoNext = (m_ammoNext + 1) % GameConstants::MaxAmmo;
             m_ammoCount = min(m_ammoCount + 1, GameConstants::MaxAmmo);
 
             lastFired = timeTotal;

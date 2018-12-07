@@ -38,6 +38,8 @@ void RectangularPrism::Update()
 
 //----------------------------------------------------------------------
 
+// TODO :: This will obviously be changed to be correct eventually.
+// Currently, we will just do something dumb and return false.
 bool RectangularPrism::IsTouching(
 	XMFLOAT3 point,
 	float radius,
@@ -45,29 +47,14 @@ bool RectangularPrism::IsTouching(
 	_Out_ XMFLOAT3 *normal
 )
 {
-	// Check collision between instances One and Two.
-	// oneToTwo is the collision normal vector.
-	XMVECTOR oneToTwo = XMLoadFloat3(&m_position) - XMLoadFloat3(&point);
+	auto dPoint = point;
+	auto dRadius = radius;
+	dRadius++;
+	auto dID = XMVECTOR();
+	XMStoreFloat3(contact, dID);
+	XMStoreFloat3(normal, dID);
 
-	float distance = XMVectorGetX(XMVector3Length(oneToTwo));
-
-	oneToTwo = XMVector3Normalize(oneToTwo);
-	XMStoreFloat3(normal, oneToTwo);
-	//XMStoreFloat3(contact, oneToTwo * m_radius);
-
-	if (distance < 0.0f)
-	{
-		distance *= -1.0f;
-	}
-
-	//if (distance < (radius + m_radius))
-	//{
-	//	return true;
-	//}
-	//else
-	//{
-		return false;
-	//}
+	return false;
 }
 
 GameObjectType RectangularPrism::Type()
