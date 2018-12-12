@@ -144,22 +144,8 @@ DirectXPage::DirectXPage() :
 		audioSource);
 
 	// KeyBinding & Potentially Other Settings Local Data Support
-	localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
-	localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
-	keyBindingsContainer = localSettings->CreateContainer("KeyBindings", Windows::Storage::ApplicationDataCreateDisposition::Always);
-
-	// If there are no current settings, set the bindings to the defaults.
-	if (!localSettings->Containers->HasKey("KeyBindings"))
-	{
-		auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
-		values->Insert("forwardBinding", "W");
-		values->Insert("backBinding", "S");
-		values->Insert("leftBinding", "A");
-		values->Insert("rightBinding", "D");
-		values->Insert("upBinding", "SPCE");
-		values->Insert("downBinding", "X");
-		values->Insert("pauseBinding", "P");
-	}
+	//localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
+	//localFolder = Windows::Storage::ApplicationData::Current->LocalFolder;
 
 	this->NavigationCacheMode = Windows::UI::Xaml::Navigation::NavigationCacheMode::Enabled;
 }

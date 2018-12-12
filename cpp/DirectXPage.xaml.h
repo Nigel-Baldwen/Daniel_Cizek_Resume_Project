@@ -106,7 +106,6 @@ namespace Simple3DGameXaml
 		
 		//ADDED CODE
 		Windows::Storage::ApplicationDataContainer^ localSettings;
-		Windows::Storage::ApplicationDataContainer^ keyBindingsContainer;
 		Windows::Storage::StorageFolder^ localFolder;
 
 		Twitch_Hype^ m_TwitchPage;

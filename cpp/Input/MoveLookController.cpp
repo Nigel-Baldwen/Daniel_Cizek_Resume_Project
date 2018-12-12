@@ -91,6 +91,22 @@ void MoveLookController::InitWindow(_In_ CoreWindow^ window)
         ref new EventHandler<Gamepad^>(this, &MoveLookController::OnGamepadRemoved);
 
 	localSettings = Windows::Storage::ApplicationData::Current->LocalSettings;
+
+	// If there are no current settings, set the bindings to the defaults.
+	if (!localSettings->Containers->HasKey("KeyBindings"))
+	{
+		keyBindingsContainer = localSettings->CreateContainer("KeyBindings", Windows::Storage::ApplicationDataCreateDisposition::Always);
+
+		auto values = localSettings->Containers->Lookup("KeyBindings")->Values;
+		values->Insert("forwardBinding", "W");
+		values->Insert("backBinding", "S");
+		values->Insert("leftBinding", "A");
+		values->Insert("rightBinding", "D");
+		values->Insert("upBinding", "SPCE");
+		values->Insert("downBinding", "X");
+		values->Insert("pauseBinding", "P");
+	}
+
 	keyBindingsList = localSettings->Containers->Lookup("KeyBindings")->Values;
 }
 

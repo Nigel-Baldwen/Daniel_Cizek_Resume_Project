@@ -256,6 +256,7 @@ private:
 
 	// Local Settings For Custom Bindings
 	Windows::Storage::ApplicationDataContainer^ localSettings;
+	Windows::Storage::ApplicationDataContainer^ keyBindingsContainer;
 	Windows::Foundation::Collections::IPropertySet^ keyBindingsList;
 
     // Game controller related members.
