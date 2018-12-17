@@ -4,10 +4,17 @@
     xmlns:local="using:Simple3DGameXaml">
 
     <LinearGradientBrush x:Key="PageBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="DarkGreen" Offset="0" />
-        <GradientStop Color="DarkBlue" Offset="0.5" />
-        <GradientStop Color="DeepSkyBlue" Offset="1" />
+        <GradientStop Color="#000000" Offset="0" />
+        <GradientStop Color="#000044" Offset="0.5" />
+        <GradientStop Color="#000000" Offset="1" />
     </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GoldenTextBrush" StartPoint="0,1" EndPoint="0,0">
+        <GradientStop Color="#000000" Offset="0" />
+        <GradientStop Color="#ffd700" Offset="0.5" />
+        <GradientStop Color="#000000" Offset="1" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="ActionBrush" Color="#1b6e1b"/>
 
     <Style x:Key="TitleStyle" TargetType="TextBlock">

@@ -12,7 +12,7 @@
             <VisualStateGroup x:Name="GameInfoOverlayStates">
                 <VisualState x:Name="NormalState">
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetName="GameInfoOverlay" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:00.25" To="0">
+                        <DoubleAnimation Storyboard.TargetName="GameInfoOverlay" Storyboard.TargetProperty="(UIElement.Opacity)" Duration="00:00:10.25" To="0">
                             <DoubleAnimation.EasingFunction>
                                 <CubicEase EasingMode="EaseIn" />
                             </DoubleAnimation.EasingFunction>
