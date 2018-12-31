@@ -427,6 +427,8 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Simple3DGameXaml_TemporaryKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
+    <None Include="Simple3DGameXaml_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">

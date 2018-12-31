@@ -3,6 +3,9 @@
 
 BoundingBoxTest::BoundingBoxTest() {}
 
+void BoundingBoxTest::ResetObjectsRequiringFurtherTesting() {
+	objectsRequiringFurtherTesting.clear();
+}
 
 // axisOverlapTest takes in a sorted collection of (axisMin/Max, objectID) pairs
 std::list<std::pair<GameObject^, GameObject^>> BoundingBoxTest::axisOverlapTest(std::list<std::pair<float, GameObject^>> sortedPairs, Axes axis)

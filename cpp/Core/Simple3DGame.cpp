@@ -82,7 +82,7 @@ void Simple3DGame::Initialize(
     // It is added to the object list so it will be included in intersection calculations.
     m_player = ref new Sphere(XMFLOAT3(0.0f, -1.3f, 4.0f), 0.2f);
     m_objects.push_back(m_player);
-    m_player->Active(true);
+    //m_player->Active(true);
 
     m_camera = ref new Camera;
     m_camera->SetProjParams(XM_PI / 2, 1.0f, 0.01f, 100.0f);
@@ -118,6 +118,14 @@ void Simple3DGame::Initialize(
     m_renderObjects.push_back(world);
 	//m_objects.push_back(world); // TODO :: Adding these in here seems suspect. Maybe I should do this differently.
 
+	// TODO :: The above world bounding reasoning is a bit flawed. Walls should be property bearing objects just
+	// like any other. I think creating them as generic GameObjects is incorrect in some ways. Instead, they should
+	// be instantiated either as faces or rectangular prisms. At any rate, they should not be special exceptions to
+	// the general collision sensitive object hierarchy. They should be 'physical' objects capable of collision just
+	// like any other. Unfortunately, in order to change this system at this time, I would need to alter the rendering
+	// code which is fine, but also a bit more trouble than it is probably worth at the moment. Also unfortunately,
+	// this puts a bit of a road block in fully transitioning to my custom collision detection code.
+
     // Min and max Bound are defining the world space of the game.
     // All camera motion and dynamics are confined to this space.
 	//m_minBound = XMFLOAT3(-12.0f, -9.0f, -18.0f);
@@ -128,38 +136,38 @@ void Simple3DGame::Initialize(
     // Instantiate the Cylinders for use in the various game levels.
     // Each cylinder has a different initial position, radius and direction vector,
     // but share a common set of material properties.
-    for (int a = 0; a < GameConstants::MaxCylinders; a++)
-    {
-        Cylinder^ cylinder;
-        switch (a)
-        {
-        case 0:
-            cylinder = ref new Cylinder(XMFLOAT3(-2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 1:
-            cylinder = ref new Cylinder(XMFLOAT3(2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 2:
-            cylinder = ref new Cylinder(XMFLOAT3(0.0f, -3.0f, -2.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 3:
-            cylinder = ref new Cylinder(XMFLOAT3(-1.5f, -3.0f, -4.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        case 4:
-            cylinder = ref new Cylinder(XMFLOAT3(1.5f, -3.0f, -4.0f), 0.50f, XMFLOAT3(0.0f, 6.0f, 0.0f));
-            break;
-        }
-        cylinder->Active(true);
-        m_objects.push_back(cylinder);
-        m_renderObjects.push_back(cylinder);
-    }
+    //for (int a = 0; a < GameConstants::MaxCylinders; a++)
+    //{
+    //    Cylinder^ cylinder;
+    //    switch (a)
+    //    {
+    //    case 0:
+    //        cylinder = ref new Cylinder(XMFLOAT3(-2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 1:
+    //        cylinder = ref new Cylinder(XMFLOAT3(2.0f, -3.0f, 0.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 2:
+    //        cylinder = ref new Cylinder(XMFLOAT3(0.0f, -3.0f, -2.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 3:
+    //        cylinder = ref new Cylinder(XMFLOAT3(-1.5f, -3.0f, -4.0f), 0.25f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    case 4:
+    //        cylinder = ref new Cylinder(XMFLOAT3(1.5f, -3.0f, -4.0f), 0.50f, XMFLOAT3(0.0f, 6.0f, 0.0f));
+    //        break;
+    //    }
+    //    cylinder->Active(true);
+    //    m_objects.push_back(cylinder);
+    //    m_renderObjects.push_back(cylinder);
+    //}
 	// TODO :: NO CYLINDERS FOR NOW
 
 	// TODO :: Test cylinders for collision proofing
-	//Cylinder^ cylinder = ref new Cylinder(XMFLOAT3(0.0f, 0.0f, 0.0f), 1.0f, XMFLOAT3(0.0f, 0.0f, 1.0f));
-	//cylinder->Active(true);
-	//m_objects.push_back(cylinder);
-	//m_renderObjects.push_back(cylinder);
+	Cylinder^ cylinder = ref new Cylinder(XMFLOAT3(0.0f, 0.0f, 0.0f), 1.0f, XMFLOAT3(0.0f, 0.0f, 1.0f));
+	cylinder->Active(true);
+	m_objects.push_back(cylinder);
+	m_renderObjects.push_back(cylinder);
 
     MediaReader^ mediaReader = ref new MediaReader;
     auto targetHitSound = mediaReader->LoadMedia("Assets\\hit.wav");
@@ -173,66 +181,66 @@ void Simple3DGame::Initialize(
     // Each target is assigned a number for identification purposes.
     // The Target ID number is 1 based.
     // All targets have the same material properties.
-    for (int a = 1; a < GameConstants::MaxTargets; a++)
-    {
-		// Position is a 'dummy' value in the constructor.
-		// It is replaced before modeling/rendering in LevelX.cpp
-		// Therefore, the only thing these constructors do is
-		// determine the size and orientation of the face.
-        Face^ target;
-        switch (a)
-        {
-        case 1:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(2.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 2.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -1.5f), XMFLOAT3(-1.5f, -1.0f, -2.0f), XMFLOAT3(-2.5f, 1.0f, -1.5f));
-            break;
-        case 2:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-			//target = ref new Face(XMFLOAT3(-1.0f, 1.0f, -3.0f), XMFLOAT3(0.0f, 1.0f, -3.0f), XMFLOAT3(-1.0f, 2.0f, -3.0f));
-            break;
-        case 3:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(1.5f, 0.0f, -3.0f), XMFLOAT3(2.5f, 0.0f, -2.0f), XMFLOAT3(1.5f, 2.0f, -3.0f));
-            break;
-        case 4:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -5.5f), XMFLOAT3(-0.5f, -1.0f, -5.5f), XMFLOAT3(-2.5f, 1.0f, -5.5f));
-            break;
-        case 5:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, -2.0f, -5.0f), XMFLOAT3(0.5f, 0.0f, -5.0f));
-            break;
-        case 6:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(1.5f, -2.0f, -5.5f), XMFLOAT3(2.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, 0.0f, -5.5f));
-            break;
-        case 7:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-            break;
-        case 8:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-            break;
-        case 9:
-			target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
-			//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
-            break;
-        }
-	
-        target->Target(true);
-        target->TargetId(a);
-        target->Active(true);
-        target->HitSound(ref new SoundEffect());
-        target->HitSound()->Initialize(
-            m_audioController->SoundEffectEngine(),
-            mediaReader->GetOutputWaveFormatEx(),
-            targetHitSound
-            );
-	
-        m_objects.push_back(target);
-        m_renderObjects.push_back(target);
-    }
+    //for (int a = 1; a < GameConstants::MaxTargets; a++)
+    //{
+	//	// Position is a 'dummy' value in the constructor.
+	//	// It is replaced before modeling/rendering in LevelX.cpp
+	//	// Therefore, the only thing these constructors do is
+	//	// determine the size and orientation of the face.
+    //    Face^ target;
+    //    switch (a)
+    //    {
+    //    case 1:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(2.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 2.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -1.5f), XMFLOAT3(-1.5f, -1.0f, -2.0f), XMFLOAT3(-2.5f, 1.0f, -1.5f));
+    //        break;
+    //    case 2:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(-1.0f, 1.0f, -3.0f), XMFLOAT3(0.0f, 1.0f, -3.0f), XMFLOAT3(-1.0f, 2.0f, -3.0f));
+    //        break;
+    //    case 3:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(1.5f, 0.0f, -3.0f), XMFLOAT3(2.5f, 0.0f, -2.0f), XMFLOAT3(1.5f, 2.0f, -3.0f));
+    //        break;
+    //    case 4:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(-2.5f, -1.0f, -5.5f), XMFLOAT3(-0.5f, -1.0f, -5.5f), XMFLOAT3(-2.5f, 1.0f, -5.5f));
+    //        break;
+    //    case 5:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, -2.0f, -5.0f), XMFLOAT3(0.5f, 0.0f, -5.0f));
+    //        break;
+    //    case 6:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(1.5f, -2.0f, -5.5f), XMFLOAT3(2.5f, -2.0f, -5.0f), XMFLOAT3(1.5f, 0.0f, -5.5f));
+    //        break;
+    //    case 7:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+    //        break;
+    //    case 8:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+    //        break;
+    //    case 9:
+	//		target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	//		//target = ref new Face(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.5f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.5f, 0.0f));
+    //        break;
+    //    }
+	//
+    //    target->Target(true);
+    //    target->TargetId(a);
+    //    target->Active(true);
+    //    target->HitSound(ref new SoundEffect());
+    //    target->HitSound()->Initialize(
+    //        m_audioController->SoundEffectEngine(),
+    //        mediaReader->GetOutputWaveFormatEx(),
+    //        targetHitSound
+    //        );
+	//
+    //    m_objects.push_back(target);
+    //    m_renderObjects.push_back(target);
+    //}
 	// TODO :: NO TARGETS FOR NOW
 
     // Instantiate a set of spheres to be used as ammunition for the game
@@ -470,77 +478,13 @@ void Simple3DGame::UpdateDynamics()
     float timeFrame = m_timer->DeltaTime();
     bool fire = m_controller->IsFiring();
 
-#pragma region New Collision Detection
-	// First we need to add all x, y, and z coordinates with
-	// Their associated GameObject^ to the sweep sets.
-	// This effectively groups all of their bounding boxes in
-	// one place described by three lists.
-	for each (GameObject^ gOH in m_objects)
-	{
-		// [X/Y/Z][Min/Max] + Handle
-		xAxisSweep.emplace_back(gOH->XMin(), gOH);
-		xAxisSweep.emplace_back(gOH->XMax(), gOH);
-	
-		yAxisSweep.emplace_back(gOH->YMin(), gOH);
-		yAxisSweep.emplace_back(gOH->YMax(), gOH);
-	
-		zAxisSweep.emplace_back(gOH->ZMin(), gOH);
-		zAxisSweep.emplace_back(gOH->ZMax(), gOH);
-	}
-
-	
-	// Sort the lists prior to processing.
-	// We get the default float comparator,
-	// but we have to make our own, dummy
-	// GameObject^ comparator which ends
-	// up just returning false for this<that.
-	// Interestingly, it has to be false rather than true
-	// in order to satisfy the expected ordering on
-	// the < operator for equal objects.
-	xAxisSweep.sort();
-	yAxisSweep.sort();
-	zAxisSweep.sort();
-
-	// Set flags for X Axis overlaps
-	boundingBoxTester->axisOverlapTest(xAxisSweep, Axes::X_Axis);
-
-	// Set flags for Y Axis overlaps
-	boundingBoxTester->axisOverlapTest(yAxisSweep, Axes::Y_Axis);
-
-	// Generate the list of pairs qualified for further testing
-	precisionCollision = boundingBoxTester->axisOverlapTest(zAxisSweep, Axes::Z_Axis);
-
-	xAxisSweep.clear();
-	yAxisSweep.clear();
-	zAxisSweep.clear();
-	
-	// Do the precision testing between pairs of objects
-	for each (std::pair<GameObject^, GameObject^> pair in precisionCollision)
-	{
-		// This is the plan. We discover whether or not two objects are
-		// colliding. If they aren't colliding, we don't do anything, but
-		// when they are colliding we want to handle the resolution according
-		// to whichever types of objects are colliding.
-		if (PrecisionCollision::IsColliding(pair.first, pair.second)) {
-			// For now, let's just see if this runs.
-		}
-	}
-
-	// Reset state for each GameObject potentialCollisionsMap
-	for each (GameObject^ gOH in m_objects)
-	{
-		gOH->ClearOverlapFlags();
-	}
-	
-#pragma endregion
-
 #pragma region Shoot Ammo
     // Shoot ammo.
     if (fire)
     {
         static float lastFired;  // Timestamp of last ammo fired.
 
-        if (timeTotal < lastFired)
+        if (timeTotal < lastFired) // TODO :: This looks really sketchy. Last fired hasn't been initialized yet...
         {
             // timeTotal is not guarenteed to be monotomically increasing because it is
             // reset at each level.
@@ -570,7 +514,7 @@ void Simple3DGame::UpdateDynamics()
             // Set position in array of next Ammo to use.
             // We will re-use ammo taking the least recently used once we have hit the
             // MaxAmmo in use.
-			m_ammoNext = (m_ammoNext + 1) % GameConstants::MaxAmmo;
+			m_ammoNext = (m_ammoNext + 1) % GameConstants::MaxAmmo; // TODO :: There is no point using a mod operator where we can just use an if
             m_ammoCount = min(m_ammoCount + 1, GameConstants::MaxAmmo);
 
             lastFired = timeTotal;
@@ -584,7 +528,7 @@ void Simple3DGame::UpdateDynamics()
     // Update the position of the object based on evaluating the animation object with the current time.
     // Once the current time (timeTotal) is past the end of the animation time remove
     // the animation object since it is no longer needed.
-    for (uint32 i = 0; i < m_objects.size(); i++)
+    for (uint32 i = 0; i < m_objects.size(); i++) // TODO :: Seems a bit suspect. Advice requested.
     {
         if (m_objects[i]->AnimatePosition())
         {
@@ -596,6 +540,91 @@ void Simple3DGame::UpdateDynamics()
         }
     }
 #pragma endregion
+
+
+#pragma region New Collision Detection
+	// First we need to add all x, y, and z coordinates with
+	// Their associated GameObject^ to the sweep sets.
+	// This effectively groups all of their bounding boxes in
+	// one place described by three lists.
+	for each (GameObject^ gOH in m_objects)
+	{
+		// Only active objects need to be checked for collision. Notably,
+		// This enables us to use objects, give them locations, but not
+		// forcibly check them. We just flatly say they don't have collision
+		// by excluding inactive objects from the prep lists.
+		if (gOH->Active()) {
+			// [X/Y/Z][Min/Max] + Handle
+			xAxisSweep.emplace_back(gOH->XMin(), gOH);
+			xAxisSweep.emplace_back(gOH->XMax(), gOH);
+
+			yAxisSweep.emplace_back(gOH->YMin(), gOH);
+			yAxisSweep.emplace_back(gOH->YMax(), gOH);
+
+			zAxisSweep.emplace_back(gOH->ZMin(), gOH);
+			zAxisSweep.emplace_back(gOH->ZMax(), gOH);
+		}
+	}
+
+
+	// Sort the lists prior to processing.
+	// We get the default float comparator,
+	// but we have to make our own, dummy
+	// GameObject^ comparator which ends
+	// up just returning false for this<that.
+	// Interestingly, it has to be false rather than true
+	// in order to satisfy the expected ordering on
+	// the < operator for equal objects.
+	xAxisSweep.sort();
+	yAxisSweep.sort();
+	zAxisSweep.sort();
+
+	// TODO :: Eventually, this creation/sorting business should be cut in favor of some sort of 
+	// sophisticated data structure that tracks pointers to the [X/Y/Z] coordinate values
+	// of each game object. I would add pointers to the data structure as objects are created.
+	// I suppose as they move, they will notify the data structure which will then re-locate
+	// their position in the sorted order accordingly. This on average would result in objects
+	// remaining at rest saving performance in the sorting step because their positions would not
+	// need to be updated and then resorted. Maybe some sort of linked list/tree thing.
+	// Probably a tree with leaves in a linked list.
+
+	// Set flags for X Axis overlaps
+	boundingBoxTester->axisOverlapTest(xAxisSweep, Axes::X_Axis);
+	xAxisSweep.clear();
+
+	// Set flags for Y Axis overlaps
+	boundingBoxTester->axisOverlapTest(yAxisSweep, Axes::Y_Axis);
+	yAxisSweep.clear();
+
+	// Generate the list of pairs qualified for further testing
+	precisionCollision = boundingBoxTester->axisOverlapTest(zAxisSweep, Axes::Z_Axis);
+	zAxisSweep.clear();
+
+	// Do the precision testing between pairs of objects
+	for each (std::pair<GameObject^, GameObject^> pair in precisionCollision)
+	{
+		// This is the plan. We discover whether or not two objects are
+		// colliding. If they aren't colliding, we don't do anything, but
+		// when they are colliding we want to handle the resolution according
+		// to whichever types of objects are colliding.
+		GameObject^ testHandle;
+		if (PrecisionCollision::IsColliding(pair.first, pair.second)) {
+			// For now, let's just see if this runs.
+			testHandle = pair.first;
+		}
+	}
+
+	// Reset state for each GameObject potentialCollisionsMap
+	for each (GameObject^ gOH in m_objects)
+	{
+		gOH->ClearOverlapFlags();
+	}
+
+	// Reset state for the BoundingBoxTest return to ensure a clean execution frame on the next pass.
+	boundingBoxTester->ResetObjectsRequiringFurtherTesting();
+
+#pragma endregion
+
 
     // If the elapsed time is too long, we slice up the time and handle physics over several
     // smaller time steps to avoid missing collisions.

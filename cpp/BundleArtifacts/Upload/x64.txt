@@ -1,0 +1,2 @@
+MainPackage=D:\Utility Programs\Windows-universal-samples\Windows-universal-samples\Samples\Daniel_Cizek_Resume_Project\cpp\x64\Release\Simple3DGameXaml\Upload\Simple3DGameXaml_1.0.10.0_x64.appx
+SymbolPackage=D:\Utility Programs\Windows-universal-samples\Windows-universal-samples\Samples\Daniel_Cizek_Resume_Project\cpp\x64\Release\Simple3DGameXaml\Upload\Simple3DGameXaml_1.0.10.0\Simple3DGameXaml_1.0.10.0_x64.appxsym

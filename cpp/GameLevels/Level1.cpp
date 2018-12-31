@@ -44,27 +44,22 @@ void Level1::Initialize(std::vector<GameObject^> objects)
     int targetCount = 0;
     for (auto object = objects.begin(); object != objects.end(); object++)
     {
-        if (Face^ target = dynamic_cast<Face^>(*object))
-        {
-            if (targetCount < 9)
-            {
-                target->Active(true);
-                target->Target(true);
-                target->Hit(false);
-                target->AnimatePosition(nullptr);
-                target->Position(position[targetCount]);
-                targetCount++;
-            }
-            else
-            {
-                (*object)->Active(false);
-            }
-        }
-        else
-        {
-			// TODO :: Temporarily enabling all objects for testing.
-            //(*object)->Active(false);
-        }
+		if (Face^ target = dynamic_cast<Face^>(*object))
+		{
+			if (targetCount < 9)
+			{
+				target->Active(true);
+				target->Target(true);
+				target->Hit(false);
+				target->AnimatePosition(nullptr);
+				target->Position(position[targetCount]);
+				targetCount++;
+			}
+			else
+			{
+				(*object)->Active(false);
+			}
+		}
     }
 }
 

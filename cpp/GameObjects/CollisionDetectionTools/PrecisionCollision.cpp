@@ -7,7 +7,6 @@ namespace PrecisionCollision {
 	namespace { // Anonymous namespace 
 		bool SphereSphere(Sphere^ ibb, Sphere^ obb) {
 
-			//OutputDebugStringW(L"REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE/n/n/n/n/n//n/n/n/n/n/nREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 			auto ibbPos = ibb->Position(),
 				obbPos = obb->Position();
 
@@ -22,9 +21,11 @@ namespace PrecisionCollision {
 			}
 
 			if (distance < (ibb->Radius() + obb->Radius())) {
+				OutputDebugStringW(L"REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n");
 				return true;
 			}
 			else {
+				OutputDebugStringW(L"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 				return false;
 			}
 		}
