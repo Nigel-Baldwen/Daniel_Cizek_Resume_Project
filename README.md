@@ -1,3 +1,6 @@
+Resume project based on the sample code provided by Microsoft according to the information posted below:
+
+
 <!---
   category: Gaming
   samplefwlink: http://go.microsoft.com/fwlink/p/?LinkId=620599
