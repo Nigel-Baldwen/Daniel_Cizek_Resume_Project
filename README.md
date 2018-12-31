@@ -1,5 +1,11 @@
-Resume project based on the sample code provided by Microsoft according to the information posted below:
+Resume project based on the sample code provided by Microsoft according to the information posted below.
 
+Major changes include:
+- Entirely reworked UI
+- Optimized collision detection algorithm using sweep line algorithm techniques
+- Streamlined functionality
+- Added in rich media functionality in the form of video and audio playback
+- Enabled custom key binding
 
 <!---
   category: Gaming
