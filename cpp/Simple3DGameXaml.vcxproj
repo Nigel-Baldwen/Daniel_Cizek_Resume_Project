@@ -265,6 +265,9 @@
     <ClInclude Include="Core\GameMain.h" />
     <ClInclude Include="Core\GameUIConstants.h" />
     <ClInclude Include="Core\GameUIControl.h" />
+    <ClInclude Include="Core\PrimaryActionBoard.h" />
+    <ClInclude Include="Core\PABTile.h" />
+    <ClInclude Include="Core\PABTileEnums.h" />
     <ClInclude Include="Core\ProductItem.h" />
     <ClInclude Include="Core\SettingsPage.xaml.h">
       <DependentUpon>Core\SettingsPage.xaml</DependentUpon>
@@ -330,6 +333,8 @@
     <ClCompile Include="Audio\MediaReader.cpp" />
     <ClCompile Include="Audio\SoundEffect.cpp" />
     <ClCompile Include="Core\GameMain.cpp" />
+    <ClCompile Include="Core\PrimaryActionBoard.cpp" />
+    <ClCompile Include="Core\PABTile.cpp" />
     <ClCompile Include="Core\ProductItem.cpp" />
     <ClCompile Include="Core\SettingsPage.xaml.cpp">
       <DependentUpon>Core\SettingsPage.xaml</DependentUpon>

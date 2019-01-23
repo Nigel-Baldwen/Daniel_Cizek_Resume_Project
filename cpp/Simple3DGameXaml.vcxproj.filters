@@ -233,6 +233,12 @@
     <ClCompile Include="GameObjects\CollisionDetectionTools\PrecisionCollision.cpp">
       <Filter>GameObjects\CollisionDetectionTools</Filter>
     </ClCompile>
+    <ClCompile Include="Core\PrimaryActionBoard.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PABTile.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -387,6 +393,15 @@
     </ClInclude>
     <ClInclude Include="GameObjects\CollisionDetectionTools\PrecisionCollision.h">
       <Filter>GameObjects\CollisionDetectionTools</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PrimaryActionBoard.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PABTile.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PABTileEnums.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
